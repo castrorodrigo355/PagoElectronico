@@ -1,0 +1,9 @@
+﻿<configuracion>
+  <fecha>22/05/2015</fecha>
+  <conexion>
+    <servidor>localhost</servidor>
+    <instancia>SQLSERVER2008</instancia>
+    <usuario>gd</usuario>
+    <password>gd2015</password>
+  </conexion>
+</configuracion>

@@ -1,0 +1,9 @@
+﻿<configuracion>
+  <fecha>22/05/2015</fecha>
+  <conexion>
+    <servidor>.\SQLSERVER2008</servidor>
+    <base-datos>GD1C2015</base-datos>
+    <usuario>gd</usuario>
+    <password>gd2015</password>
+  </conexion>
+</configuracion>
