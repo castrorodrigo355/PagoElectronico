@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessEntities\Cliente.cs" />
     <Compile Include="BusinessEntities\Sesion.cs" />
     <Compile Include="BusinessEntities\Usuario.cs" />
     <Compile Include="BusinessRules\UsuarioBusinessRule.cs" />
@@ -193,7 +194,7 @@
     <Content Include="config.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Recursos\" />
+    <Folder Include="UI\Recursos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

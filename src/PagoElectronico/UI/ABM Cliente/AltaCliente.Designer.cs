@@ -42,6 +42,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -59,20 +67,12 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.epValidador = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epValidador)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
@@ -198,6 +198,70 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos Cliente";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(17, 248);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(53, 13);
+            this.label15.TabIndex = 20;
+            this.label15.Text = "Localidad";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(84, 245);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(254, 20);
+            this.textBox10.TabIndex = 19;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(299, 205);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(39, 20);
+            this.textBox9.TabIndex = 18;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(296, 189);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(36, 13);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "Depto";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(238, 205);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(39, 20);
+            this.textBox8.TabIndex = 16;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(235, 189);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(27, 13);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "Piso";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(20, 205);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(196, 20);
+            this.textBox7.TabIndex = 14;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(17, 189);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(30, 13);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Calle";
             // 
             // label11
             // 
@@ -361,73 +425,9 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
-            // errorProvider1
+            // epValidador
             // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(17, 189);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(30, 13);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Calle";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(20, 205);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(196, 20);
-            this.textBox7.TabIndex = 14;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(238, 205);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(39, 20);
-            this.textBox8.TabIndex = 16;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(235, 189);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(27, 13);
-            this.label13.TabIndex = 15;
-            this.label13.Text = "Piso";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(299, 205);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(39, 20);
-            this.textBox9.TabIndex = 18;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(296, 189);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(36, 13);
-            this.label14.TabIndex = 17;
-            this.label14.Text = "Depto";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(17, 248);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(53, 13);
-            this.label15.TabIndex = 20;
-            this.label15.Text = "Localidad";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(84, 245);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(254, 20);
-            this.textBox10.TabIndex = 19;
+            this.epValidador.ContainerControl = this;
             // 
             // AltaCliente
             // 
@@ -446,7 +446,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epValidador)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -479,7 +479,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -491,6 +490,7 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.ErrorProvider epValidador;
 
     }
 }

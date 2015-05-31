@@ -19,3 +19,5 @@ C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\PagoElectronico\obj\Debug\Pag
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Cliente.AltaCliente.resources
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Cliente.EditarCliente.resources
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.ABM_Rol.EditarRol.resources
+C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.exe
+C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.pdb
