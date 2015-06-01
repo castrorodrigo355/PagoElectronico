@@ -90,7 +90,8 @@ CREATE TABLE [DBA_GD].CUENTA(
 	Cuenta_tipo numeric(18,0) foreign key references [DBA_GD].TIPO_CUENTA,
 	Cuenta_Cliente_ID numeric(18,0) foreign key references [DBA_GD].CLIENTE,
 	Cuenta_Moneda numeric(18,0) foreign key references [DBA_GD].MONEDA,
-	Cuenta_Estado char(10),
+	Cuenta_Estado char(40),
+	--es tamaño 40 para que entre Pendiente de activacion
 	CONSTRAINT UC_Cuenta_Numero UNIQUE(Cuenta_Numero) 
 	);
 		
@@ -190,10 +191,13 @@ ALTER TABLE [DBA_GD].TRANSFERENCIA ADD CONSTRAINT DF_Transferencia_Fecha DEFAULT
 GO
 ALTER TABLE [DBA_GD].RETIRO ADD CONSTRAINT DF_Retiro_Fecha DEFAULT GETDATE() FOR [Retiro_Fecha]
 GO
+				-------------------------------------------------------
+						-- PROCESOS DE MIGRACION DE DATOS ---
+				-------------------------------------------------------
+
 
 
 --MIGRACION DATOS A TABLA BANCO--
-	--LISTO--
 
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_BANCO
 	as
@@ -221,7 +225,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CLIENTE
 		Cliente_Fecha_Nac,Cliente_Mail)
 		
 		SELECT distinct Cli_Pais_Codigo,Cli_Nombre,Cli_Apellido,Cli_Tipo_Doc_Cod,Cli_Nro_Doc,Cli_Tipo_Doc_Desc,
-		Cli_Dom_Calle,Cli_Dom_Nro,Cli_Dom_Piso,Cli_Dom_Depto,Cli_Fecha_Nac,Cli_Mail
+		Cli_Dom_Calle,Cli_Dom_Nro,Cli_Dom_Piso,Cli_Dom_Depto,Cli_Fecha_Nac,Cli_Mail		
 		FROM GD1C2015.gd_esquema.Maestra
 	
 		INSERT INTO [DBA_GD].CLIENTE
@@ -244,7 +248,7 @@ go
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_CUENTA
 	as	
 	-- TODO ACA SE DEBERIA HACER UN JOIN CAPAZ
-	-- FALTA DETERMINAR EL TIPO DE CUENTA, PUEDE SER UN PROCEDURE A PARTE
+	-- SE INICIALIZA el Tipo de Cuenta como GRATUITA y su estado es habilitada
 	BEGIN
 		INSERT INTO [DBA_GD].CUENTA
 		(Cuenta_Numero, 
@@ -253,7 +257,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CUENTA
 		Cuenta_Fecha_Cierre, 
 		Cuenta_Cliente_ID,
 		Cuenta_Moneda,
-		Cuenta_Estado)
+		Cuenta_Estado,Cuenta_tipo)
 		
 		SELECT DISTINCT Cuenta_Numero,
 						Cuenta_Fecha_Creacion,
@@ -262,7 +266,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CUENTA
 						(SELECT Cliente_ID FROM [DBA_GD].CLIENTE WHERE Cliente_Nro_Doc = Cli_Nro_Doc AND 
 																		Cliente_Tipo_Doc_Cod = Cli_Tipo_Doc_Cod),
 						(SELECT Moneda_ID FROM [DBA_GD].MONEDA WHERE Moneda_Tipo = 'USD'),
-						Cuenta_Estado						
+						'Habilitada',4						
 		FROM GD1C2015.gd_esquema.Maestra
 	END
 go
@@ -333,7 +337,14 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_Paises
 		INSERT INTO [DBA_GD].PAIS
 		(Pais_Codigo,Pais_Desc,Pais_Nacionalidad)
 		SELECT distinct Cli_Pais_Codigo AS CODIGO_PAIS,Cli_Pais_Desc AS PAIS_DESCRIPCION, Cli_Pais_Desc as NACIONALIDAD
-		FROM GD1C2015.gd_esquema.Maestra	
+		FROM GD1C2015.gd_esquema.Maestra
+
+--AGREGA PAISES QUE ESTAN EN CUENTAS PERO NO EN CLIENTES				
+		INSERT INTO [DBA_GD].PAIS
+		(Pais_Codigo,Pais_Desc,Pais_Nacionalidad)
+		SELECT distinct Cuenta_Pais_Codigo,Cuenta_Pais_Desc,Cuenta_Pais_Desc
+		FROM GD1C2015.gd_esquema.Maestra T1
+		WHERE NOT EXISTS (SELECT 1 FROM DBA_GD.PAIS as T2 where T1.Cuenta_Pais_Codigo = T2.Pais_Codigo)
 	END
 go
 
@@ -442,8 +453,6 @@ go
 CREATE PROCEDURE [DBA_GD].Migracion_USUARIO
 	as
 	BEGIN
-		DECLARE @VARIABLE INT
-		SET @VARIABLE = 1
 		INSERT INTO [DBA_GD].USUARIO
 		(Usuario_Username,Usuario_Password,Usuario_Fecha_Creacion,Usuario_Fecha_Ultima_Modif,
 		Usuario_Pregunta_Secreta,Usuario_Respuesta_Secreta,Usuario_Estado,Usuario_Cant_Intentos)
@@ -466,6 +475,8 @@ CREATE PROCEDURE [DBA_GD].Migracion_USUARIO
 		'Una combinación de letras que te dijeron en el tp',hashbytes('SHA1',CAST('Lo que dice el enunciado'as varchar(40))),'A',0)
 	END
 go
+
+--MIGRACION DATOS USUARIO ROL	
 	CREATE PROCEDURE [DBA_GD].Migracion_Datos_USUARIO_ROL
 	as
 	BEGIN
@@ -483,6 +494,7 @@ go
 		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'Admin3'),2)
 	END
 go
+
 --MIGRACION DATOS TABLA FACTURA
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_FACTURA
 	as
