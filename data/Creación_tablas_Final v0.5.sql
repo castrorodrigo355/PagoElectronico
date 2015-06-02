@@ -128,14 +128,14 @@ CREATE TABLE [DBA_GD].DEPOSITO(
 	
 CREATE TABLE [DBA_GD].RETIRO(
 	Retiro_ID numeric(18,0) identity(1,1) primary key,
-	Retiro_codigo numeric(18,0),
+--	Retiro_codigo numeric(18,0),
 	Retiro_Fecha datetime,
 	Retiro_Moneda varchar(255),
 	Retiro_Importe numeric(18,2),
 	Retiro_Cuenta_Numero numeric(18,0) foreign key references [DBA_GD].CUENTA,
 	Retiro_Codigo_Egreso numeric(18,0),
 	Retiro_Nro_Cheque numeric(18,0) foreign key references [DBA_GD].CHEQUE,
-	CONSTRAINT UC_Retiro_codigo UNIQUE(Retiro_codigo) 
+	CONSTRAINT UC_Retiro_codigo UNIQUE(Retiro_codigo_Egreso) 
 	);
 	
 CREATE TABLE [DBA_GD].TRANSFERENCIA(
@@ -286,12 +286,12 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CLIENTE
 		(8,'Nicolas','Ziella',10002,33204530,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','nziella@hotmail.com.ar',
 		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username = 'nziella')),
 		
-		(8,'Rodrigo','Castro',10002,33204530,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','castrorodrigo355@gmail.com',
+		(8,'Rodrigo','Castro',10002,33501904,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','castrorodrigo355@gmail.com',
 		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username = 'castrorodrigo355')),
 
 		(8,'Juan Manuel','Cugat',10002,35493525,'Pasaporte','Arce',851,1,'A','1987-08-06','juamma.cugat@gmail.com',
 		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username = 'juamma.cugat')),
-		(8,'Oscar Martin','Bianchini',10002,33204530,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','tinchob@gmail.com',
+		(8,'Oscar Martin','Bianchini',10002,31958375,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','tinchob@gmail.com',
 		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username = 'tinchob'))
 	END
 go
@@ -545,7 +545,12 @@ GO
 	VALUES
 		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'Admin1'),2),
 		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'Admin2'),2),
-		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'Admin3'),2)
+		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'Admin3'),2),
+		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'nziella'),2),
+		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'castrorodrigo355'),2),
+		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'juamma.cugat'),2),
+		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'tinchob'),2)
+	
 	END
 go
 
@@ -600,7 +605,7 @@ exec [DBA_GD].Migracion_Datos_USUARIO_ROL
 exec [DBA_GD].Migracion_Datos_Funcionalidad
 exec [DBA_GD].Migracion_Datos_ROL_FUNCIONALIDAD
 exec [DBA_GD].Migracion_Datos_FACTURA
---exec [DBA_GD].Migracion_Datos_RETIRO
+exec [DBA_GD].Migracion_Datos_RETIRO
 exec [DBA_GD].Migracion_Datos_CUENTA
 exec [DBA_GD].Migracion_Datos_DEPOSITO
 exec [DBA_GD].Migracion_Datos_CHEQUE
