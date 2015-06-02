@@ -22,6 +22,7 @@ drop table [DBA_GD].TIPO_DOCUMENTO
 drop table [DBA_GD].ROL_FUNCIONALIDAD
 drop table [DBA_GD].ROL
 drop table [DBA_GD].FUNCIONALIDAD
+drop table [DBA_GD].ITEM_Factura
 
 -------------------------------------------------------
 				-- Borrado de PROCEDURES --
@@ -44,6 +45,7 @@ drop PROCEDURE [DBA_GD].Migracion_Datos_RETIRO
 drop PROCEDURE [DBA_GD].Migracion_Datos_CUENTA
 drop PROCEDURE [DBA_GD].Migracion_Datos_DEPOSITO
 drop PROCEDURE [DBA_GD].Migracion_Datos_CHEQUE
+drop PROCEDURE [DBA_GD].Migracion_Datos_ITEM_FACTURA
 -------------------------------------------------------
 				-- Borrado de ESQUEMA --
 -------------------------------------------------------

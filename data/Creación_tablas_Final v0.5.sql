@@ -10,7 +10,6 @@ go
 				-- Creacion de tablas ---
 -------------------------------------------------------
 
-
 CREATE TABLE [DBA_GD].TIPO_DOCUMENTO(
 	Tipo_Documento_ID numeric(18,0) NOT NULL primary key,
 	Tipo_Documento_Desc varchar(10)
@@ -159,6 +158,22 @@ CREATE TABLE [DBA_GD].FUNCIONALIDAD(
 	Funcionalidad_ID numeric(18,0) identity(1,1) primary key,
 	Funcionalidad_Nombre varchar(100)
 	);
+		
+CREATE TABLE [DBA_GD].FACTURA(
+	Factura_Numero numeric(18,0) primary key,
+	Factura_Fecha datetime,
+	Factura_Item_Desc varchar(255),
+	Factura_Item_Importe numeric(18,2),
+	Factura_Nro_Cliente numeric(18,0) foreign key references [DBA_GD].CLIENTE
+	);
+	
+CREATE TABLE [DBA_GD].ITEM_FACTURA(
+	Item_Factura_ID numeric(18,0) identity(1,1) primary key,
+	Item_Factura_Descripcion varchar(100),
+	Item_Factura_Importe numeric(18,0),
+	Item_Factura_ID_Factura numeric(18,0) foreign key references [DBA_GD].FACTURA
+	);
+
 	-----------------TABLAS DE RELACION-----------------------------------
 
 CREATE TABLE [DBA_GD].ROL_FUNCIONALIDAD(
@@ -176,13 +191,6 @@ CREATE TABLE [DBA_GD].USUARIO_ROL(
 	
 	--------------------FIN TABLAS RELACIONALES-----------------------------
 
-CREATE TABLE [DBA_GD].FACTURA(
-	Factura_Numero numeric(18,0) primary key,
-	Factura_Fecha datetime,
-	Factura_Item_Desc varchar(255),
-	Factura_Item_Importe numeric(18,2),
-	Factura_Nro_Cliente numeric(18,0) foreign key references [DBA_GD].CLIENTE
-	);
 
 --VALORES POR DEFAULT
 ALTER TABLE [DBA_GD].DEPOSITO ADD CONSTRAINT DF_Deposito_Fecha DEFAULT GETDATE() FOR [Deposito_Fecha]
@@ -194,7 +202,6 @@ GO
 				-------------------------------------------------------
 						-- PROCESOS DE MIGRACION DE DATOS ---
 				-------------------------------------------------------
-
 
 
 --MIGRACION DATOS A TABLA BANCO--
@@ -212,7 +219,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_BANCO
 go
 	
 --MIGRACION DATOS TABLA CLIENTE
-	--INCOMPLETO
+
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_CLIENTE
 	as
 	BEGIN
@@ -225,7 +232,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CLIENTE
 		Cliente_Fecha_Nac,Cliente_Mail)
 		
 		SELECT distinct Cli_Pais_Codigo,Cli_Nombre,Cli_Apellido,Cli_Tipo_Doc_Cod,Cli_Nro_Doc,Cli_Tipo_Doc_Desc,
-		Cli_Dom_Calle,Cli_Dom_Nro,Cli_Dom_Piso,Cli_Dom_Depto,Cli_Fecha_Nac,Cli_Mail		
+		Cli_Dom_Calle,Cli_Dom_Nro,Cli_Dom_Piso,Cli_Dom_Depto,Cli_Fecha_Nac,Cli_Mail
 		FROM GD1C2015.gd_esquema.Maestra
 	
 		INSERT INTO [DBA_GD].CLIENTE
@@ -244,11 +251,10 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CLIENTE
 go
 	
 --MIGRACION DATOS TABLA CUENTA
---INCOMPLETO
+
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_CUENTA
 	as	
-	-- TODO ACA SE DEBERIA HACER UN JOIN CAPAZ
-	-- SE INICIALIZA el Tipo de Cuenta como GRATUITA y su estado es habilitada
+	-- FALTA DETERMINAR EL TIPO DE CUENTA, PUEDE SER UN PROCEDURE A PARTE
 	BEGIN
 		INSERT INTO [DBA_GD].CUENTA
 		(Cuenta_Numero, 
@@ -316,8 +322,19 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_Funcionalidad
 
 go
 --MIGRACION DATOS TABLA ITEM_FACTURA
-	--RESTA HACER
-	
+
+CREATE PROCEDURE [DBA_GD].Migracion_Datos_ITEM_FACTURA
+	AS
+	BEGIN
+		INSERT INTO [DBA_GD].ITEM_FACTURA
+		(Item_Factura_Descripcion,Item_Factura_Importe, Item_Factura_ID_Factura)
+		SELECT	Item_Factura_Descr,
+				Item_Factura_Importe,
+				(SELECT DISTINCT F.Factura_Numero FROM [DBA_GD].FACTURA AS F WHERE F.Factura_Numero = M.Factura_Numero) 
+		FROM GD1C2015.gd_esquema.Maestra AS M
+	END
+GO
+
 --MIGRACION DE DATOS A TABLA MONEDA--
 
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_Moneda
@@ -447,20 +464,40 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_Tipo_Documento
 go
 
 --MIGRACION DATOS TRANSFERENCIA
-	--RESTA HACER
+
+CREATE PROCEDURE [DBA_GD].Migracion_Datos_TRANSFERENCIA
+	AS
+	BEGIN
+		INSERT INTO [DBA_GD].TRANSFERENCIA
+			(Transferencia_Fecha, 
+			Transferencia_Importe,
+			Transferencia_Costo_Trans, 
+			Transferencia_Cuenta_Origen, 
+			Transferencia_Cuenta_Dst)
+		SELECT DISTINCT M.Transf_Fecha, 
+		M.Trans_Importe, 
+		M.Trans_Costo_Trans, 
+		(SELECT C.Cuenta_ID FROM [DBA_GD].CUENTA AS C WHERE C.Cuenta_Numero = M.Cuenta_Numero), 
+		(SELECT C.Cuenta_ID FROM [DBA_GD].CUENTA AS C WHERE C.Cuenta_Numero = M.Cuenta_Dest_Numero) 
+		FROM GD1C2015.gd_esquema.Maestra AS M
+	END
+GO
 
 --MIGRACION DATOS USUARIO
+
 CREATE PROCEDURE [DBA_GD].Migracion_USUARIO
 	as
 	BEGIN
+		DECLARE @VARIABLE INT
+		SET @VARIABLE = 1
 		INSERT INTO [DBA_GD].USUARIO
 		(Usuario_Username,Usuario_Password,Usuario_Fecha_Creacion,Usuario_Fecha_Ultima_Modif,
 		Usuario_Pregunta_Secreta,Usuario_Respuesta_Secreta,Usuario_Estado,Usuario_Cant_Intentos)
-		SELECT distinct SUBSTRING(Cliente_Mail,0,patindex('%@%',Cliente_Mail)),hashbytes('SHA1',CAST(Cliente_Nro_Doc as varchar(200))),
+		SELECT distinct SUBSTRING(Cli_Mail,0,patindex('%@%',Cli_Mail)),hashbytes('SHA1',CAST(Cli_Nro_Doc as varchar(200))),
 		getdate(),getdate(),'¿Sabes como identificarte?',
 		hashbytes('SHA1',CAST('Algo que solo tu posees'as varchar(40))),'A',0
 		
-		FROM GD1C2015.[DBA_GD].CLIENTE	
+		FROM gd_esquema.Maestra	
 	
 		INSERT INTO [DBA_GD].USUARIO
 		(Usuario_Username,Usuario_Password,Usuario_Fecha_Creacion,Usuario_Fecha_Ultima_Modif,
@@ -494,7 +531,6 @@ go
 		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'Admin3'),2)
 	END
 go
-
 --MIGRACION DATOS TABLA FACTURA
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_FACTURA
 	as
@@ -539,15 +575,17 @@ exec [DBA_GD].Migracion_Datos_BANCO
 exec [DBA_GD].Migracion_Datos_Tipo_Documento
 exec [DBA_GD].Migracion_Datos_Moneda
 exec [DBA_GD].Migracion_Datos_Tipo_Cuenta
+exec [DBA_GD].Migracion_USUARIO
 exec [DBA_GD].Migracion_Datos_CLIENTE
 exec [DBA_GD].Migracion_Datos_Rol
-exec [DBA_GD].Migracion_USUARIO
 exec [DBA_GD].Migracion_Datos_USUARIO_ROL
 exec [DBA_GD].Migracion_Datos_Funcionalidad
 exec [DBA_GD].Migracion_Datos_ROL_FUNCIONALIDAD
 exec [DBA_GD].Migracion_Datos_FACTURA
---exec [DBA_GD].Migracion_Datos_RETIRO
+exec [DBA_GD].Migracion_Datos_RETIRO
 exec [DBA_GD].Migracion_Datos_CUENTA
 exec [DBA_GD].Migracion_Datos_DEPOSITO
 exec [DBA_GD].Migracion_Datos_CHEQUE
+exec [DBA_GD].Migracion_Datos_TRANSFERENCIA
+exec [DBA_GD].Migracion_Datos_ITEM_FACTURA
 
