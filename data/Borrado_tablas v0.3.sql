@@ -3,6 +3,7 @@ GO
 -------------------------------------------------------
 				-- Borrado de tablas --
 -------------------------------------------------------
+drop table [DBA_GD].ITEM_Factura
 drop table [DBA_GD].FACTURA
 drop table [DBA_GD].USUARIO_ROL
 drop table [DBA_GD].AUDITORIA_LOG
@@ -43,6 +44,8 @@ drop PROCEDURE [DBA_GD].Migracion_Datos_RETIRO
 drop PROCEDURE [DBA_GD].Migracion_Datos_CUENTA
 drop PROCEDURE [DBA_GD].Migracion_Datos_DEPOSITO
 drop PROCEDURE [DBA_GD].Migracion_Datos_CHEQUE
+drop PROCEDURE [DBA_GD].Migracion_Datos_ITEM_FACTURA
+drop PROCEDURE [DBA_GD].Migracion_Datos_TRANSFERENCIA
 -------------------------------------------------------
 				-- Borrado de ESQUEMA --
 -------------------------------------------------------

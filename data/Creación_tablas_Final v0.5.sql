@@ -217,8 +217,45 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_BANCO
 		WHERE Banco_Cogido is not null 	
 	END
 go
+
+--MIGRACION DATOS USUARIO--
+
+CREATE PROCEDURE [DBA_GD].Migracion_USUARIO
+	as
+	BEGIN
+		INSERT INTO [DBA_GD].USUARIO
+		(Usuario_Username,Usuario_Password,Usuario_Fecha_Creacion,Usuario_Fecha_Ultima_Modif,
+		Usuario_Pregunta_Secreta,Usuario_Respuesta_Secreta,Usuario_Estado,Usuario_Cant_Intentos)
+		SELECT distinct SUBSTRING(Cli_Mail,0,patindex('%@%',Cli_Mail)),hashbytes('SHA1',CAST(Cli_Nro_Doc as varchar(200))),
+		getdate(),getdate(),'¿Sabes como identificarte?',
+		hashbytes('SHA1',CAST('Algo que solo tu posees'as varchar(40))),'A',0
+		
+		FROM gd_esquema.Maestra	
 	
---MIGRACION DATOS TABLA CLIENTE
+		INSERT INTO [DBA_GD].USUARIO
+		(Usuario_Username,Usuario_Password,Usuario_Fecha_Creacion,Usuario_Fecha_Ultima_Modif,
+		Usuario_Pregunta_Secreta,Usuario_Respuesta_Secreta,Usuario_Estado,Usuario_Cant_Intentos)
+		
+		VALUES
+		('Admin1',hashbytes('SHA1',CAST('w23e'as varchar(10))),getdate(),getdate(),
+		'Una combinación de letras que te dijeron en el tp',hashbytes('SHA1',CAST('Lo que dice el enunciado'as varchar(40))),'A',0),
+		('Admin2',hashbytes('SHA1',CAST('w23e'as varchar(10))),getdate(),getdate(),
+		'Una combinación de letras que te dijeron en el tp',hashbytes('SHA1',CAST('Lo que dice el enunciado'as varchar(40))),'A',0),
+		('Admin3',hashbytes('SHA1',CAST('w23e'as varchar(10))),getdate(),getdate(),
+		'Una combinación de letras que te dijeron en el tp',hashbytes('SHA1',CAST('Lo que dice el enunciado'as varchar(40))),'A',0),	
+	
+		('nziella',hashbytes('SHA1',CAST(33204530 as varchar(10))),getdate(),getdate(),
+		'¿Sabes como identificarte?',hashbytes('SHA1',CAST('Algo que solo tu posees'as varchar(40))),'A',0),		
+		('castrorodrigo355',hashbytes('SHA1',CAST(33204530 as varchar(10))),getdate(),getdate(),
+		'¿Sabes como identificarte?',hashbytes('SHA1',CAST('Algo que solo tu posees'as varchar(40))),'A',0),
+		('juamma.cugat',hashbytes('SHA1',CAST(35493525 as varchar(10))),getdate(),getdate(),
+		'¿Sabes como identificarte?',hashbytes('SHA1',CAST('Algo que solo tu posees'as varchar(40))),'A',0),
+		('tinchob',hashbytes('SHA1',CAST(33204530 as varchar(10))),getdate(),getdate(),
+		'¿Sabes como identificarte?',hashbytes('SHA1',CAST('Algo que solo tu posees'as varchar(40))),'A',0)
+	END
+go
+	
+--MIGRACION DATOS TABLA CLIENTE--
 
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_CLIENTE
 	as
@@ -229,10 +266,13 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CLIENTE
 		Cliente_Tipo_Doc_Cod,Cliente_Nro_Doc,
 		Cliente_Tipo_Doc_Desc,Cliente_Dom_Calle,
 		Cliente_Dom_Nro,Cliente_Dom_Piso,Cliente_Dom_Depto,
-		Cliente_Fecha_Nac,Cliente_Mail)
+		Cliente_Fecha_Nac,Cliente_Mail,Cliente_Usuario)
 		
 		SELECT distinct Cli_Pais_Codigo,Cli_Nombre,Cli_Apellido,Cli_Tipo_Doc_Cod,Cli_Nro_Doc,Cli_Tipo_Doc_Desc,
-		Cli_Dom_Calle,Cli_Dom_Nro,Cli_Dom_Piso,Cli_Dom_Depto,Cli_Fecha_Nac,Cli_Mail
+		Cli_Dom_Calle,Cli_Dom_Nro,Cli_Dom_Piso,Cli_Dom_Depto,Cli_Fecha_Nac,Cli_Mail,
+		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username =
+		 SUBSTRING(Cli_Mail,0,patindex('%@%',Cli_Mail)))
+				
 		FROM GD1C2015.gd_esquema.Maestra
 	
 		INSERT INTO [DBA_GD].CLIENTE
@@ -241,20 +281,25 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CLIENTE
 					Cliente_Tipo_Doc_Cod,Cliente_Nro_Doc,
 					Cliente_Tipo_Doc_Desc,Cliente_Dom_Calle,
 					Cliente_Dom_Nro,Cliente_Dom_Piso,Cliente_Dom_Depto,
-					Cliente_Fecha_Nac,Cliente_Mail)
+					Cliente_Fecha_Nac,Cliente_Mail,Cliente_Usuario)
 		VALUES 
-		(8,'Nicolas','Ziella',10002,33204530,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','nziella@hotmail.com.ar'),
-		(8,'Rodrigo','Castro',10002,33204530,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','castrorodrigo355@gmail.com'),
-		(8,'Juan Manuel','Cugat',10002,35493525,'Pasaporte','Arce',851,1,'A','1987-08-06','juamma.cugat@gmail.com'),
-		(8,'Oscar Martin','Bianchini',10002,33204530,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','tinchob@gmail.com')
+		(8,'Nicolas','Ziella',10002,33204530,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','nziella@hotmail.com.ar',
+		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username = 'nziella')),
+		
+		(8,'Rodrigo','Castro',10002,33204530,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','castrorodrigo355@gmail.com',
+		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username = 'castrorodrigo355')),
+
+		(8,'Juan Manuel','Cugat',10002,35493525,'Pasaporte','Arce',851,1,'A','1987-08-06','juamma.cugat@gmail.com',
+		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username = 'juamma.cugat')),
+		(8,'Oscar Martin','Bianchini',10002,33204530,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','tinchob@gmail.com',
+		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username = 'tinchob'))
 	END
 go
 	
---MIGRACION DATOS TABLA CUENTA
+--MIGRACION DATOS TABLA CUENTA--
 
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_CUENTA
 	as	
-	-- FALTA DETERMINAR EL TIPO DE CUENTA, PUEDE SER UN PROCEDURE A PARTE
 	BEGIN
 		INSERT INTO [DBA_GD].CUENTA
 		(Cuenta_Numero, 
@@ -278,7 +323,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CUENTA
 go
 
 
---MIGRACION DATOS TABLA DEPOSITO
+--MIGRACION DATOS TABLA DEPOSITO--
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_DEPOSITO
 	as
 	BEGIN
@@ -301,7 +346,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_DEPOSITO
 	END
 go
 	
---MIGRACION DATOS FUNCIONALIDAD
+--MIGRACION DATOS FUNCIONALIDAD--
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_Funcionalidad
 	as
 	BEGIN
@@ -321,7 +366,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_Funcionalidad
 	END
 
 go
---MIGRACION DATOS TABLA ITEM_FACTURA
+--MIGRACION DATOS TABLA ITEM_FACTURA--
 
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_ITEM_FACTURA
 	AS
@@ -483,35 +528,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_TRANSFERENCIA
 	END
 GO
 
---MIGRACION DATOS USUARIO
 
-CREATE PROCEDURE [DBA_GD].Migracion_USUARIO
-	as
-	BEGIN
-		DECLARE @VARIABLE INT
-		SET @VARIABLE = 1
-		INSERT INTO [DBA_GD].USUARIO
-		(Usuario_Username,Usuario_Password,Usuario_Fecha_Creacion,Usuario_Fecha_Ultima_Modif,
-		Usuario_Pregunta_Secreta,Usuario_Respuesta_Secreta,Usuario_Estado,Usuario_Cant_Intentos)
-		SELECT distinct SUBSTRING(Cli_Mail,0,patindex('%@%',Cli_Mail)),hashbytes('SHA1',CAST(Cli_Nro_Doc as varchar(200))),
-		getdate(),getdate(),'¿Sabes como identificarte?',
-		hashbytes('SHA1',CAST('Algo que solo tu posees'as varchar(40))),'A',0
-		
-		FROM gd_esquema.Maestra	
-	
-		INSERT INTO [DBA_GD].USUARIO
-		(Usuario_Username,Usuario_Password,Usuario_Fecha_Creacion,Usuario_Fecha_Ultima_Modif,
-		Usuario_Pregunta_Secreta,Usuario_Respuesta_Secreta,Usuario_Estado,Usuario_Cant_Intentos)
-		
-		VALUES
-		('Admin1',hashbytes('SHA1',CAST('w23e'as varchar(10))),getdate(),getdate(),
-		'Una combinación de letras que te dijeron en el tp',hashbytes('SHA1',CAST('Lo que dice el enunciado'as varchar(40))),'A',0),
-		('Admin2',hashbytes('SHA1',CAST('w23e'as varchar(10))),getdate(),getdate(),
-		'Una combinación de letras que te dijeron en el tp',hashbytes('SHA1',CAST('Lo que dice el enunciado'as varchar(40))),'A',0),
-		('Admin3',hashbytes('SHA1',CAST('w23e'as varchar(10))),getdate(),getdate(),
-		'Una combinación de letras que te dijeron en el tp',hashbytes('SHA1',CAST('Lo que dice el enunciado'as varchar(40))),'A',0)
-	END
-go
 
 --MIGRACION DATOS USUARIO ROL	
 	CREATE PROCEDURE [DBA_GD].Migracion_Datos_USUARIO_ROL
@@ -531,6 +548,7 @@ go
 		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'Admin3'),2)
 	END
 go
+
 --MIGRACION DATOS TABLA FACTURA
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_FACTURA
 	as
@@ -582,7 +600,7 @@ exec [DBA_GD].Migracion_Datos_USUARIO_ROL
 exec [DBA_GD].Migracion_Datos_Funcionalidad
 exec [DBA_GD].Migracion_Datos_ROL_FUNCIONALIDAD
 exec [DBA_GD].Migracion_Datos_FACTURA
-exec [DBA_GD].Migracion_Datos_RETIRO
+--exec [DBA_GD].Migracion_Datos_RETIRO
 exec [DBA_GD].Migracion_Datos_CUENTA
 exec [DBA_GD].Migracion_Datos_DEPOSITO
 exec [DBA_GD].Migracion_Datos_CHEQUE
