@@ -111,7 +111,7 @@ CREATE TABLE [DBA_GD].TARJETA(
 	Tarjeta_fecha_Emision datetime,
 	Tarjeta_Fecha_Vencimiento datetime,
 	Tarjeta_Codigo_Seg varchar(3),
-	Tarjeat_Emisor_Descripcion varchar(255),
+	Tarjeta_Emisor_Descripcion varchar(255),
 	Tarjeta_Cliente_ID numeric(18,0) foreign key references [DBA_GD].CLIENTE,
 	);
 	
@@ -327,6 +327,7 @@ go
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_DEPOSITO
 	as
 	BEGIN
+		BEGIN TRANSACTION
 		INSERT INTO [DBA_GD].DEPOSITO
 		(Deposito_Codigo,
 		Deposito_Fecha,
@@ -343,6 +344,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_DEPOSITO
 						(SELECT Cuenta_ID FROM [DBA_GD].CUENTA as C WHERE C.Cuenta_Numero = M.Cuenta_Numero)
 		FROM GD1C2015.gd_esquema.Maestra as M
 		WHERE M.Deposito_Codigo IS NOT NULL
+		COMMIT TRANSACTION
 	END
 go
 	
@@ -469,15 +471,17 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_Tarjetas
 	BEGIN
 		INSERT INTO [DBA_GD].TARJETA
 		(Tarjeta_Numero,Tarjeta_Numero_Encriptada,Tarjeta_fecha_Emision,
-		Tarjeta_Fecha_Vencimiento,Tarjeta_Codigo_Seg,Tarjeat_Emisor_Descripcion)
+		Tarjeta_Fecha_Vencimiento,Tarjeta_Codigo_Seg,Tarjeta_Emisor_Descripcion,Tarjeta_Cliente_ID)
 		
 		SELECT distinct Tarjeta_Numero as NUMERO_TARJETA,
 		(convert(varchar(16),HASHBYTES('MD5',SUBSTRING(Tarjeta_Numero,0,12)),2)
 		+SUBSTRING(Tarjeta_Numero,13,4)),Tarjeta_Fecha_Emision as FECHA_EMISION,
 		Tarjeta_Fecha_Vencimiento as FECHA_VENCIMIENTO,Tarjeta_Codigo_Seg as COD_SEG,
-		Tarjeta_Emisor_Descripcion as EMISOR
+		Tarjeta_Emisor_Descripcion as EMISOR,
+		(SELECT C.Cliente_ID FROM [DBA_GD].CLIENTE as C 
+		WHERE C.Cliente_Nro_Doc = M.Cli_Nro_Doc AND C.Cliente_Tipo_Doc_Cod = M.Cli_Tipo_Doc_Cod)
 
-		FROM GD1C2015.gd_esquema.Maestra
+		FROM GD1C2015.gd_esquema.Maestra as M
 		WHERE Tarjeta_Numero is not null 	
 	END
 go
@@ -528,8 +532,6 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_TRANSFERENCIA
 	END
 GO
 
-
-
 --MIGRACION DATOS USUARIO ROL	
 	CREATE PROCEDURE [DBA_GD].Migracion_Datos_USUARIO_ROL
 	as
@@ -550,7 +552,6 @@ GO
 		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'castrorodrigo355'),2),
 		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'juamma.cugat'),2),
 		((SELECT Usuario_ID FROM [DBA_GD].USUARIO WHERE Usuario_username = 'tinchob'),2)
-	
 	END
 go
 
@@ -593,13 +594,13 @@ go
 -------------------------------------------------------
 
 exec [DBA_GD].Migracion_Datos_Paises
-exec [DBA_GD].Migracion_Datos_Tarjetas
 exec [DBA_GD].Migracion_Datos_BANCO
 exec [DBA_GD].Migracion_Datos_Tipo_Documento
 exec [DBA_GD].Migracion_Datos_Moneda
 exec [DBA_GD].Migracion_Datos_Tipo_Cuenta
 exec [DBA_GD].Migracion_USUARIO
 exec [DBA_GD].Migracion_Datos_CLIENTE
+exec [DBA_GD].Migracion_Datos_Tarjetas
 exec [DBA_GD].Migracion_Datos_Rol
 exec [DBA_GD].Migracion_Datos_USUARIO_ROL
 exec [DBA_GD].Migracion_Datos_Funcionalidad
