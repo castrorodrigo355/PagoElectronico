@@ -19,7 +19,10 @@ CREATE TABLE [DBA_GD].PAIS(
 	Pais_ID numeric(18,0) identity(1,1) primary key,
 	Pais_Codigo numeric(18,0),
 	Pais_Desc varchar(250),
-	Pais_Nacionalidad varchar(250),
+	--Pais_Nacionalidad varchar(250),
+	--Se quita Nacionalidad y se agrega al usuario ya que puede tener documento de un pais
+	--pero tener otra nacionalidad
+	
 	CONSTRAINT UC_Pais_Codigo UNIQUE(Pais_Codigo) 
 	);	
 	
@@ -61,6 +64,7 @@ CREATE TABLE [DBA_GD].BANCO(
 CREATE TABLE [DBA_GD].CLIENTE(
 	Cliente_ID numeric(18,0) identity(1,1) primary key,
 	Cliente_Pais_Codigo numeric(18,0) foreign key references [DBA_GD].PAIS(Pais_Codigo),
+	Cliente_Nacionalidad varchar(250),
 	Cliente_Nombre varchar(255),
 	Cliente_Apellido varchar(255),
 	Cliente_Tipo_Doc_Cod numeric(18,0) foreign key references [DBA_GD].TIPO_DOCUMENTO,
@@ -110,7 +114,7 @@ CREATE TABLE [DBA_GD].TARJETA(
 	Tarjeta_Numero_Encriptada varchar(20),
 	Tarjeta_fecha_Emision datetime,
 	Tarjeta_Fecha_Vencimiento datetime,
-	Tarjeta_Codigo_Seg varchar(3),
+	Tarjeta_Codigo_Seg varchar(40),
 	Tarjeta_Emisor_Descripcion varchar(255),
 	Tarjeta_Cliente_ID numeric(18,0) foreign key references [DBA_GD].CLIENTE,
 	);
@@ -130,7 +134,7 @@ CREATE TABLE [DBA_GD].RETIRO(
 	Retiro_ID numeric(18,0) identity(1,1) primary key,
 --	Retiro_codigo numeric(18,0),
 	Retiro_Fecha datetime,
-	Retiro_Moneda varchar(255),
+	Retiro_Moneda numeric(18,0) foreign key references [DBA_GD].MONEDA,
 	Retiro_Importe numeric(18,2),
 	Retiro_Cuenta_Numero numeric(18,0) foreign key references [DBA_GD].CUENTA,
 	Retiro_Codigo_Egreso numeric(18,0),
@@ -141,6 +145,7 @@ CREATE TABLE [DBA_GD].RETIRO(
 CREATE TABLE [DBA_GD].TRANSFERENCIA(
 	Transferencia_ID numeric(18,0) identity(1,1) primary key,
 	Transferencia_Fecha datetime,
+	Transferencia_Moneda numeric(18,0) foreign key references [DBA_GD].MONEDA,
 	Transferencia_Importe numeric(18,2),
 	Transferencia_Costo_Trans numeric(18,2),
 	Transferencia_Cuenta_Origen numeric(18,0) foreign key references [DBA_GD].CUENTA,
@@ -170,7 +175,7 @@ CREATE TABLE [DBA_GD].FACTURA(
 CREATE TABLE [DBA_GD].ITEM_FACTURA(
 	Item_Factura_ID numeric(18,0) identity(1,1) primary key,
 	Item_Factura_Descripcion varchar(100),
-	Item_Factura_Importe numeric(18,0),
+	Item_Factura_Importe numeric(18,2),
 	Item_Factura_ID_Factura numeric(18,0) foreign key references [DBA_GD].FACTURA
 	);
 
@@ -260,15 +265,16 @@ go
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_CLIENTE
 	as
 	BEGIN
+		--Inicializo nacionalidad como null y no tiene que ser obligatorio
 		INSERT INTO [DBA_GD].CLIENTE
-		(Cliente_Pais_Codigo,
+		(Cliente_Pais_Codigo,Cliente_Nacionalidad,
 		Cliente_Nombre,Cliente_Apellido,
 		Cliente_Tipo_Doc_Cod,Cliente_Nro_Doc,
 		Cliente_Tipo_Doc_Desc,Cliente_Dom_Calle,
 		Cliente_Dom_Nro,Cliente_Dom_Piso,Cliente_Dom_Depto,
 		Cliente_Fecha_Nac,Cliente_Mail,Cliente_Usuario)
 		
-		SELECT distinct Cli_Pais_Codigo,Cli_Nombre,Cli_Apellido,Cli_Tipo_Doc_Cod,Cli_Nro_Doc,Cli_Tipo_Doc_Desc,
+		SELECT distinct Cli_Pais_Codigo,null,Cli_Nombre,Cli_Apellido,Cli_Tipo_Doc_Cod,Cli_Nro_Doc,Cli_Tipo_Doc_Desc,
 		Cli_Dom_Calle,Cli_Dom_Nro,Cli_Dom_Piso,Cli_Dom_Depto,Cli_Fecha_Nac,Cli_Mail,
 		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username =
 		 SUBSTRING(Cli_Mail,0,patindex('%@%',Cli_Mail)))
@@ -324,6 +330,7 @@ go
 
 
 --MIGRACION DATOS TABLA DEPOSITO--
+
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_DEPOSITO
 	as
 	BEGIN
@@ -349,6 +356,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_DEPOSITO
 go
 	
 --MIGRACION DATOS FUNCIONALIDAD--
+
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_Funcionalidad
 	as
 	BEGIN
@@ -377,10 +385,11 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_ITEM_FACTURA
 	BEGIN
 		INSERT INTO [DBA_GD].ITEM_FACTURA
 		(Item_Factura_Descripcion,Item_Factura_Importe, Item_Factura_ID_Factura)
-		SELECT	Item_Factura_Descr,
-				Item_Factura_Importe,
+		SELECT	M.Item_Factura_Descr,
+				M.Item_Factura_Importe,
 				(SELECT DISTINCT F.Factura_Numero FROM [DBA_GD].FACTURA AS F WHERE F.Factura_Numero = M.Factura_Numero) 
 		FROM GD1C2015.gd_esquema.Maestra AS M
+		WHERE Item_Factura_Descr IS NOT NULL
 	END
 GO
 
@@ -401,14 +410,14 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_Paises
 	as
 	BEGIN
 		INSERT INTO [DBA_GD].PAIS
-		(Pais_Codigo,Pais_Desc,Pais_Nacionalidad)
-		SELECT distinct Cli_Pais_Codigo AS CODIGO_PAIS,Cli_Pais_Desc AS PAIS_DESCRIPCION, Cli_Pais_Desc as NACIONALIDAD
+		(Pais_Codigo,Pais_Desc)
+		SELECT distinct Cli_Pais_Codigo AS CODIGO_PAIS,Cli_Pais_Desc AS PAIS_DESCRIPCION
 		FROM GD1C2015.gd_esquema.Maestra
 
 --AGREGA PAISES QUE ESTAN EN CUENTAS PERO NO EN CLIENTES				
 		INSERT INTO [DBA_GD].PAIS
-		(Pais_Codigo,Pais_Desc,Pais_Nacionalidad)
-		SELECT distinct Cuenta_Pais_Codigo,Cuenta_Pais_Desc,Cuenta_Pais_Desc
+		(Pais_Codigo,Pais_Desc)
+		SELECT distinct Cuenta_Pais_Codigo,Cuenta_Pais_Desc
 		FROM GD1C2015.gd_esquema.Maestra T1
 		WHERE NOT EXISTS (SELECT 1 FROM DBA_GD.PAIS as T2 where T1.Cuenta_Pais_Codigo = T2.Pais_Codigo)
 	END
@@ -416,20 +425,24 @@ go
 
 --MIGRACION DATOS TABLA RETIRO--
 
----INCOMPLETO---
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_RETIRO
 	as
 	BEGIN
 		INSERT INTO [DBA_GD].RETIRO
-		(Retiro_Codigo_Egreso, Retiro_Fecha, Retiro_Importe)
-		SELECT DISTINCT Retiro_Codigo, Retiro_Fecha, Retiro_Importe
-		FROM gd_esquema.Maestra
+		(Retiro_Codigo_Egreso, Retiro_Fecha,Retiro_Moneda,Retiro_Importe,
+		Retiro_Cuenta_Numero,Retiro_Nro_Cheque)
+		SELECT DISTINCT M.Retiro_Codigo, M.Retiro_Fecha,1, M.Retiro_Importe,
+		(SELECT C.Cuenta_ID FROM DBA_GD.CUENTA AS C WHERE C.Cuenta_Numero = M.Cuenta_Numero),
+		(SELECT CH.Cheque_ID FROM DBA_GD.CHEQUE AS CH WHERE M.Cheque_Numero = CH.Cheque_Numero)
+	
+		FROM gd_esquema.Maestra AS M
 		WHERE Retiro_Codigo IS NOT NULL
 	END
 go
 
 
 --MIGRACION DE DATOS A TABLA ROL--
+
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_Rol
 	as
 	BEGIN
@@ -442,6 +455,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_Rol
 go
 
 --MIGRACION DATOS TABLA ROL_FUNCIONALIDAD
+
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_ROL_FUNCIONALIDAD
 	as
 	BEGIN
@@ -470,8 +484,6 @@ go
 
 --MIGRACION DE DATOS A TABLA TARJETA--
 
----FALTA ENCRIPTAR CODIGO SEGURIDAD---
-
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_Tarjetas
 	as
 	BEGIN
@@ -482,7 +494,8 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_Tarjetas
 		SELECT distinct Tarjeta_Numero as NUMERO_TARJETA,
 		(convert(varchar(16),HASHBYTES('MD5',SUBSTRING(Tarjeta_Numero,0,12)),2)
 		+SUBSTRING(Tarjeta_Numero,13,4)),Tarjeta_Fecha_Emision as FECHA_EMISION,
-		Tarjeta_Fecha_Vencimiento as FECHA_VENCIMIENTO,Tarjeta_Codigo_Seg as COD_SEG,
+		Tarjeta_Fecha_Vencimiento as FECHA_VENCIMIENTO,
+		hashbytes('SHA1',CAST(Tarjeta_Codigo_Seg as varchar(40))),
 		Tarjeta_Emisor_Descripcion as EMISOR,
 		(SELECT C.Cliente_ID FROM [DBA_GD].CLIENTE as C 
 		WHERE C.Cliente_Nro_Doc = M.Cli_Nro_Doc AND C.Cliente_Tipo_Doc_Cod = M.Cli_Tipo_Doc_Cod)
@@ -520,18 +533,22 @@ go
 
 --MIGRACION DATOS TRANSFERENCIA--
 
---INCOMPLETO Y FALTA LA MONEDA EN LA TABLA TRANSFERENCIA--
+-- Se agrega campo de tipo de moneada en la transferencia
+
+--COMPLETO PERO VERIFICAR CON ENUNCIADO --
 
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_TRANSFERENCIA
 	AS
 	BEGIN
 		INSERT INTO [DBA_GD].TRANSFERENCIA
-			(Transferencia_Fecha, 
+			(Transferencia_Fecha,
+			Transferencia_Moneda, 
 			Transferencia_Importe,
 			Transferencia_Costo_Trans, 
 			Transferencia_Cuenta_Origen, 
 			Transferencia_Cuenta_Dst)
-		SELECT DISTINCT M.Transf_Fecha, 
+		SELECT DISTINCT M.Transf_Fecha,
+		1, 
 		M.Trans_Importe, 
 		M.Trans_Costo_Trans, 
 		(SELECT C.Cuenta_ID FROM [DBA_GD].CUENTA AS C WHERE C.Cuenta_Numero = M.Cuenta_Numero), 
@@ -570,14 +587,17 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_FACTURA
 	BEGIN
 		
 	INSERT INTO [DBA_GD].FACTURA
-		(Factura_Numero,Factura_Fecha, Factura_Item_Desc, Factura_Item_Importe)
-		SELECT DISTINCT Factura_Numero, Factura_Fecha, Item_Factura_Descr, Item_Factura_Importe 
-		FROM gd_esquema.Maestra
+		(Factura_Numero,Factura_Fecha, Factura_Item_Desc, Factura_Item_Importe,Factura_Nro_Cliente)
+		SELECT DISTINCT Factura_Numero, Factura_Fecha, Item_Factura_Descr, Item_Factura_Importe,
+		(SELECT C.Cliente_ID FROM DBA_GD.CLIENTE AS C WHERE M.Cli_Apellido = C.Cliente_Apellido and 
+		M.Cli_Nombre = C.Cliente_Apellido)
+		FROM gd_esquema.Maestra AS M
 		WHERE Factura_Numero IS NOT NULL
 	END
 go
 
 --MIGRACION DATOS TABLA CHEQUE--
+
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_CHEQUE
 	as
 	BEGIN
@@ -586,15 +606,18 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CHEQUE
 		(Cheque_Numero,
 		Cheque_Fecha, 
 		Cheque_Moneda, 
-		Cheque_Importe, 
+		Cheque_Importe,
+		Cheque_Nombre, 
 		Cheque_Banco)
 		SELECT DISTINCT M.Cheque_Numero,
 						M.Cheque_Fecha,
 						(SELECT Moneda_ID FROM [DBA_GD].MONEDA WHERE Moneda_Tipo = 'USD'),
 						M.Cheque_Importe,
+						(M.Cli_Nombre +' '+Cli_Apellido),
 						(SELECT Banco_ID FROM [DBA_GD].BANCO as B WHERE B.Banco_Codigo = M.Banco_Cogido)
 		FROM gd_esquema.Maestra AS M
-		WHERE Factura_Numero IS NOT NULL
+		WHERE M.Cheque_Numero IS NOT NULL
+	--	WHERE Factura_Numero IS NOT NULL
 	END
 go	
 
@@ -615,10 +638,11 @@ exec [DBA_GD].Migracion_Datos_USUARIO_ROL
 exec [DBA_GD].Migracion_Datos_Funcionalidad
 exec [DBA_GD].Migracion_Datos_ROL_FUNCIONALIDAD
 exec [DBA_GD].Migracion_Datos_FACTURA
-exec [DBA_GD].Migracion_Datos_RETIRO
-exec [DBA_GD].Migracion_Datos_CUENTA
-exec [DBA_GD].Migracion_Datos_DEPOSITO
-exec [DBA_GD].Migracion_Datos_CHEQUE
-exec [DBA_GD].Migracion_Datos_TRANSFERENCIA
 exec [DBA_GD].Migracion_Datos_ITEM_FACTURA
+exec [DBA_GD].Migracion_Datos_CUENTA
+exec [DBA_GD].Migracion_Datos_CHEQUE
+exec [DBA_GD].Migracion_Datos_RETIRO
+exec [DBA_GD].Migracion_Datos_DEPOSITO
+exec [DBA_GD].Migracion_Datos_TRANSFERENCIA
+
 
