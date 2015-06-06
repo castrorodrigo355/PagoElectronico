@@ -29,7 +29,7 @@ CREATE TABLE [DBA_GD].PAIS(
 CREATE TABLE [DBA_GD].USUARIO(
 	Usuario_ID numeric(18,0) identity(1,1) primary key,
 	Usuario_username varchar(255),
-	Usuario_password varbinary(40),
+	Usuario_password varbinary(128),
 	Usuario_Fecha_Creacion datetime,
 	Usuario_Fecha_Ultima_Modif datetime,
 	Usuario_Pregunta_Secreta varchar(60),
@@ -94,7 +94,6 @@ CREATE TABLE [DBA_GD].CUENTA(
 	Cuenta_Cliente_ID numeric(18,0) foreign key references [DBA_GD].CLIENTE,
 	Cuenta_Moneda numeric(18,0) foreign key references [DBA_GD].MONEDA,
 	Cuenta_Estado char(40),
-	--es tamaño 40 para que entre Pendiente de activacion
 	CONSTRAINT UC_Cuenta_Numero UNIQUE(Cuenta_Numero) 
 	);
 		
@@ -132,7 +131,6 @@ CREATE TABLE [DBA_GD].DEPOSITO(
 	
 CREATE TABLE [DBA_GD].RETIRO(
 	Retiro_ID numeric(18,0) identity(1,1) primary key,
---	Retiro_codigo numeric(18,0),
 	Retiro_Fecha datetime,
 	Retiro_Moneda numeric(18,0) foreign key references [DBA_GD].MONEDA,
 	Retiro_Importe numeric(18,2),
@@ -266,15 +264,17 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CLIENTE
 	as
 	BEGIN
 		--Inicializo nacionalidad como null y no tiene que ser obligatorio
+		-- Si no se inserta un valor, va como null por defecto
 		INSERT INTO [DBA_GD].CLIENTE
-		(Cliente_Pais_Codigo,Cliente_Nacionalidad,
+		(Cliente_Pais_Codigo,--Cliente_Nacionalidad,
 		Cliente_Nombre,Cliente_Apellido,
 		Cliente_Tipo_Doc_Cod,Cliente_Nro_Doc,
 		Cliente_Tipo_Doc_Desc,Cliente_Dom_Calle,
 		Cliente_Dom_Nro,Cliente_Dom_Piso,Cliente_Dom_Depto,
 		Cliente_Fecha_Nac,Cliente_Mail,Cliente_Usuario)
 		
-		SELECT distinct Cli_Pais_Codigo,null,Cli_Nombre,Cli_Apellido,Cli_Tipo_Doc_Cod,Cli_Nro_Doc,Cli_Tipo_Doc_Desc,
+		SELECT distinct Cli_Pais_Codigo,--null,
+		Cli_Nombre,Cli_Apellido,Cli_Tipo_Doc_Cod,Cli_Nro_Doc,Cli_Tipo_Doc_Desc,
 		Cli_Dom_Calle,Cli_Dom_Nro,Cli_Dom_Piso,Cli_Dom_Depto,Cli_Fecha_Nac,Cli_Mail,
 		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username =
 		 SUBSTRING(Cli_Mail,0,patindex('%@%',Cli_Mail)))
@@ -297,7 +297,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CLIENTE
 
 		(8,'Juan Manuel','Cugat',10002,35493525,'Pasaporte','Arce',851,1,'A','1987-08-06','juamma.cugat@gmail.com',
 		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username = 'juamma.cugat')),
-		(8,'Oscar Martin','Bianchini',10002,31958375,'Pasaporte','Alejandro Magariños Cervantes',3557,0,'6','1987-08-06','tinchob@gmail.com',
+		(8,'Oscar Martin','Bianchi',10002,31958375,'Pasaporte','Artigas',3442,0,'6','1987-08-06','tinchob@gmail.com',
 		(select Usuario_ID from DBA_GD.USUARIO where Usuario_username = 'tinchob'))
 	END
 go
@@ -390,6 +390,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_ITEM_FACTURA
 				(SELECT DISTINCT F.Factura_Numero FROM [DBA_GD].FACTURA AS F WHERE F.Factura_Numero = M.Factura_Numero) 
 		FROM GD1C2015.gd_esquema.Maestra AS M
 		WHERE Item_Factura_Descr IS NOT NULL
+		
 	END
 GO
 
@@ -548,7 +549,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_TRANSFERENCIA
 			Transferencia_Cuenta_Origen, 
 			Transferencia_Cuenta_Dst)
 		SELECT DISTINCT M.Transf_Fecha,
-		1, 
+		(SELECT Moneda_ID FROM [DBA_GD].MONEDA WHERE Moneda_Tipo = 'USD'),
 		M.Trans_Importe, 
 		M.Trans_Costo_Trans, 
 		(SELECT C.Cuenta_ID FROM [DBA_GD].CUENTA AS C WHERE C.Cuenta_Numero = M.Cuenta_Numero), 
@@ -617,7 +618,6 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CHEQUE
 						(SELECT Banco_ID FROM [DBA_GD].BANCO as B WHERE B.Banco_Codigo = M.Banco_Cogido)
 		FROM gd_esquema.Maestra AS M
 		WHERE M.Cheque_Numero IS NOT NULL
-	--	WHERE Factura_Numero IS NOT NULL
 	END
 go	
 
@@ -644,5 +644,3 @@ exec [DBA_GD].Migracion_Datos_CHEQUE
 exec [DBA_GD].Migracion_Datos_RETIRO
 exec [DBA_GD].Migracion_Datos_DEPOSITO
 exec [DBA_GD].Migracion_Datos_TRANSFERENCIA
-
-
