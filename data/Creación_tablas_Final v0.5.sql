@@ -591,7 +591,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_FACTURA
 		(Factura_Numero,Factura_Fecha, Factura_Item_Desc, Factura_Item_Importe,Factura_Nro_Cliente)
 		SELECT DISTINCT Factura_Numero, Factura_Fecha, Item_Factura_Descr, Item_Factura_Importe,
 		(SELECT C.Cliente_ID FROM DBA_GD.CLIENTE AS C WHERE M.Cli_Apellido = C.Cliente_Apellido and 
-		M.Cli_Nombre = C.Cliente_Apellido)
+		M.Cli_Nombre = C.Cliente_Nombre)
 		FROM gd_esquema.Maestra AS M
 		WHERE Factura_Numero IS NOT NULL
 	END
