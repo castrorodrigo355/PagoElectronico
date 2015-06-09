@@ -4,6 +4,7 @@ using PagoElectronico.configuracion;
 using PagoElectronico.BusinessRules;
 using PagoElectronico.BusinessEntities;
 using PagoElectronico.UI.Login;
+using PagoElectronico.Exceptions;
 
 namespace PagoElectronico.login
 {
@@ -63,14 +64,30 @@ namespace PagoElectronico.login
             {
                 UsuarioBusinessRule oUsuarioBR = new UsuarioBusinessRule();
 
-                //Valido Usuario y Contraseña
-                if (oUsuarioBR.esUsuarioValido(txtNombreUsuario.Text, txtPassword.Text))
+                try
                 {
-                    //Ahora tengo que buscar los roles que tiene dicho usuario y mostrar los formularios correspondientes
-                    this.Hide();
-                    frmSeleccionRol frmRol = new frmSeleccionRol();
-                    frmRol.Show();
+                    //Valido Usuario y Contraseña
+                    if (oUsuarioBR.esUsuarioValido(txtNombreUsuario.Text, txtPassword.Text))
+                    {
+                        //Ahora tengo que buscar los roles que tiene dicho usuario y mostrar los formularios correspondientes
+                        this.Hide();
+                        frmSeleccionRol frmRol = new frmSeleccionRol();
+                        frmRol.Show();
+                    }
                 }
+                catch (UsuarioDeshabilitadoException e1)
+               { 
+                    MessageBox.Show("Usuario deshabilitado");
+                }
+                catch (PasswordIncorrectaException e2)
+                {
+                    MessageBox.Show("Password incorrecta");
+                }
+                catch (UsuarioInexistenteException e3)
+                {
+                    MessageBox.Show("Usuario inexistente");
+                }
+
             }
         }
 

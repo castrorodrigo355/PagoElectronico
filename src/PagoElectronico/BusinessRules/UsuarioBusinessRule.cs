@@ -38,7 +38,7 @@ namespace PagoElectronico.BusinessRules
             try
             {
                 //Creo la entidad de negocio Usuario
-                oUsuario = new Usuario(username, password);
+                oUsuario = new Usuario(username, encriptarPassword(password));
 
                 //Registro el nuevo usuario
                 resultado = oUsuarioDALC.insert(oUsuario);
@@ -54,11 +54,7 @@ namespace PagoElectronico.BusinessRules
         public bool esUsuarioValido(String nombre_usuario, String password)
         {
             UsuarioDALC oUsuarioDALC = new UsuarioDALC();
-         
-            if (oUsuarioDALC.validarUsuario(nombre_usuario, encriptarPassword(password))){
-                return true;
-            }
-            return false;
+            return oUsuarioDALC.validarUsuario(nombre_usuario, encriptarPassword(password));
         }
 
         #endregion
@@ -68,7 +64,7 @@ namespace PagoElectronico.BusinessRules
         private byte[] encriptarPassword(String password)
         {
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-            SHA1 sha256 = new SHA1CryptoServiceProvider();
+            SHA256 sha256 = new SHA256CryptoServiceProvider();
             byte[] hashedPassword = sha256.ComputeHash(passwordBytes);
 
             return hashedPassword;

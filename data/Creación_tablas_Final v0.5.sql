@@ -28,15 +28,15 @@ CREATE TABLE [DBA_GD].PAIS(
 	
 CREATE TABLE [DBA_GD].USUARIO(
 	Usuario_ID numeric(18,0) identity(1,1) primary key,
-	Usuario_username varchar(255),
-	Usuario_password varbinary(128),
+	Usuario_Username varchar(255),
+	Usuario_Password varbinary(128),
 	Usuario_Fecha_Creacion datetime,
 	Usuario_Fecha_Ultima_Modif datetime,
 	Usuario_Pregunta_Secreta varchar(60),
 	Usuario_Respuesta_secreta varbinary(60),
 	Usuario_Estado char(1),
 	Usuario_Cant_Intentos tinyint,
-	CONSTRAINT UC_Usuario_username UNIQUE(Usuario_username) 
+	CONSTRAINT UC_Usuario_Username UNIQUE(Usuario_Username) 
 	); 	
 
 CREATE TABLE [DBA_GD].AUDITORIA_LOG(

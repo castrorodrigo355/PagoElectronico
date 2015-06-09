@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnLimpiarCampos.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAAPlJREFUSEu9
         lQsNwkAQBSsBCTgBCTgAJyABByABB+AAJOAACfAe6UuWzV3vtndhkkmuTbtT0g9DIwd4Hd1yR28W8A7f
@@ -128,7 +128,7 @@
         wweokQD6MweVTwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnAgregarCliente.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAATNJREFUSEu9
         lFGVAjEMRUcCEpCABCQgAQfgACSsA1YCDnYdgANwAA7g3Y/s6YR0Okvm8M65H5O2eZ02TdfQTGzETwHf
@@ -139,7 +139,7 @@
         b45HxM6khyQAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pictureCliente.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAAQtJREFUSEut
         lmGNAkEMhVcCEpCABCTgAByAA5CABBxwDg4HSAAH4IB7X8Ilm8nrXrnOS74/O+V12p3tMCS1FGfxEFex
@@ -149,7 +149,7 @@
         j/S/IgIPb7j8IugCMYyoiSM9DD8nIiGqDUIi6gAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pictureAdministrador.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAASBJREFUSEut
         lVENAjEQRE8CEpCABCQgAQfgACTgAByAA3AADsABOIB5H02aZtpr2Jvk5ZJrb7d7nW6HTi3FWbzFXRzF

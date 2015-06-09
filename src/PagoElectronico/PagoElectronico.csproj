@@ -57,6 +57,9 @@
     <Compile Include="DALC\BaseDALC.cs" />
     <Compile Include="DALC\ConstantesDALC.cs" />
     <Compile Include="DALC\UsuarioDALC.cs" />
+    <Compile Include="Exceptions\PasswordIncorrectaException.cs" />
+    <Compile Include="Exceptions\UsuarioDeshabilitadoException.cs" />
+    <Compile Include="Exceptions\UsuarioInexistenteException.cs" />
     <Compile Include="IDALC\IDALC.cs" />
     <Compile Include="UI\ABM Cliente\AltaCliente.cs">
       <SubType>Form</SubType>
