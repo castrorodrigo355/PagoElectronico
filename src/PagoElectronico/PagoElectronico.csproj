@@ -49,13 +49,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessEntities\Cliente.cs" />
+    <Compile Include="BusinessEntities\Funcionalidad.cs" />
+    <Compile Include="BusinessEntities\Rol.cs" />
     <Compile Include="BusinessEntities\Sesion.cs" />
     <Compile Include="BusinessEntities\Usuario.cs" />
+    <Compile Include="BusinessRules\ClienteBusinessRule.cs" />
     <Compile Include="BusinessRules\UsuarioBusinessRule.cs" />
     <Compile Include="Configuracion\Configuracion.cs" />
     <Compile Include="Configuracion\ConfiguracionTAG.cs" />
     <Compile Include="DALC\BaseDALC.cs" />
+    <Compile Include="DALC\ClienteDALC.cs" />
     <Compile Include="DALC\ConstantesDALC.cs" />
+    <Compile Include="DALC\RolDALC.cs" />
     <Compile Include="DALC\UsuarioDALC.cs" />
     <Compile Include="Exceptions\PasswordIncorrectaException.cs" />
     <Compile Include="Exceptions\UsuarioDeshabilitadoException.cs" />
@@ -195,9 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="config.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\Recursos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

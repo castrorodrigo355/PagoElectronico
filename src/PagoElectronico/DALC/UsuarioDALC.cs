@@ -30,7 +30,7 @@ namespace PagoElectronico.DALC
 
         #region Metodos publicos
 
-        public bool validarUsuario(String nombre_usuario, byte[] password)
+        public bool ValidarUsuario(String nombre_usuario, byte[] password)
         {
             SqlConnection oConnection = null;
             SqlCommand oCommand = null;
@@ -48,9 +48,9 @@ namespace PagoElectronico.DALC
                 oCommand.CommandType = CommandType.Text;
                 oCommand.CommandText = SQL_SELECT_USUARIO;
 
-                setParametros(ref arrParms, nombre_usuario);
+                SetParametros(ref arrParms, nombre_usuario);
 
-                agregarParametros(ref oCommand, ref arrParms);
+                AgregarParametros(ref oCommand, ref arrParms);
 
                 //Ejecuto el comando
                 oDataReader = oCommand.ExecuteReader();
@@ -61,9 +61,9 @@ namespace PagoElectronico.DALC
                     //Leo el SqlReader
                     oDataReader.Read();
 
-                    if (estadoActivo(oDataReader))
+                    if (EstadoActivo(oDataReader))
                     {
-                        if (passwordValido(password, oDataReader))
+                        if (PasswordValido(password, oDataReader))
                         {
                             //Creo el objeto usuario que esta logueandose al sistema
                             usuarioValidado = new Usuario();
@@ -78,8 +78,7 @@ namespace PagoElectronico.DALC
                             usuarioValidado.Usuario_Estado = (String)oDataReader["Usuario_Estado"];
 
                             //Creo la sesión
-                            Sesion sesionActual = new Sesion();
-                            sesionActual.SesionActual = usuarioValidado;
+                            Sesion.SesionActual = usuarioValidado;
                         }
                         else//No matchea la password
                         {
@@ -87,14 +86,14 @@ namespace PagoElectronico.DALC
                             if (intentos < CANTIDAD_MAXIMA_INTENTOS_FALLIDOS)
                             {
                                 //Sumo cant intento fallido y logueo la actividad
-                                nuevoIntentoFallido(intentos + 1, Convert.ToInt32(oDataReader["Usuario_ID"]));
-                                logueoIntentoFallido(Convert.ToInt32(oDataReader["Usuario_ID"]), intentos + 1);
+                                NuevoIntentoFallido(intentos + 1, Convert.ToInt32(oDataReader["Usuario_ID"]));
+                                LogueoIntentoFallido(Convert.ToInt32(oDataReader["Usuario_ID"]), intentos + 1);
                                 throw new PasswordIncorrectaException();
                             }
                             if (intentos == CANTIDAD_MAXIMA_INTENTOS_FALLIDOS)
                             {
                                 //Deshabilito el usuario y restablezco los intentos
-                                deshabilitarUsuario(Convert.ToInt32(oDataReader["Usuario_ID"]));
+                                DeshabilitarUsuario(Convert.ToInt32(oDataReader["Usuario_ID"]));
                             }
 
                         }
@@ -130,7 +129,7 @@ namespace PagoElectronico.DALC
 
         #region Metodos privados
 
-        private void deshabilitarUsuario(int usuario_id)
+        private void DeshabilitarUsuario(int usuario_id)
         {
             SqlConnection oConnection = null;
             SqlCommand oCommand = null;
@@ -161,7 +160,7 @@ namespace PagoElectronico.DALC
                 arrParms[2].Value = usuario_id;
 
 
-                agregarParametros(ref oCommand, ref arrParms);
+                AgregarParametros(ref oCommand, ref arrParms);
 
                 //Ejecuto el comando
                 result = oCommand.ExecuteNonQuery();
@@ -182,8 +181,7 @@ namespace PagoElectronico.DALC
             }
         }
 
-
-        private void logueoIntentoFallido(int usuario_id, int intento_fallido)
+        private void LogueoIntentoFallido(int usuario_id, int intento_fallido)
         {
             SqlConnection oConnection = null;
             SqlCommand oCommand = null;
@@ -199,9 +197,9 @@ namespace PagoElectronico.DALC
                 oCommand.CommandType = CommandType.Text;
                 oCommand.CommandText = SQL_LOG_INTENTO_FALLIDO;
 
-                setParametrosLogueo(ref arrParms, usuario_id, intento_fallido);
+                SetParametrosLogueo(ref arrParms, usuario_id, intento_fallido);
 
-                agregarParametros(ref oCommand, ref arrParms);
+                AgregarParametros(ref oCommand, ref arrParms);
 
                 //Ejecuto el comando
                 result = oCommand.ExecuteNonQuery();
@@ -222,17 +220,17 @@ namespace PagoElectronico.DALC
             }
         }
 
-        private bool estadoActivo(SqlDataReader oDataReader)
+        private bool EstadoActivo(SqlDataReader oDataReader)
         {
             return 'A'.Equals(Convert.ToChar(oDataReader["Usuario_Estado"]));
         }
 
-        private static bool passwordValido(byte[] password, SqlDataReader oDataReader)
+        private static bool PasswordValido(byte[] password, SqlDataReader oDataReader)
         {
             return password == ((byte[])oDataReader["Usuario_Password"]);
         }
 
-        private int nuevoIntentoFallido(int intento_fallido, int usuario_id)
+        private int NuevoIntentoFallido(int intento_fallido, int usuario_id)
         {
 
             SqlConnection oConnection = null;
@@ -260,7 +258,7 @@ namespace PagoElectronico.DALC
                 arrParms[1].Value = usuario_id;
 
 
-                agregarParametros(ref oCommand, ref arrParms);
+                AgregarParametros(ref oCommand, ref arrParms);
 
                 //Ejecuto el comando
                 result = oCommand.ExecuteNonQuery();
@@ -282,7 +280,7 @@ namespace PagoElectronico.DALC
             return result;
         }
 
-        private void setParametros(ref SqlParameter[] arrParms, String nombre_usuario)
+        private void SetParametros(ref SqlParameter[] arrParms, String nombre_usuario)
         {
             arrParms = new SqlParameter[1];
             arrParms[0] = new SqlParameter("@pi_Usuario_username", SqlDbType.VarChar);
@@ -291,7 +289,7 @@ namespace PagoElectronico.DALC
 
         }
 
-        private void setParametros(ref SqlParameter[] arrParms, int intento_fallido, int usuario_id)
+        private void SetParametros(ref SqlParameter[] arrParms, int intento_fallido, int usuario_id)
         {
             arrParms = new SqlParameter[2];
             arrParms[0] = new SqlParameter("@pi_Usuario_Cant_Intentos", SqlDbType.TinyInt);
@@ -304,7 +302,7 @@ namespace PagoElectronico.DALC
 
         }
 
-        private void setParametrosLogueo(ref SqlParameter[] arrParms, int usuario_id, int intento_fallido)
+        private void SetParametrosLogueo(ref SqlParameter[] arrParms, int usuario_id, int intento_fallido)
         {
             arrParms = new SqlParameter[4];
 
@@ -327,7 +325,7 @@ namespace PagoElectronico.DALC
 
         }
 
-        private void setParametros(ref SqlParameter[] arrParms, ref Usuario oUsuario)
+        private void SetParametros(ref SqlParameter[] arrParms, ref Usuario oUsuario)
         {
             arrParms = new SqlParameter[2];
 
@@ -340,7 +338,7 @@ namespace PagoElectronico.DALC
             arrParms[1].Value = oUsuario.Usuario_Password;
         }
 
-        private void agregarParametros(ref SqlCommand oCommand, ref SqlParameter[] arrParms)
+        private void AgregarParametros(ref SqlCommand oCommand, ref SqlParameter[] arrParms)
         {
             foreach (SqlParameter parameter in arrParms)
                 oCommand.Parameters.Add(parameter);
@@ -369,10 +367,10 @@ namespace PagoElectronico.DALC
                 oCommand.CommandText = SQL_INSERT_USUARIO;
 
                 //Genero parámetros de entrada                
-                this.setParametros(ref arrParms, ref oUsuario);
+                this.SetParametros(ref arrParms, ref oUsuario);
 
                 //Asigno parámetros al comando
-                this.agregarParametros(ref oCommand, ref arrParms);
+                this.AgregarParametros(ref oCommand, ref arrParms);
 
                 //Ejecuto el comando
                 result = Convert.ToInt32(oCommand.ExecuteScalar());

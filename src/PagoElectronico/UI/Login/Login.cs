@@ -5,6 +5,7 @@ using PagoElectronico.BusinessRules;
 using PagoElectronico.BusinessEntities;
 using PagoElectronico.UI.Login;
 using PagoElectronico.Exceptions;
+using System.Collections.Generic;
 
 namespace PagoElectronico.login
 {
@@ -12,7 +13,7 @@ namespace PagoElectronico.login
     {
         #region Metodos protegidos
 
-        protected bool formularioValido()
+        protected bool FormularioValido()
         {
             if (txtNombreUsuario.Text == string.Empty)
             {
@@ -60,16 +61,18 @@ namespace PagoElectronico.login
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             //Valido que los campos ingresados sean correctos
-            if (this.formularioValido())
+            if (this.FormularioValido())
             {
                 UsuarioBusinessRule oUsuarioBR = new UsuarioBusinessRule();
 
                 try
                 {
                     //Valido Usuario y Contraseña
-                    if (oUsuarioBR.esUsuarioValido(txtNombreUsuario.Text, txtPassword.Text))
+                    if (oUsuarioBR.EsUsuarioValido(txtNombreUsuario.Text, txtPassword.Text))
                     {
                         //Ahora tengo que buscar los roles que tiene dicho usuario y mostrar los formularios correspondientes
+                        List<Rol> rolesUsuario = oUsuarioBR.RolesUsuario(Sesion.SesionActual.Usuario_ID);
+
                         this.Hide();
                         frmSeleccionRol frmRol = new frmSeleccionRol();
                         frmRol.Show();

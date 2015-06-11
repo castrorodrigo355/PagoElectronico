@@ -7,7 +7,11 @@ namespace PagoElectronico.BusinessEntities
 {
     public class Sesion
     {
-        public Usuario SesionActual { get; set; }
+        public static Usuario SesionActual { get; set; }
 
+        public static Usuario GetUsuarioActual()
+        {
+            return SesionActual;
+        }
     }
 }
