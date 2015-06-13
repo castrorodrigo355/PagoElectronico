@@ -16,6 +16,7 @@ drop table [DBA_GD].CHEQUE
 drop table [DBA_GD].BANCO
 drop table [DBA_GD].TRANSFERENCIA
 drop table [DBA_GD].TARJETA
+drop table [DBA_GD].LOG_CUENTA_INHABILITADA
 drop table [DBA_GD].CUENTA
 drop table [DBA_GD].TIPO_CUENTA
 drop table [DBA_GD].MONEDA
