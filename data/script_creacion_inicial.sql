@@ -10,24 +10,24 @@ GO
 -------------------------------------------------------
 CREATE TABLE [DBA_GD].TIPO_DOCUMENTO(
 	Tipo_Documento_ID numeric(18,0) NOT NULL primary key,
-	Tipo_Documento_Desc varchar(10) NOT NULL
+	Tipo_Documento_Desc varchar(16) NOT NULL
 	);	
 	
 CREATE TABLE [DBA_GD].PAIS(
 	Pais_ID numeric(18,0) identity(1,1) primary key,
 	Pais_Codigo numeric(18,0) NOT NULL,
-	Pais_Desc varchar(250) NOT NULL,
+	Pais_Desc varchar(64) NOT NULL,
 	CONSTRAINT UC_Pais_Codigo UNIQUE(Pais_Codigo) 
 	);	
 	
 CREATE TABLE [DBA_GD].USUARIO(
 	Usuario_ID numeric(18,0) identity(1,1) primary key,
-	Usuario_username varchar(255) NOT NULL,
+	Usuario_username varchar(64) NOT NULL,
 	Usuario_password varchar(64) NOT NULL,
 	Usuario_Fecha_Creacion datetime NOT NULL,
 	Usuario_Fecha_Ultima_Modif datetime NOT NULL,
-	Usuario_Pregunta_Secreta varchar(60) NOT NULL,
-	Usuario_Respuesta_secreta varchar(64) NOT NULL,
+	Usuario_Pregunta_Secreta varchar(128) NOT NULL,
+	Usuario_Respuesta_secreta varchar(128) NOT NULL,
 	Usuario_Estado bit NOT NULL,
 	Usuario_Cant_Intentos tinyint NOT NULL DEFAULT 0,
 	CONSTRAINT UC_Usuario_username UNIQUE(Usuario_username) 
@@ -37,39 +37,39 @@ CREATE TABLE [DBA_GD].AUDITORIA_LOG(
 	Log_ID numeric(18,0) identity(1,1) primary key,
 	Log_Usuario numeric(18,0) NOT NULL foreign key references [DBA_GD].USUARIO,
 	Log_Fecha_Hora datetime NOT NULL,
-	Log_Tipo varchar(50) NOT NULL,
+	Log_Tipo varchar(64) NOT NULL,
 	Log_Cant_Intentos tinyint NOT NULL DEFAULT 0
 	);
 
 CREATE TABLE [DBA_GD].TIPO_CUENTA(
 	Tipo_Cuenta_ID numeric(18,0) identity(1,1) primary key,
-	Tipo_Cuenta_Descr varchar(255) NOT NULL,
+	Tipo_Cuenta_Descr varchar(16) NOT NULL,
 	Tipo_Cuenta_Costo int NOT NULL
 	);
 
 CREATE TABLE [DBA_GD].BANCO(
 	Banco_ID  numeric(18,0) identity(1,1) primary key,
 	Banco_Codigo numeric(18,0) NOT NULL,
-	Banco_Nombre varchar(255) NOT NULL,
-	Banco_Direccion varchar(255) NOT NULL,
+	Banco_Nombre varchar(64) NOT NULL,
+	Banco_Direccion varchar(64) NOT NULL,
 	CONSTRAINT UC_Banco_Codigo UNIQUE(Banco_Codigo) 
 	);
 
 CREATE TABLE [DBA_GD].CLIENTE(
 	Cliente_ID numeric(18,0) identity(1,1) primary key,
 	Cliente_Pais_Codigo numeric(18,0) NOT NULL foreign key references [DBA_GD].PAIS(Pais_Codigo),
-	Cliente_Nacionalidad varchar(250),
-	Cliente_Nombre varchar(255) NOT NULL,
-	Cliente_Apellido varchar(255) NOT NULL,
+	Cliente_Nacionalidad varchar(64),
+	Cliente_Nombre varchar(64) NOT NULL,
+	Cliente_Apellido varchar(64) NOT NULL,
 	Cliente_Tipo_Doc_Cod numeric(18,0) NOT NULL foreign key references [DBA_GD].TIPO_DOCUMENTO,
 	Cliente_Nro_Doc numeric(18,0) NOT NULL, 
-	Cliente_Tipo_Doc_Desc varchar(255) NOT NULL,
-	Cliente_Dom_Calle varchar(255) NOT NULL,
+	Cliente_Tipo_Doc_Desc varchar(256) NOT NULL,
+	Cliente_Dom_Calle varchar(256) NOT NULL,
 	Cliente_Dom_Nro numeric(18,0) NOT NULL,
 	Cliente_Dom_piso numeric(18,0) NOT NULL,
 	Cliente_Dom_Depto varchar(2) NOT NULL,
 	Cliente_Fecha_Nac datetime NOT NULL,
-	Cliente_Mail varchar(255),
+	Cliente_Mail varchar(128),
 	Cliente_Usuario numeric(18,0) NOT NULL foreign key references [DBA_GD].USUARIO,
 	);	
 		
@@ -102,7 +102,8 @@ CREATE TABLE [DBA_GD].CHEQUE(
 	Cheque_Fecha datetime NOT NULL,
 	Cheque_Moneda numeric(18,0) NOT NULL foreign key references [DBA_GD].MONEDA,
 	Cheque_Importe numeric(18,2) NOT NULL,
-	Cheque_Nombre varchar(255) NOT NULL ,
+--	Cheque_Nombre varchar(64) NOT NULL ,
+	Cheque_Cliente_ID numeric(18,0) NOT NULL foreign key references [DBA_GD].CLIENTE,
 	Cheque_Banco numeric(18,0) NOT NULL foreign key references [DBA_GD].BANCO
 	);
 		
@@ -112,8 +113,8 @@ CREATE TABLE [DBA_GD].TARJETA(
 	Tarjeta_Numero_Encriptada varchar(20) NOT NULL,
 	Tarjeta_fecha_Emision datetime NOT NULL,
 	Tarjeta_Fecha_Vencimiento datetime NOT NULL,
-	Tarjeta_Codigo_Seg varchar(40) NOT NULL,
-	Tarjeta_Emisor_Descripcion varchar(255) NOT NULL,
+	Tarjeta_Codigo_Seg varchar(64) NOT NULL,
+	Tarjeta_Emisor_Descripcion varchar(128) NOT NULL,
 	Tarjeta_Cliente_ID numeric(18,0) NOT NULL foreign key references [DBA_GD].CLIENTE,
 	);
 	
@@ -151,13 +152,13 @@ CREATE TABLE [DBA_GD].TRANSFERENCIA(
 
 CREATE TABLE [DBA_GD].ROL(
 	Rol_ID numeric(18,0) identity(1,1) primary key,
-	Rol_Nombre varchar(50) NOT NULL,
+	Rol_Nombre varchar(64) NOT NULL,
 	Rol_Estado bit NOT NULL,
 	);
 	
 CREATE TABLE [DBA_GD].FUNCIONALIDAD(
 	Funcionalidad_ID numeric(18,0) identity(1,1) primary key,
-	Funcionalidad_Nombre varchar(100) NOT NULL
+	Funcionalidad_Nombre varchar(128) NOT NULL
 	);
 		
 CREATE TABLE [DBA_GD].FACTURA(
@@ -168,7 +169,7 @@ CREATE TABLE [DBA_GD].FACTURA(
 	
 CREATE TABLE [DBA_GD].ITEM_FACTURA(
 	Item_Factura_ID numeric(18,0) identity(1,1) primary key,
-	Item_Factura_Descripcion varchar(100) NOT NULL,
+	Item_Factura_Descripcion varchar(128) NOT NULL,
 	Item_Factura_Importe numeric(18,2) NOT NULL,
 	Item_Factura_ID_Factura numeric(18,0) NOT NULL foreign key references [DBA_GD].FACTURA
 	);
@@ -621,13 +622,17 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CHEQUE
 		Cheque_Fecha, 
 		Cheque_Moneda, 
 		Cheque_Importe,
-		Cheque_Nombre, 
+		Cheque_Cliente_ID, 
 		Cheque_Banco)
 		SELECT DISTINCT M.Cheque_Numero,
 						M.Cheque_Fecha,
 						(SELECT Moneda_ID FROM [DBA_GD].MONEDA WHERE Moneda_Tipo = 'USD'),
 						M.Cheque_Importe,
-						(M.Cli_Nombre +' '+Cli_Apellido),
+						(SELECT Cliente_ID 
+							FROM [DBA_GD].CLIENTE AS C, [DBA_GD].TIPO_DOCUMENTO AS T
+							WHERE C.Cliente_Nro_Doc = M.Cli_Nro_Doc AND
+								C.Cliente_Tipo_Doc_Cod = T.Tipo_Documento_ID AND
+								T.Tipo_Documento_Desc = M.Cli_Tipo_Doc_Desc),
 						(SELECT Banco_ID FROM [DBA_GD].BANCO as B WHERE B.Banco_Codigo = M.Banco_Cogido)
 		
 		FROM gd_esquema.Maestra AS M
