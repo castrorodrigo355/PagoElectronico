@@ -365,7 +365,6 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_Funcionalidad
 		(Funcionalidad_Nombre)
 	VALUES
 		('ABM de Rol'),
-		('ABM de Usuario'),
 		('ABM de Cliente'),
 		('ABM de Cuenta'),
 		('Depositos'),
@@ -473,10 +472,6 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_ROL_FUNCIONALIDAD
 		(1,1),
 		(1,2),
 		(1,3),
-		(1,4),
-		(1,5),
-		(1,6),
-		(1,7),
 		(1,8),
 		(1,9),
 		(1,10),
