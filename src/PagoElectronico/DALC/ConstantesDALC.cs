@@ -15,7 +15,7 @@ namespace PagoElectronico.DALC
         public const String TB_TIPO_DOCUMENTO = "[DBA_GD].[TIPO_DOCUMENTO]";
         public const String TB_TIPO_CUENTA = "[DBA_GD].[TIPO_CUENTA]";
         public const String TB_TARJETA = "[DBA_GD].[TARJETA]";
-        public const String TB_ROL_FUNCIONALIDADES = "[DBA_GD].[ROL_FUNCIONALIDADES]";
+        public const String TB_ROL_FUNCIONALIDADES = "[DBA_GD].[ROL_FUNCIONALIDAD]";
         public const String TB_ROL = "[DBA_GD].[ROL]";
         public const String TB_RETIRO = "[DBA_GD].[RETIRO]";
         public const String TB_PAIS = "[DBA_GD].[PAIS]";

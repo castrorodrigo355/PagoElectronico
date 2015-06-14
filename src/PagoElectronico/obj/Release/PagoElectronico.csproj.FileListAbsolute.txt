@@ -1,0 +1,14 @@
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\bin\Release\PagoElectronico.exe
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\bin\Release\PagoElectronico.pdb
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\PagoElectronico.Properties.Resources.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\PagoElectronico.UI.ABM_Cliente.AltaCliente.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\PagoElectronico.UI.ABM_Cliente.EditarCliente.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\PagoElectronico.ABM_Rol.EditarRol.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\PagoElectronico.UI.Login.frmAdministrador.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\PagoElectronico.UI.Login.frmCliente.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\PagoElectronico.UI.Login.frmSeleccionRol.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\PagoElectronico.login.Login.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\PagoElectronico.csproj.GenerateResource.Cache
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\PagoElectronico.exe
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Release\PagoElectronico.pdb

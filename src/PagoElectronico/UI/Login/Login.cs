@@ -32,12 +32,6 @@ namespace PagoElectronico.login
 
         #region Metodos privados
 
-        private void insertarUsuario()
-        {
-            UsuarioBusinessRule oUsuarioBR = new UsuarioBusinessRule();
-            oUsuarioBR.registrarUsuario("pepe", "pepito");
-        }
-
         private void leerArchivoConfiguracion()
         {
             Configuracion config = new Configuracion();
@@ -71,11 +65,17 @@ namespace PagoElectronico.login
                     if (oUsuarioBR.EsUsuarioValido(txtNombreUsuario.Text, txtPassword.Text))
                     {
                         //Ahora tengo que buscar los roles que tiene dicho usuario y mostrar los formularios correspondientes
-                        List<Rol> rolesUsuario = oUsuarioBR.RolesUsuario(Sesion.SesionActual.Usuario_ID);
-
+                        RolesUsuarioBusinessRule oRolesUsuarioBR = new RolesUsuarioBusinessRule();
+                        oRolesUsuarioBR.ObtenerRolesUsuario(169);
+                        
+                        //Obtengo el cliente unico para este usuario
+                        ClienteBusinessRule oClienteBR = new ClienteBusinessRule();
+                        oClienteBR.ObtenerCliente(169);
+                        
+                        //Oculto el panel de login y muestro el correspondiente al rol del usuario
                         this.Hide();
-                        frmSeleccionRol frmRol = new frmSeleccionRol();
-                        frmRol.Show();
+                        AdministradorRoles administradorRoles = new AdministradorRoles();
+                        administradorRoles.procesarRoles();
                     }
                 }
                 catch (UsuarioDeshabilitadoException e1)

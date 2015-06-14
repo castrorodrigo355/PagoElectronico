@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PagoElectronico.BusinessEntities
 {
-    class Funcionalidad
+    public class Funcionalidad
     {
         public int ID { get; set; }
         public String Descripcion { get; set; }

@@ -121,7 +121,7 @@
             this.Controls.Add(this.grpDatosUsuario);
             this.Controls.Add(this.lblBienvenido);
             this.Name = "Login";
-            this.Text = "Bienvenido";
+            this.Text = "Sistema de Pago Electrónico";
             this.grpDatosUsuario.ResumeLayout(false);
             this.grpDatosUsuario.PerformLayout();
             this.grpNuevoUsuario.ResumeLayout(false);

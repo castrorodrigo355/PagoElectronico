@@ -53,7 +53,9 @@
     <Compile Include="BusinessEntities\Rol.cs" />
     <Compile Include="BusinessEntities\Sesion.cs" />
     <Compile Include="BusinessEntities\Usuario.cs" />
+    <Compile Include="BusinessRules\AdministradorRoles.cs" />
     <Compile Include="BusinessRules\ClienteBusinessRule.cs" />
+    <Compile Include="BusinessRules\RolesUsuarioBusinessRule.cs" />
     <Compile Include="BusinessRules\UsuarioBusinessRule.cs" />
     <Compile Include="Configuracion\Configuracion.cs" />
     <Compile Include="Configuracion\ConfiguracionTAG.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="DALC\RolDALC.cs" />
     <Compile Include="DALC\UsuarioDALC.cs" />
     <Compile Include="Exceptions\PasswordIncorrectaException.cs" />
+    <Compile Include="Exceptions\RolDesconocidoException.cs" />
     <Compile Include="Exceptions\UsuarioDeshabilitadoException.cs" />
     <Compile Include="Exceptions\UsuarioInexistenteException.cs" />
     <Compile Include="IDALC\IDALC.cs" />
@@ -200,6 +203,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Recursos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

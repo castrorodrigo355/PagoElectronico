@@ -5,11 +5,11 @@ using System.Text;
 
 namespace PagoElectronico.BusinessEntities
 {
-    class Rol
+    public class Rol
     {
         public int ID { get; set; }
         public String Descripcion { get; set; }
-        public char Estado { get; set; }
+        public String Estado { get; set; }
         public List<Funcionalidad> Funcionalidades { get; set; }
 
         public Rol()

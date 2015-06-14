@@ -18,6 +18,8 @@ namespace PagoElectronico.DALC
         #region Constantes
 
         private const int CANTIDAD_MAXIMA_INTENTOS_FALLIDOS = 3;
+
+
         private const String SQL_LOG_INTENTO_FALLIDO = @"INSERT INTO " + ConstantesDALC.TB_AUDITORIA_LOG + " (Log_Usuario, Log_Fecha_Hora, Log_Tipo, Log_Cant_Intentos) VALUES (@pi_Log_Usuario, @pi_Log_Fecha_Hora, @pi_Log_Tipo, @pi_Log_Cant_Intentos)";
         private const String SQL_INSERT_USUARIO = @"INSERT INTO " + ConstantesDALC.TB_USUARIO + " (Usuario_username, Usuario_password) VALUES (@pi_Usuario_username, @pi_Usuario_password)";
         private const String SQL_DELETE_USUARIO = @"DELETE FROM " + ConstantesDALC.TB_USUARIO + " WHERE Usuario_Username = @pi_Usuario_username";
@@ -25,7 +27,7 @@ namespace PagoElectronico.DALC
         private const String SQL_SELECT_USUARIO = @"SELECT * FROM " + ConstantesDALC.TB_USUARIO + " WHERE Usuario_username = @pi_Usuario_username";
         private const String SQL_INCREMENTAR_INTENTO_FALLIDO = @"UPDATE " + ConstantesDALC.TB_USUARIO + " SET Usuario_Cant_Intentos = @pi_Usuario_Cant_Intentos WHERE Usuario_ID = @pi_Usuario_ID";
         private const String SQL_DESHABILITAR_USUARIO = @"UPDATE " + ConstantesDALC.TB_USUARIO + " SET Usuario_Estado = @pi_Usuario_Estado, Usuario_Cant_Intentos = @pi_Usuario_Cant_Intentos WHERE Usuario_ID = @pi_Usuario_ID";
-
+        
         #endregion
 
         #region Metodos publicos
@@ -451,5 +453,6 @@ namespace PagoElectronico.DALC
             throw new NotImplementedException();
         }
         #endregion
+
     }
 }

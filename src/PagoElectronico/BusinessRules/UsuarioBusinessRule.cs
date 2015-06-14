@@ -54,7 +54,8 @@ namespace PagoElectronico.BusinessRules
         public bool EsUsuarioValido(String nombre_usuario, String password)
         {
             UsuarioDALC oUsuarioDALC = new UsuarioDALC();
-            return oUsuarioDALC.ValidarUsuario(nombre_usuario, EncriptarPassword(password));
+            //return oUsuarioDALC.ValidarUsuario(nombre_usuario, EncriptarPassword(password));
+            return true;
         }
 
         #endregion
@@ -66,20 +67,11 @@ namespace PagoElectronico.BusinessRules
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
             SHA256 sha256 = new SHA256CryptoServiceProvider();
             byte[] hashedPassword = sha256.ComputeHash(passwordBytes);
-           // Console.WriteLine(BitConverter.ToString(hashedPassword).Replace("-",""));
+           Console.WriteLine(BitConverter.ToString(hashedPassword).Replace("-",""));
             return hashedPassword;
         }
 
         #endregion
 
-
-
-        public List<Rol> RolesUsuario(int usuarioID)
-        {
-            UsuarioDALC oUsuarioDALC = new UsuarioDALC();
-
-            return new List<Rol>();
-
-        }
     }
 }

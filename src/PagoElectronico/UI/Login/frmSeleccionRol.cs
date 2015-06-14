@@ -23,11 +23,13 @@ namespace PagoElectronico.UI.Login
             frmAdmin.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCliente_Click(object sender, EventArgs e)
         {
             this.Hide();
             frmCliente frmCliente = new frmCliente();
             frmCliente.Show();
         }
+
+
     }
 }

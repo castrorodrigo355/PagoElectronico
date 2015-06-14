@@ -1,4 +1,5 @@
-﻿namespace PagoElectronico.UI.Login
+﻿using PagoElectronico.BusinessEntities;
+namespace PagoElectronico.UI.Login
 {
     partial class frmCliente
     {
@@ -28,33 +29,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 119);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(221, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Aca irian todas las funcionalidades del cliente";
             // 
             // frmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Name = "frmCliente";
-            this.Text = "frmCliente";
+            this.Text = "Bienvenido ";
+            this.Load += new System.EventHandler(this.frmCliente_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+
     }
 }

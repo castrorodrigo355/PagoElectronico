@@ -1,4 +1,6 @@
-﻿namespace PagoElectronico.UI.Login
+﻿using PagoElectronico.BusinessEntities;
+using System.Drawing;
+namespace PagoElectronico.UI.Login
 {
     partial class frmSeleccionRol
     {
@@ -29,33 +31,43 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSeleccionRol));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpRoles = new System.Windows.Forms.GroupBox();
+            this.btnCliente = new System.Windows.Forms.Button();
             this.btnAdministrador = new System.Windows.Forms.Button();
             this.lblCliente = new System.Windows.Forms.Label();
             this.lblAdministrador = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.grpRoles.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grpRoles
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.btnAdministrador);
-            this.groupBox1.Controls.Add(this.lblCliente);
-            this.groupBox1.Controls.Add(this.lblAdministrador);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(259, 175);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Seleccione el perifl para ingresar al sistema";
+            this.grpRoles.Controls.Add(this.btnCliente);
+            this.grpRoles.Controls.Add(this.btnAdministrador);
+            this.grpRoles.Controls.Add(this.lblCliente);
+            this.grpRoles.Controls.Add(this.lblAdministrador);
+            this.grpRoles.Location = new System.Drawing.Point(13, 12);
+            this.grpRoles.Name = "grpRoles";
+            this.grpRoles.Size = new System.Drawing.Size(559, 337);
+            this.grpRoles.TabIndex = 0;
+            this.grpRoles.TabStop = false;
+            this.grpRoles.Text = "Seleccione el perfil para ingresar al sistema";
+            // 
+            // btnCliente
+            // 
+            this.btnCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnCliente.Image")));
+            this.btnCliente.Location = new System.Drawing.Point(316, 64);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Size = new System.Drawing.Size(200, 200);
+            this.btnCliente.TabIndex = 7;
+            this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
             // btnAdministrador
             // 
-            this.btnAdministrador.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAdministrador.BackgroundImage")));
-            this.btnAdministrador.Location = new System.Drawing.Point(17, 36);
+            this.btnAdministrador.Image = ((System.Drawing.Image)(resources.GetObject("btnAdministrador.Image")));
+            this.btnAdministrador.Location = new System.Drawing.Point(51, 64);
             this.btnAdministrador.Name = "btnAdministrador";
-            this.btnAdministrador.Size = new System.Drawing.Size(96, 100);
+            this.btnAdministrador.Size = new System.Drawing.Size(200, 200);
             this.btnAdministrador.TabIndex = 6;
             this.btnAdministrador.UseVisualStyleBackColor = true;
             this.btnAdministrador.Click += new System.EventHandler(this.btnAdministrador_Click);
@@ -63,7 +75,7 @@
             // lblCliente
             // 
             this.lblCliente.AutoSize = true;
-            this.lblCliente.Location = new System.Drawing.Point(176, 139);
+            this.lblCliente.Location = new System.Drawing.Point(395, 267);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(39, 13);
             this.lblCliente.TabIndex = 5;
@@ -72,42 +84,32 @@
             // lblAdministrador
             // 
             this.lblAdministrador.AutoSize = true;
-            this.lblAdministrador.Location = new System.Drawing.Point(34, 139);
+            this.lblAdministrador.Location = new System.Drawing.Point(116, 267);
             this.lblAdministrador.Name = "lblAdministrador";
             this.lblAdministrador.Size = new System.Drawing.Size(70, 13);
             this.lblAdministrador.TabIndex = 4;
             this.lblAdministrador.Text = "Administrador";
             // 
-            // button1
-            // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.Location = new System.Drawing.Point(142, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 100);
-            this.button1.TabIndex = 7;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmSeleccionRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 206);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.grpRoles);
             this.Name = "frmSeleccionRol";
             this.Text = "Sistema Pago Electronico";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpRoles.ResumeLayout(false);
+            this.grpRoles.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpRoles;
         private System.Windows.Forms.Button btnAdministrador;
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.Label lblAdministrador;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCliente;
     }
 }
