@@ -93,7 +93,8 @@ CREATE TABLE [DBA_GD].CUENTA(
 	
 CREATE TABLE [DBA_GD].LOG_CUENTA_INHABILITADA(
 	Cue_Inha_ID numeric(18,0) identity(1,1) primary key,
-	Cue_Inha_Cuenta numeric(18,0) NOT NULL foreign key references [DBA_GD].CUENTA
+	Cue_Inha_Cuenta numeric(18,0) NOT NULL foreign key references [DBA_GD].CUENTA,
+	Cue_Inha_Fecha date default GETDATE()
 	);	
 	
 CREATE TABLE [DBA_GD].CHEQUE(
@@ -102,7 +103,6 @@ CREATE TABLE [DBA_GD].CHEQUE(
 	Cheque_Fecha datetime NOT NULL,
 	Cheque_Moneda numeric(18,0) NOT NULL foreign key references [DBA_GD].MONEDA,
 	Cheque_Importe numeric(18,2) NOT NULL,
---	Cheque_Nombre varchar(64) NOT NULL ,
 	Cheque_Cliente_ID numeric(18,0) NOT NULL foreign key references [DBA_GD].CLIENTE,
 	Cheque_Banco numeric(18,0) NOT NULL foreign key references [DBA_GD].BANCO
 	);
@@ -636,6 +636,78 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CHEQUE
 GO
 
 -------------------------------------------------------
+			-- FUNCIONES PARA LA APP --
+-------------------------------------------------------
+
+CREATE FUNCTION [DBA_GD].CALCULAR_TRANSFERENCIAS_ENTRANTES (@Cuenta_ID numeric(18,0))
+RETURNS numeric(18,2) 
+AS 
+	BEGIN
+		DECLARE @ret numeric(18,2);
+		SELECT @ret = SUM(T.Transferencia_Importe) 
+		FROM [DBA_GD].TRANSFERENCIA AS T
+		WHERE T.Transferencia_Cuenta_Dst = @Cuenta_ID;
+		 IF (@ret IS NULL) 
+			SET @ret = 0;
+		RETURN @ret;
+END;
+GO
+
+CREATE FUNCTION [DBA_GD].CALCULAR_TRANSFERENCIAS_SALIENTES (@Cuenta_ID numeric(18,0))
+RETURNS numeric(18,2) 
+AS 
+	BEGIN
+		DECLARE @ret numeric(18,2);
+		SELECT @ret = SUM(T.Transferencia_Importe) 
+		FROM [DBA_GD].TRANSFERENCIA AS T
+		WHERE T.Transferencia_Cuenta_Origen = @Cuenta_ID;
+		IF (@ret IS NULL) 
+			SET @ret = 0;
+		RETURN @ret;
+END;
+GO
+
+CREATE FUNCTION [DBA_GD].CALCULAR_DEPOSITOS (@Cuenta_ID numeric(18,0))
+RETURNS numeric(18,2) 
+AS 
+	BEGIN
+		DECLARE @ret numeric(18,2);
+		SELECT @ret = SUM(D.Deposito_Importe) 
+		FROM [DBA_GD].DEPOSITO AS D
+		WHERE D.Deposito_Cuenta_Numero = @Cuenta_ID;
+		IF (@ret IS NULL) 
+			SET @ret = 0;
+		RETURN @ret;
+END;
+GO
+
+CREATE FUNCTION [DBA_GD].CALCULAR_ID_CUENTA (@Cuenta_Numero numeric(18,0))
+RETURNS numeric(18,0) 
+AS 
+	BEGIN
+		DECLARE @ret numeric(18,0);
+		SELECT @ret = C.Cuenta_ID 
+		FROM [DBA_GD].CUENTA AS C
+		WHERE C.Cuenta_Numero = @Cuenta_Numero;
+		IF (@ret IS NULL) 
+			SET @ret = 0;
+		RETURN @ret;
+END;
+GO
+
+CREATE FUNCTION [DBA_GD].CALCULAR_SALDO_CUENTA (@Cuenta_ID numeric(18,0))
+RETURNS numeric(18,2) 
+AS 
+	BEGIN
+		DECLARE  @ret numeric(18,0);
+		SET @ret = ([DBA_GD].CALCULAR_TRANSFERENCIAS_ENTRANTES (@Cuenta_ID) -
+		[DBA_GD].CALCULAR_TRANSFERENCIAS_SALIENTES (@Cuenta_ID) +
+		[DBA_GD].CALCULAR_DEPOSITOS (@Cuenta_ID));
+		RETURN @ret;
+END;
+GO
+
+-------------------------------------------------------
 			-- EJECUCION DE PROCEDURES --
 -------------------------------------------------------
 
@@ -658,3 +730,5 @@ exec [DBA_GD].Migracion_Datos_CHEQUE
 exec [DBA_GD].Migracion_Datos_RETIRO
 exec [DBA_GD].Migracion_Datos_DEPOSITO
 exec [DBA_GD].Migracion_Datos_TRANSFERENCIA
+
+
