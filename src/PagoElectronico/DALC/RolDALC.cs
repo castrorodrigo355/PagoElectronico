@@ -17,32 +17,32 @@ namespace PagoElectronico.DALC
 
         #region Miembros de IDALC
 
-        public int insert(object obj)
+        public int Insertar(object obj)
         {
             throw new System.NotImplementedException();
         }
 
-        public int delete(int id)
+        public int Eliminar(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public int update(object obj)
+        public int Actualizar(object obj)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool exists(object obj)
+        public bool Existe(object obj)
         {
             throw new System.NotImplementedException();
         }
 
-        public System.Data.DataSet getList()
+        public System.Data.DataSet GetList()
         {
             throw new System.NotImplementedException();
         }
 
-        public System.Data.DataSet getFilter(object obj)
+        public System.Data.DataSet GetFilter(object obj)
         {
             throw new System.NotImplementedException();
         }
@@ -90,7 +90,7 @@ namespace PagoElectronico.DALC
                         rolAnterior = Convert.ToInt32(oDataReader["Rol_ID"]);
                         oRol = new Rol();
                         oRol.ID = rolAnterior;
-                        oRol.Estado = Convert.ToString(oDataReader["Rol_Estado"]);
+                        oRol.Estado = Convert.ToBoolean(oDataReader["Rol_Estado"]);
                         oRol.Descripcion = Convert.ToString(oDataReader["Rol_Nombre"]);
                         rolesUsuario.Add(oRol);
                     }

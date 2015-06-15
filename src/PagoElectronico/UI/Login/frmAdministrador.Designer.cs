@@ -29,82 +29,188 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdministrador));
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnABMCliente = new System.Windows.Forms.Button();
+            this.grpFuncionalidades = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblEstadisticas = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblABMCliente = new System.Windows.Forms.Label();
+            this.lblABMRol = new System.Windows.Forms.Label();
+            this.btnConsultaSaldos = new System.Windows.Forms.Button();
+            this.btnFacturacion = new System.Windows.Forms.Button();
+            this.btnListadoEstadistico = new System.Windows.Forms.Button();
+            this.btnABMCuenta = new System.Windows.Forms.Button();
+            this.btnABMClientes = new System.Windows.Forms.Button();
             this.btnABMRol = new System.Windows.Forms.Button();
+            this.grpFuncionalidades.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // grpFuncionalidades
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(253, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Aca irian todas las funcionalidades del Administrador";
+            this.grpFuncionalidades.Controls.Add(this.label6);
+            this.grpFuncionalidades.Controls.Add(this.label5);
+            this.grpFuncionalidades.Controls.Add(this.lblEstadisticas);
+            this.grpFuncionalidades.Controls.Add(this.label3);
+            this.grpFuncionalidades.Controls.Add(this.lblABMCliente);
+            this.grpFuncionalidades.Controls.Add(this.lblABMRol);
+            this.grpFuncionalidades.Controls.Add(this.btnConsultaSaldos);
+            this.grpFuncionalidades.Controls.Add(this.btnFacturacion);
+            this.grpFuncionalidades.Controls.Add(this.btnListadoEstadistico);
+            this.grpFuncionalidades.Controls.Add(this.btnABMCuenta);
+            this.grpFuncionalidades.Controls.Add(this.btnABMClientes);
+            this.grpFuncionalidades.Controls.Add(this.btnABMRol);
+            this.grpFuncionalidades.Location = new System.Drawing.Point(13, 12);
+            this.grpFuncionalidades.Name = "grpFuncionalidades";
+            this.grpFuncionalidades.Size = new System.Drawing.Size(759, 536);
+            this.grpFuncionalidades.TabIndex = 1;
+            this.grpFuncionalidades.TabStop = false;
+            this.grpFuncionalidades.Text = "Funcionalidades";
             // 
-            // btnABMCliente
+            // label6
             // 
-            this.btnABMCliente.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnABMCliente.BackgroundImage")));
-            this.btnABMCliente.Location = new System.Drawing.Point(77, 65);
-            this.btnABMCliente.Name = "btnABMCliente";
-            this.btnABMCliente.Size = new System.Drawing.Size(103, 105);
-            this.btnABMCliente.TabIndex = 3;
-            this.btnABMCliente.UseVisualStyleBackColor = true;
-            this.btnABMCliente.Click += new System.EventHandler(this.btnABMCliente_Click);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(557, 492);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(129, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "CONSULTA DE SALDOS";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(335, 492);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "FACTURACIÓN";
+            // 
+            // lblEstadisticas
+            // 
+            this.lblEstadisticas.AutoSize = true;
+            this.lblEstadisticas.Location = new System.Drawing.Point(95, 492);
+            this.lblEstadisticas.Name = "lblEstadisticas";
+            this.lblEstadisticas.Size = new System.Drawing.Size(84, 13);
+            this.lblEstadisticas.TabIndex = 9;
+            this.lblEstadisticas.Text = "ESTADISTICAS";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(97, 173);
+            this.label3.Location = new System.Drawing.Point(570, 244);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "ABM Cliente";
+            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "ABM DE CUENTAS";
             // 
-            // label2
+            // lblABMCliente
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(269, 173);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "ABM Rol";
+            this.lblABMCliente.AutoSize = true;
+            this.lblABMCliente.Location = new System.Drawing.Point(325, 244);
+            this.lblABMCliente.Name = "lblABMCliente";
+            this.lblABMCliente.Size = new System.Drawing.Size(103, 13);
+            this.lblABMCliente.TabIndex = 7;
+            this.lblABMCliente.Text = "ABM DE CLIENTES";
+            // 
+            // lblABMRol
+            // 
+            this.lblABMRol.AutoSize = true;
+            this.lblABMRol.Location = new System.Drawing.Point(94, 244);
+            this.lblABMRol.Name = "lblABMRol";
+            this.lblABMRol.Size = new System.Drawing.Size(87, 13);
+            this.lblABMRol.TabIndex = 6;
+            this.lblABMRol.Text = "ABM DE ROLES";
+            // 
+            // btnConsultaSaldos
+            // 
+            this.btnConsultaSaldos.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultaSaldos.Image")));
+            this.btnConsultaSaldos.Location = new System.Drawing.Point(521, 274);
+            this.btnConsultaSaldos.Name = "btnConsultaSaldos";
+            this.btnConsultaSaldos.Size = new System.Drawing.Size(200, 200);
+            this.btnConsultaSaldos.TabIndex = 5;
+            this.btnConsultaSaldos.UseVisualStyleBackColor = true;
+            this.btnConsultaSaldos.Click += new System.EventHandler(this.btnConsultaSaldos_Click);
+            // 
+            // btnFacturacion
+            // 
+            this.btnFacturacion.Image = ((System.Drawing.Image)(resources.GetObject("btnFacturacion.Image")));
+            this.btnFacturacion.Location = new System.Drawing.Point(276, 274);
+            this.btnFacturacion.Name = "btnFacturacion";
+            this.btnFacturacion.Size = new System.Drawing.Size(200, 200);
+            this.btnFacturacion.TabIndex = 4;
+            this.btnFacturacion.UseVisualStyleBackColor = true;
+            this.btnFacturacion.Click += new System.EventHandler(this.btnFacturacion_Click);
+            // 
+            // btnListadoEstadistico
+            // 
+            this.btnListadoEstadistico.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoEstadistico.Image")));
+            this.btnListadoEstadistico.Location = new System.Drawing.Point(37, 274);
+            this.btnListadoEstadistico.Name = "btnListadoEstadistico";
+            this.btnListadoEstadistico.Size = new System.Drawing.Size(200, 200);
+            this.btnListadoEstadistico.TabIndex = 3;
+            this.btnListadoEstadistico.UseVisualStyleBackColor = true;
+            this.btnListadoEstadistico.Click += new System.EventHandler(this.btnListadoEstadistico_Click);
+            // 
+            // btnABMCuenta
+            // 
+            this.btnABMCuenta.Image = ((System.Drawing.Image)(resources.GetObject("btnABMCuenta.Image")));
+            this.btnABMCuenta.Location = new System.Drawing.Point(521, 32);
+            this.btnABMCuenta.Name = "btnABMCuenta";
+            this.btnABMCuenta.Size = new System.Drawing.Size(200, 200);
+            this.btnABMCuenta.TabIndex = 2;
+            this.btnABMCuenta.UseVisualStyleBackColor = true;
+            this.btnABMCuenta.Click += new System.EventHandler(this.btnABMCuenta_Click);
+            // 
+            // btnABMClientes
+            // 
+            this.btnABMClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnABMClientes.Image")));
+            this.btnABMClientes.Location = new System.Drawing.Point(276, 32);
+            this.btnABMClientes.Name = "btnABMClientes";
+            this.btnABMClientes.Size = new System.Drawing.Size(200, 200);
+            this.btnABMClientes.TabIndex = 1;
+            this.btnABMClientes.UseVisualStyleBackColor = true;
+            this.btnABMClientes.Click += new System.EventHandler(this.btnABMClientes_Click);
             // 
             // btnABMRol
             // 
-            this.btnABMRol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnABMRol.BackgroundImage")));
-            this.btnABMRol.Location = new System.Drawing.Point(241, 65);
+            this.btnABMRol.Image = ((System.Drawing.Image)(resources.GetObject("btnABMRol.Image")));
+            this.btnABMRol.Location = new System.Drawing.Point(37, 32);
             this.btnABMRol.Name = "btnABMRol";
-            this.btnABMRol.Size = new System.Drawing.Size(103, 105);
-            this.btnABMRol.TabIndex = 5;
+            this.btnABMRol.Size = new System.Drawing.Size(200, 200);
+            this.btnABMRol.TabIndex = 0;
             this.btnABMRol.UseVisualStyleBackColor = true;
+            this.btnABMRol.Click += new System.EventHandler(this.btnABMRol_Click);
             // 
             // frmAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(420, 226);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnABMRol);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnABMCliente);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.grpFuncionalidades);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmAdministrador";
-            this.Text = "frmAdministrador";
+            this.grpFuncionalidades.ResumeLayout(false);
+            this.grpFuncionalidades.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnABMCliente;
+        private System.Windows.Forms.GroupBox grpFuncionalidades;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblEstadisticas;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblABMCliente;
+        private System.Windows.Forms.Label lblABMRol;
+        private System.Windows.Forms.Button btnConsultaSaldos;
+        private System.Windows.Forms.Button btnFacturacion;
+        private System.Windows.Forms.Button btnListadoEstadistico;
+        private System.Windows.Forms.Button btnABMCuenta;
+        private System.Windows.Forms.Button btnABMClientes;
         private System.Windows.Forms.Button btnABMRol;
+
+
     }
 }

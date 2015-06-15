@@ -1,6 +1,6 @@
 ﻿namespace PagoElectronico.UI.ABM_Cliente
 {
-    partial class AltaCliente
+    partial class FrmAltaCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaCliente));
             this.btnLimpiarCampos = new System.Windows.Forms.Button();
             this.btnAgregarCliente = new System.Windows.Forms.Button();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
@@ -40,8 +39,14 @@
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.txtApellidos = new System.Windows.Forms.TextBox();
             this.lblNacionalidad = new System.Windows.Forms.Label();
-            this.cmbNacionalidad = new System.Windows.Forms.ComboBox();
             this.grpDatosCliente = new System.Windows.Forms.GroupBox();
+            this.lblPais = new System.Windows.Forms.Label();
+            this.cmbPais = new System.Windows.Forms.ComboBox();
+            this.txtCalleNro = new System.Windows.Forms.TextBox();
+            this.lblNro = new System.Windows.Forms.Label();
+            this.lblMail = new System.Windows.Forms.Label();
+            this.txtMail = new System.Windows.Forms.TextBox();
+            this.txtNacionalidad = new System.Windows.Forms.TextBox();
             this.lblLocalidad = new System.Windows.Forms.Label();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
             this.txtDepto = new System.Windows.Forms.TextBox();
@@ -63,13 +68,13 @@
             this.lblRespuestaSecreta = new System.Windows.Forms.Label();
             this.txtRespuestaSecreta = new System.Windows.Forms.TextBox();
             this.grpDatosUsuario = new System.Windows.Forms.GroupBox();
+            this.txtConfirmarPassword = new System.Windows.Forms.TextBox();
+            this.lblRepetirContraseña = new System.Windows.Forms.Label();
             this.chkCliente = new System.Windows.Forms.CheckBox();
             this.chkAdministrador = new System.Windows.Forms.CheckBox();
             this.pictureCliente = new System.Windows.Forms.PictureBox();
             this.pictureAdministrador = new System.Windows.Forms.PictureBox();
             this.epValidador = new System.Windows.Forms.ErrorProvider(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblRepetirContraseña = new System.Windows.Forms.Label();
             this.grpDatosCliente.SuspendLayout();
             this.grpDatosUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCliente)).BeginInit();
@@ -79,21 +84,20 @@
             // 
             // btnLimpiarCampos
             // 
-            this.btnLimpiarCampos.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarCampos.Image")));
             this.btnLimpiarCampos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiarCampos.Location = new System.Drawing.Point(399, 305);
+            this.btnLimpiarCampos.Location = new System.Drawing.Point(399, 358);
             this.btnLimpiarCampos.Name = "btnLimpiarCampos";
             this.btnLimpiarCampos.Size = new System.Drawing.Size(121, 38);
             this.btnLimpiarCampos.TabIndex = 3;
             this.btnLimpiarCampos.Text = "Limpiar campos";
             this.btnLimpiarCampos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpiarCampos.UseVisualStyleBackColor = true;
+            this.btnLimpiarCampos.Click += new System.EventHandler(this.btnLimpiarCampos_Click);
             // 
             // btnAgregarCliente
             // 
-            this.btnAgregarCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarCliente.Image")));
             this.btnAgregarCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarCliente.Location = new System.Drawing.Point(526, 305);
+            this.btnAgregarCliente.Location = new System.Drawing.Point(526, 358);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
             this.btnAgregarCliente.Size = new System.Drawing.Size(121, 38);
             this.btnAgregarCliente.TabIndex = 2;
@@ -104,7 +108,7 @@
             // 
             // dtpFechaNacimiento
             // 
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(132, 154);
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(132, 185);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(206, 20);
             this.dtpFechaNacimiento.TabIndex = 0;
@@ -112,7 +116,7 @@
             // lblTipoDocumento
             // 
             this.lblTipoDocumento.AutoSize = true;
-            this.lblTipoDocumento.Location = new System.Drawing.Point(17, 72);
+            this.lblTipoDocumento.Location = new System.Drawing.Point(17, 71);
             this.lblTipoDocumento.Name = "lblTipoDocumento";
             this.lblTipoDocumento.Size = new System.Drawing.Size(102, 13);
             this.lblTipoDocumento.TabIndex = 3;
@@ -121,7 +125,7 @@
             // cmbTipoDocumento
             // 
             this.cmbTipoDocumento.FormattingEnabled = true;
-            this.cmbTipoDocumento.Location = new System.Drawing.Point(20, 87);
+            this.cmbTipoDocumento.Location = new System.Drawing.Point(20, 86);
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
             this.cmbTipoDocumento.Size = new System.Drawing.Size(106, 21);
             this.cmbTipoDocumento.TabIndex = 4;
@@ -165,16 +169,15 @@
             this.lblNacionalidad.TabIndex = 9;
             this.lblNacionalidad.Text = "Nacionalidad:";
             // 
-            // cmbNacionalidad
-            // 
-            this.cmbNacionalidad.FormattingEnabled = true;
-            this.cmbNacionalidad.Location = new System.Drawing.Point(95, 122);
-            this.cmbNacionalidad.Name = "cmbNacionalidad";
-            this.cmbNacionalidad.Size = new System.Drawing.Size(243, 21);
-            this.cmbNacionalidad.TabIndex = 10;
-            // 
             // grpDatosCliente
             // 
+            this.grpDatosCliente.Controls.Add(this.lblPais);
+            this.grpDatosCliente.Controls.Add(this.cmbPais);
+            this.grpDatosCliente.Controls.Add(this.txtCalleNro);
+            this.grpDatosCliente.Controls.Add(this.lblNro);
+            this.grpDatosCliente.Controls.Add(this.lblMail);
+            this.grpDatosCliente.Controls.Add(this.txtMail);
+            this.grpDatosCliente.Controls.Add(this.txtNacionalidad);
             this.grpDatosCliente.Controls.Add(this.lblLocalidad);
             this.grpDatosCliente.Controls.Add(this.txtLocalidad);
             this.grpDatosCliente.Controls.Add(this.txtDepto);
@@ -186,7 +189,6 @@
             this.grpDatosCliente.Controls.Add(this.lblFechaNacimiento);
             this.grpDatosCliente.Controls.Add(this.lblApellidosCliente);
             this.grpDatosCliente.Controls.Add(this.lblNombresCliente);
-            this.grpDatosCliente.Controls.Add(this.cmbNacionalidad);
             this.grpDatosCliente.Controls.Add(this.lblNacionalidad);
             this.grpDatosCliente.Controls.Add(this.txtApellidos);
             this.grpDatosCliente.Controls.Add(this.txtNombres);
@@ -197,15 +199,71 @@
             this.grpDatosCliente.Controls.Add(this.dtpFechaNacimiento);
             this.grpDatosCliente.Location = new System.Drawing.Point(289, 14);
             this.grpDatosCliente.Name = "grpDatosCliente";
-            this.grpDatosCliente.Size = new System.Drawing.Size(359, 279);
+            this.grpDatosCliente.Size = new System.Drawing.Size(359, 329);
             this.grpDatosCliente.TabIndex = 1;
             this.grpDatosCliente.TabStop = false;
             this.grpDatosCliente.Text = "Datos Cliente";
             // 
+            // lblPais
+            // 
+            this.lblPais.AutoSize = true;
+            this.lblPais.Location = new System.Drawing.Point(17, 155);
+            this.lblPais.Name = "lblPais";
+            this.lblPais.Size = new System.Drawing.Size(30, 13);
+            this.lblPais.TabIndex = 26;
+            this.lblPais.Text = "Pais:";
+            // 
+            // cmbPais
+            // 
+            this.cmbPais.FormattingEnabled = true;
+            this.cmbPais.Location = new System.Drawing.Point(53, 152);
+            this.cmbPais.Name = "cmbPais";
+            this.cmbPais.Size = new System.Drawing.Size(194, 21);
+            this.cmbPais.TabIndex = 25;
+            // 
+            // txtCalleNro
+            // 
+            this.txtCalleNro.Location = new System.Drawing.Point(181, 261);
+            this.txtCalleNro.Name = "txtCalleNro";
+            this.txtCalleNro.Size = new System.Drawing.Size(39, 20);
+            this.txtCalleNro.TabIndex = 24;
+            // 
+            // lblNro
+            // 
+            this.lblNro.AutoSize = true;
+            this.lblNro.Location = new System.Drawing.Point(178, 245);
+            this.lblNro.Name = "lblNro";
+            this.lblNro.Size = new System.Drawing.Size(34, 13);
+            this.lblNro.TabIndex = 23;
+            this.lblNro.Text = "Altura";
+            // 
+            // lblMail
+            // 
+            this.lblMail.AutoSize = true;
+            this.lblMail.Location = new System.Drawing.Point(17, 222);
+            this.lblMail.Name = "lblMail";
+            this.lblMail.Size = new System.Drawing.Size(29, 13);
+            this.lblMail.TabIndex = 22;
+            this.lblMail.Text = "Mail:";
+            // 
+            // txtMail
+            // 
+            this.txtMail.Location = new System.Drawing.Point(52, 219);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(286, 20);
+            this.txtMail.TabIndex = 16;
+            // 
+            // txtNacionalidad
+            // 
+            this.txtNacionalidad.Location = new System.Drawing.Point(104, 122);
+            this.txtNacionalidad.Name = "txtNacionalidad";
+            this.txtNacionalidad.Size = new System.Drawing.Size(234, 20);
+            this.txtNacionalidad.TabIndex = 21;
+            // 
             // lblLocalidad
             // 
             this.lblLocalidad.AutoSize = true;
-            this.lblLocalidad.Location = new System.Drawing.Point(17, 248);
+            this.lblLocalidad.Location = new System.Drawing.Point(17, 295);
             this.lblLocalidad.Name = "lblLocalidad";
             this.lblLocalidad.Size = new System.Drawing.Size(53, 13);
             this.lblLocalidad.TabIndex = 20;
@@ -213,14 +271,14 @@
             // 
             // txtLocalidad
             // 
-            this.txtLocalidad.Location = new System.Drawing.Point(84, 245);
+            this.txtLocalidad.Location = new System.Drawing.Point(84, 292);
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(254, 20);
             this.txtLocalidad.TabIndex = 19;
             // 
             // txtDepto
             // 
-            this.txtDepto.Location = new System.Drawing.Point(299, 205);
+            this.txtDepto.Location = new System.Drawing.Point(299, 261);
             this.txtDepto.Name = "txtDepto";
             this.txtDepto.Size = new System.Drawing.Size(39, 20);
             this.txtDepto.TabIndex = 18;
@@ -228,7 +286,7 @@
             // lblDepto
             // 
             this.lblDepto.AutoSize = true;
-            this.lblDepto.Location = new System.Drawing.Point(296, 189);
+            this.lblDepto.Location = new System.Drawing.Point(296, 245);
             this.lblDepto.Name = "lblDepto";
             this.lblDepto.Size = new System.Drawing.Size(36, 13);
             this.lblDepto.TabIndex = 17;
@@ -236,7 +294,7 @@
             // 
             // txtPiso
             // 
-            this.txtPiso.Location = new System.Drawing.Point(238, 205);
+            this.txtPiso.Location = new System.Drawing.Point(238, 261);
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(39, 20);
             this.txtPiso.TabIndex = 16;
@@ -244,7 +302,7 @@
             // lblPiso
             // 
             this.lblPiso.AutoSize = true;
-            this.lblPiso.Location = new System.Drawing.Point(235, 189);
+            this.lblPiso.Location = new System.Drawing.Point(235, 245);
             this.lblPiso.Name = "lblPiso";
             this.lblPiso.Size = new System.Drawing.Size(27, 13);
             this.lblPiso.TabIndex = 15;
@@ -252,15 +310,15 @@
             // 
             // txtCalle
             // 
-            this.txtCalle.Location = new System.Drawing.Point(20, 205);
+            this.txtCalle.Location = new System.Drawing.Point(20, 261);
             this.txtCalle.Name = "txtCalle";
-            this.txtCalle.Size = new System.Drawing.Size(196, 20);
+            this.txtCalle.Size = new System.Drawing.Size(145, 20);
             this.txtCalle.TabIndex = 14;
             // 
             // lblCalle
             // 
             this.lblCalle.AutoSize = true;
-            this.lblCalle.Location = new System.Drawing.Point(17, 189);
+            this.lblCalle.Location = new System.Drawing.Point(17, 245);
             this.lblCalle.Name = "lblCalle";
             this.lblCalle.Size = new System.Drawing.Size(30, 13);
             this.lblCalle.TabIndex = 13;
@@ -269,7 +327,7 @@
             // lblFechaNacimiento
             // 
             this.lblFechaNacimiento.AutoSize = true;
-            this.lblFechaNacimiento.Location = new System.Drawing.Point(17, 157);
+            this.lblFechaNacimiento.Location = new System.Drawing.Point(17, 188);
             this.lblFechaNacimiento.Name = "lblFechaNacimiento";
             this.lblFechaNacimiento.Size = new System.Drawing.Size(109, 13);
             this.lblFechaNacimiento.TabIndex = 12;
@@ -369,7 +427,7 @@
             // 
             // grpDatosUsuario
             // 
-            this.grpDatosUsuario.Controls.Add(this.textBox1);
+            this.grpDatosUsuario.Controls.Add(this.txtConfirmarPassword);
             this.grpDatosUsuario.Controls.Add(this.lblRepetirContraseña);
             this.grpDatosUsuario.Controls.Add(this.chkCliente);
             this.grpDatosUsuario.Controls.Add(this.chkAdministrador);
@@ -390,6 +448,22 @@
             this.grpDatosUsuario.TabIndex = 0;
             this.grpDatosUsuario.TabStop = false;
             this.grpDatosUsuario.Text = "Datos Usuario";
+            // 
+            // txtConfirmarPassword
+            // 
+            this.txtConfirmarPassword.Location = new System.Drawing.Point(22, 139);
+            this.txtConfirmarPassword.Name = "txtConfirmarPassword";
+            this.txtConfirmarPassword.Size = new System.Drawing.Size(221, 20);
+            this.txtConfirmarPassword.TabIndex = 15;
+            // 
+            // lblRepetirContraseña
+            // 
+            this.lblRepetirContraseña.AutoSize = true;
+            this.lblRepetirContraseña.Location = new System.Drawing.Point(19, 123);
+            this.lblRepetirContraseña.Name = "lblRepetirContraseña";
+            this.lblRepetirContraseña.Size = new System.Drawing.Size(100, 13);
+            this.lblRepetirContraseña.TabIndex = 14;
+            this.lblRepetirContraseña.Text = "Repetir contraseña:";
             // 
             // chkCliente
             // 
@@ -413,7 +487,6 @@
             // 
             // pictureCliente
             // 
-            this.pictureCliente.Image = ((System.Drawing.Image)(resources.GetObject("pictureCliente.Image")));
             this.pictureCliente.Location = new System.Drawing.Point(153, 188);
             this.pictureCliente.Name = "pictureCliente";
             this.pictureCliente.Size = new System.Drawing.Size(27, 30);
@@ -422,7 +495,6 @@
             // 
             // pictureAdministrador
             // 
-            this.pictureAdministrador.Image = ((System.Drawing.Image)(resources.GetObject("pictureAdministrador.Image")));
             this.pictureAdministrador.Location = new System.Drawing.Point(25, 188);
             this.pictureAdministrador.Name = "pictureAdministrador";
             this.pictureAdministrador.Size = new System.Drawing.Size(27, 30);
@@ -433,33 +505,18 @@
             // 
             this.epValidador.ContainerControl = this;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(22, 139);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(221, 20);
-            this.textBox1.TabIndex = 15;
-            // 
-            // lblRepetirContraseña
-            // 
-            this.lblRepetirContraseña.AutoSize = true;
-            this.lblRepetirContraseña.Location = new System.Drawing.Point(19, 123);
-            this.lblRepetirContraseña.Name = "lblRepetirContraseña";
-            this.lblRepetirContraseña.Size = new System.Drawing.Size(100, 13);
-            this.lblRepetirContraseña.TabIndex = 14;
-            this.lblRepetirContraseña.Text = "Repetir contraseña:";
-            // 
-            // AltaCliente
+            // FrmAltaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 355);
+            this.ClientSize = new System.Drawing.Size(664, 411);
             this.Controls.Add(this.btnLimpiarCampos);
             this.Controls.Add(this.btnAgregarCliente);
             this.Controls.Add(this.grpDatosCliente);
             this.Controls.Add(this.grpDatosUsuario);
-            this.Name = "AltaCliente";
+            this.Name = "FrmAltaCliente";
             this.Text = "Nuevo cliente";
+            this.Load += new System.EventHandler(this.FrmAltaCliente_Load);
             this.grpDatosCliente.ResumeLayout(false);
             this.grpDatosCliente.PerformLayout();
             this.grpDatosUsuario.ResumeLayout(false);
@@ -483,7 +540,6 @@
         private System.Windows.Forms.TextBox txtNombres;
         private System.Windows.Forms.TextBox txtApellidos;
         private System.Windows.Forms.Label lblNacionalidad;
-        private System.Windows.Forms.ComboBox cmbNacionalidad;
         private System.Windows.Forms.GroupBox grpDatosCliente;
         private System.Windows.Forms.Label lblNombreUsuario;
         private System.Windows.Forms.Label lblContraseña;
@@ -511,8 +567,15 @@
         private System.Windows.Forms.Label lblPiso;
         private System.Windows.Forms.TextBox txtCalle;
         private System.Windows.Forms.ErrorProvider epValidador;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtConfirmarPassword;
         private System.Windows.Forms.Label lblRepetirContraseña;
+        private System.Windows.Forms.TextBox txtNacionalidad;
+        private System.Windows.Forms.Label lblMail;
+        private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.TextBox txtCalleNro;
+        private System.Windows.Forms.Label lblNro;
+        private System.Windows.Forms.Label lblPais;
+        private System.Windows.Forms.ComboBox cmbPais;
 
     }
 }

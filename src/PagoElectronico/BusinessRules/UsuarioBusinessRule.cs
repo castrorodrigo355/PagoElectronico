@@ -20,7 +20,7 @@ namespace PagoElectronico.BusinessRules
 
             try
             {
-                resultado = oUsuarioDALC.delete(idUsuario);
+                resultado = oUsuarioDALC.Eliminar(idUsuario);
             }
             catch (Exception ex)
             {
@@ -29,7 +29,7 @@ namespace PagoElectronico.BusinessRules
             return resultado;
         }
 
-        public int registrarUsuario(String username, String password)
+        public int RegistrarUsuario(String username, String password, String pregunta, String respuesta)
         {
             Usuario oUsuario = null;
             UsuarioDALC oUsuarioDALC = new UsuarioDALC();
@@ -38,10 +38,10 @@ namespace PagoElectronico.BusinessRules
             try
             {
                 //Creo la entidad de negocio Usuario
-                oUsuario = new Usuario(username, EncriptarPassword(password));
+                oUsuario = new Usuario(username, EncriptarPassword(password), pregunta, EncriptarPassword(respuesta));
 
                 //Registro el nuevo usuario
-                resultado = oUsuarioDALC.insert(oUsuario);
+                resultado = oUsuarioDALC.Insertar(oUsuario);
             }
             catch (Exception ex)
             {
@@ -54,21 +54,19 @@ namespace PagoElectronico.BusinessRules
         public bool EsUsuarioValido(String nombre_usuario, String password)
         {
             UsuarioDALC oUsuarioDALC = new UsuarioDALC();
-            //return oUsuarioDALC.ValidarUsuario(nombre_usuario, EncriptarPassword(password));
-            return true;
+            return oUsuarioDALC.ValidarUsuario(nombre_usuario, EncriptarPassword(password));
         }
 
         #endregion
 
         #region Metodos privados
 
-        private byte[] EncriptarPassword(String password)
+        private String EncriptarPassword(String password)
         {
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
             SHA256 sha256 = new SHA256CryptoServiceProvider();
             byte[] hashedPassword = sha256.ComputeHash(passwordBytes);
-           Console.WriteLine(BitConverter.ToString(hashedPassword).Replace("-",""));
-            return hashedPassword;
+            return BitConverter.ToString(hashedPassword).Replace("-","");
         }
 
         #endregion

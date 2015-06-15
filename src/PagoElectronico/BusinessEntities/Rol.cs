@@ -9,7 +9,7 @@ namespace PagoElectronico.BusinessEntities
     {
         public int ID { get; set; }
         public String Descripcion { get; set; }
-        public String Estado { get; set; }
+        public bool Estado { get; set; }
         public List<Funcionalidad> Funcionalidades { get; set; }
 
         public Rol()

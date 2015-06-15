@@ -18,7 +18,7 @@ namespace PagoElectronico.BusinessRules
             List<Rol> rolesUsuario = oRolDALC.ObtenerRolesUsuario(usuarioID);
 
             //Retorna los roles habilitados y los agrego a la sesion actual
-            Sesion.Roles = rolesUsuario.Where(rol => rol.Estado == "activado").ToList();
+            Sesion.Roles = rolesUsuario.Where(rol => rol.Estado.Equals(true)).ToList();
 
         }
 

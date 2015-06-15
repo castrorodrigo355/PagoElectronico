@@ -7,65 +7,70 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PagoElectronico.BusinessEntities;
+using System.Reflection;
+using PagoElectronico.UI.ABM_Cliente;
+using PagoElectronico.UI.ABM_Rol;
+using PagoElectronico.UI.Depositos;
+using PagoElectronico.UI.Retiros;
+using PagoElectronico.UI.Transferencias;
+using PagoElectronico.UI.ABM_Cuenta;
+using PagoElectronico.UI.Facturacion;
+using PagoElectronico.UI.Consulta_Saldos;
 
 namespace PagoElectronico.UI.Login
 {
     public partial class frmCliente : Form
     {
+
+
+        #region Constructor
+
         public frmCliente()
         {
             InitializeComponent();
         }
+        #endregion
 
-        private void frmCliente_Load(object sender, EventArgs e)
+
+        #region Eventos
+
+        private void btnABMCuenta_Click(object sender, EventArgs e)
         {
-            Rol rolCliente = Sesion.GetRolCliente();
-            int offsetX = 50;
-            int offsetY = 50;
-
-            for (int i = 0; i < rolCliente.Funcionalidades.Count; i++)
-            {
-                GenerarBoton(i, rolCliente.Funcionalidades[i], rolCliente.Funcionalidades.Count, ref offsetX, ref offsetY);
-            }
+            FrmABMCuenta frm = new FrmABMCuenta();
+            frm.Show();
         }
 
-        private void GenerarBoton(int i, Funcionalidad oFuncionalidad, int length, ref int offsetX, ref int offsetY)
+        private void btnDepositos_Click(object sender, EventArgs e)
         {
-            if (i < (length +1)/ 2)
-            {
-                Button btnFuncionalidad = new Button();
-                btnFuncionalidad.Image = new Bitmap("../../Recursos/" + "ABM de Cuenta" + ".png");
-
-                // btnFuncionalidad.Image = ((System.Drawing.Image)(resources.GetObject("btnABMCuenta.Image")));
-                btnFuncionalidad.Location = new System.Drawing.Point(offsetX, offsetY);
-                btnFuncionalidad.Name = oFuncionalidad.Descripcion.Replace(" ", "");
-                btnFuncionalidad.Size = new System.Drawing.Size(150, 150);
-                btnFuncionalidad.TabIndex = 0;
-                btnFuncionalidad.UseVisualStyleBackColor = true;
-                this.Controls.Add(btnFuncionalidad);
-
-                offsetX = offsetX + 150 + 33;
-            }
-
-            if (i > (length+1) / 2)
-            {
-                offsetY = offsetY + 150 + 33;
-                offsetX = 50;
-
-                Button btnFuncionalidad = new Button();
-                btnFuncionalidad.Image = new Bitmap("../../Recursos/" + "ABM de Cuenta" + ".png");
-
-                // btnFuncionalidad.Image = ((System.Drawing.Image)(resources.GetObject("btnABMCuenta.Image")));
-                btnFuncionalidad.Location = new System.Drawing.Point(offsetX, offsetY);
-                btnFuncionalidad.Name = oFuncionalidad.Descripcion.Replace(" ", "");
-                btnFuncionalidad.Size = new System.Drawing.Size(150, 150);
-                btnFuncionalidad.TabIndex = 0;
-                btnFuncionalidad.UseVisualStyleBackColor = true;
-                this.Controls.Add(btnFuncionalidad);
-
-                offsetX = offsetX + 150 + 33;
-            }
-
+            FrmDepositos frm = new FrmDepositos();
+            frm.Show();
         }
+
+        private void btnRetirosEfectivo_Click(object sender, EventArgs e)
+        {
+            FrmRetiros frm = new FrmRetiros();
+            frm.Show();
+        }
+
+        private void btnConsultaSaldos_Click(object sender, EventArgs e)
+        {
+            FrmConsultaSaldo frm = new FrmConsultaSaldo();
+            frm.Show();
+        }
+
+        private void btnFacturacion_Click(object sender, EventArgs e)
+        {
+            FrmFacturacion frm = new FrmFacturacion();
+            frm.Show();
+        }
+
+        private void btnTransferencias_Click(object sender, EventArgs e)
+        {
+            FrmTransferencias frm = new FrmTransferencias();
+            frm.Show();
+        }
+
+        #endregion
+
     }
 }

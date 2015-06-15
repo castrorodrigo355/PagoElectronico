@@ -37,7 +37,6 @@ C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.pdb
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.Properties.Resources.resources
-C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Cliente.AltaCliente.resources
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Cliente.EditarCliente.resources
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.ABM_Rol.EditarRol.resources
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Login.frmAdministrador.resources
@@ -47,3 +46,13 @@ C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.csproj.GenerateResource.Cache
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\bin\Debug\PagoElectronico.exe
 C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\bin\Debug\PagoElectronico.pdb
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Cliente.frmABMCliente.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Cuenta.FrmABMCuenta.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Rol.FrmABMRol.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Depositos.FrmDepositos.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Retiros.FrmRetiros.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Transferencias.FrmTransferencias.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Facturacion.FrmFacturacion.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Consulta_Saldos.FrmConsultaSaldo.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Listados.FrmListadoEstadistico.resources
+C:\Users\Juan Manuel Cugat\Desktop\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Cliente.FrmAltaCliente.resources

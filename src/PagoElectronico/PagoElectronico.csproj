@@ -69,11 +69,11 @@
     <Compile Include="Exceptions\UsuarioDeshabilitadoException.cs" />
     <Compile Include="Exceptions\UsuarioInexistenteException.cs" />
     <Compile Include="IDALC\IDALC.cs" />
-    <Compile Include="UI\ABM Cliente\AltaCliente.cs">
+    <Compile Include="UI\ABM Cliente\FrmAltaCliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\ABM Cliente\AltaCliente.Designer.cs">
-      <DependentUpon>AltaCliente.cs</DependentUpon>
+      <DependentUpon>FrmAltaCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ABM Cliente\EditarCliente.cs">
       <SubType>Form</SubType>
@@ -81,11 +81,17 @@
     <Compile Include="UI\ABM Cliente\EditarCliente.Designer.cs">
       <DependentUpon>EditarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ABM Cuenta\Form1.cs">
+    <Compile Include="UI\ABM Cliente\frmABMCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ABM Cuenta\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UI\ABM Cliente\frmABMCliente.Designer.cs">
+      <DependentUpon>frmABMCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ABM Cuenta\FrmABMCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ABM Cuenta\FrmABMCuenta.Designer.cs">
+      <DependentUpon>FrmABMCuenta.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ABM de Usuario\Form1.cs">
       <SubType>Form</SubType>
@@ -99,29 +105,35 @@
     <Compile Include="UI\ABM Rol\EditarRol.Designer.cs">
       <DependentUpon>EditarRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Consulta Saldos\Form1.cs">
+    <Compile Include="UI\ABM Rol\frmABMRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Consulta Saldos\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UI\ABM Rol\frmABMRol.Designer.cs">
+      <DependentUpon>frmABMRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Depositos\Form1.cs">
+    <Compile Include="UI\Consulta Saldos\FrmConsultaSaldo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Depositos\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UI\Consulta Saldos\FrmConsultaSaldo.Designer.cs">
+      <DependentUpon>FrmConsultaSaldo.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Facturacion\Form1.cs">
+    <Compile Include="UI\Depositos\FrmDepositos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Facturacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UI\Depositos\FrmDepositos.Designer.cs">
+      <DependentUpon>FrmDepositos.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Listados\Form1.cs">
+    <Compile Include="UI\Facturacion\FrmFacturacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Listados\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UI\Facturacion\FrmFacturacion.Designer.cs">
+      <DependentUpon>FrmFacturacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Listados\FrmListadoEstadistico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Listados\FrmListadoEstadistico.Designer.cs">
+      <DependentUpon>FrmListadoEstadistico.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Login\frmAdministrador.cs">
       <SubType>Form</SubType>
@@ -155,13 +167,37 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ABM Cliente\AltaCliente.resx">
-      <DependentUpon>AltaCliente.cs</DependentUpon>
+      <DependentUpon>FrmAltaCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ABM Cliente\EditarCliente.resx">
       <DependentUpon>EditarCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ABM Cliente\frmABMCliente.resx">
+      <DependentUpon>frmABMCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ABM Cliente\FrmAltaCliente.resx">
+      <DependentUpon>FrmAltaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ABM Cuenta\FrmABMCuenta.resx">
+      <DependentUpon>FrmABMCuenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ABM Rol\EditarRol.resx">
       <DependentUpon>EditarRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ABM Rol\frmABMRol.resx">
+      <DependentUpon>frmABMRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consulta Saldos\FrmConsultaSaldo.resx">
+      <DependentUpon>FrmConsultaSaldo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Depositos\FrmDepositos.resx">
+      <DependentUpon>FrmDepositos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Facturacion\FrmFacturacion.resx">
+      <DependentUpon>FrmFacturacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Listados\FrmListadoEstadistico.resx">
+      <DependentUpon>FrmListadoEstadistico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Login\frmAdministrador.resx">
       <DependentUpon>frmAdministrador.cs</DependentUpon>
@@ -174,6 +210,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Retiros\FrmRetiros.resx">
+      <DependentUpon>FrmRetiros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Transferencias\FrmTransferencias.resx">
+      <DependentUpon>FrmTransferencias.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -188,17 +230,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="UI\Retiros\Form1.cs">
+    <Compile Include="UI\Retiros\FrmRetiros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Retiros\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UI\Retiros\FrmRetiros.Designer.cs">
+      <DependentUpon>FrmRetiros.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Transferencias\Form1.cs">
+    <Compile Include="UI\Transferencias\FrmTransferencias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Transferencias\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UI\Transferencias\FrmTransferencias.Designer.cs">
+      <DependentUpon>FrmTransferencias.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

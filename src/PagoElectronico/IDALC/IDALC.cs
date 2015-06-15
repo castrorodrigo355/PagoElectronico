@@ -8,11 +8,11 @@ namespace PagoElectronico.iDALC
 {
     interface IDALC
     {
-        int insert(object obj);
-        int delete(int id);
-        int update(object obj);
-        bool exists(object obj);
-        DataSet getList();
-        DataSet getFilter(object obj);
+        int Insertar(object obj);
+        int Eliminar(int id);
+        int Actualizar(object obj);
+        bool Existe(object obj);
+        DataSet GetList();
+        DataSet GetFilter(object obj);
     }
 }

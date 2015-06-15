@@ -27,12 +27,12 @@ namespace PagoElectronico.DALC
         private const String SQL_SELECT_USUARIO = @"SELECT * FROM " + ConstantesDALC.TB_USUARIO + " WHERE Usuario_username = @pi_Usuario_username";
         private const String SQL_INCREMENTAR_INTENTO_FALLIDO = @"UPDATE " + ConstantesDALC.TB_USUARIO + " SET Usuario_Cant_Intentos = @pi_Usuario_Cant_Intentos WHERE Usuario_ID = @pi_Usuario_ID";
         private const String SQL_DESHABILITAR_USUARIO = @"UPDATE " + ConstantesDALC.TB_USUARIO + " SET Usuario_Estado = @pi_Usuario_Estado, Usuario_Cant_Intentos = @pi_Usuario_Cant_Intentos WHERE Usuario_ID = @pi_Usuario_ID";
-        
+
         #endregion
 
         #region Metodos publicos
 
-        public bool ValidarUsuario(String nombre_usuario, byte[] password)
+        public bool ValidarUsuario(String nombre_usuario, String password)
         {
             SqlConnection oConnection = null;
             SqlCommand oCommand = null;
@@ -70,17 +70,18 @@ namespace PagoElectronico.DALC
                             //Creo el objeto usuario que esta logueandose al sistema
                             usuarioValidado = new Usuario();
                             usuarioValidado.Usuario_Username = nombre_usuario;
-                            usuarioValidado.Usuario_Password = (byte[])oDataReader["Usuario_Password"]; ;
+                            usuarioValidado.Usuario_Password = Convert.ToString(oDataReader["Usuario_Password"]);
                             usuarioValidado.Usuario_Pregunta_Secreta = (String)oDataReader["Usuario_Pregunta_Secreta"];
-                            usuarioValidado.Usuario_Respuesta_Secreta = (byte[])oDataReader["Usuario_Respuesta_Secreta"];
-                            usuarioValidado.Usuario_ID = (int)oDataReader["Usuario_ID"];
+                            usuarioValidado.Usuario_Respuesta_Secreta = Convert.ToString(oDataReader["Usuario_Respuesta_Secreta"]);
+                            usuarioValidado.Usuario_ID = Convert.ToInt32(oDataReader["Usuario_ID"]);
                             usuarioValidado.Usuario_Fecha_Creacion = (DateTime)oDataReader["Usuario_Fecha_Creacion"];
                             usuarioValidado.Usuario_Fecha_Ultima_Modif = (DateTime)oDataReader["Usuario_Fecha_Ultima_Modif"];
                             usuarioValidado.Usuario_Cantidad_Intentos = (byte)oDataReader["Usuario_Cant_Intentos"];
-                            usuarioValidado.Usuario_Estado = (String)oDataReader["Usuario_Estado"];
+                            usuarioValidado.Usuario_Estado = Convert.ToBoolean(oDataReader["Usuario_Estado"]);
 
                             //Creo la sesión
                             Sesion.SesionActual = usuarioValidado;
+                            result = true;
                         }
                         else//No matchea la password
                         {
@@ -97,7 +98,6 @@ namespace PagoElectronico.DALC
                                 //Deshabilito el usuario y restablezco los intentos
                                 DeshabilitarUsuario(Convert.ToInt32(oDataReader["Usuario_ID"]));
                             }
-
                         }
                     }
                     else
@@ -224,12 +224,12 @@ namespace PagoElectronico.DALC
 
         private bool EstadoActivo(SqlDataReader oDataReader)
         {
-            return 'A'.Equals(Convert.ToChar(oDataReader["Usuario_Estado"]));
+            return Convert.ToByte(oDataReader["Usuario_Estado"]).Equals(1);
         }
 
-        private static bool PasswordValido(byte[] password, SqlDataReader oDataReader)
+        private static bool PasswordValido(String password, SqlDataReader oDataReader)
         {
-            return password == ((byte[])oDataReader["Usuario_Password"]);
+            return password == (Convert.ToString(oDataReader["Usuario_Password"]));
         }
 
         private int NuevoIntentoFallido(int intento_fallido, int usuario_id)
@@ -350,7 +350,7 @@ namespace PagoElectronico.DALC
 
         #region IDALC Metodos
 
-        public int insert(object obj)
+        public int Insertar(object obj)
         {
             Usuario oUsuario = (Usuario)obj;
             SqlConnection oConnection = null;
@@ -394,7 +394,7 @@ namespace PagoElectronico.DALC
             return result;
         }
 
-        public int delete(int idUsuario)
+        public int Eliminar(int idUsuario)
         {
             SqlConnection oConnection = null;
             SqlCommand oCommand = null;
@@ -433,22 +433,22 @@ namespace PagoElectronico.DALC
 
         }
 
-        public int update(object obj)
+        public int Actualizar(object obj)
         {
             throw new NotImplementedException();
         }
 
-        public bool exists(object obj)
+        public bool Existe(object obj)
         {
             throw new NotImplementedException();
         }
 
-        public DataSet getList()
+        public DataSet GetList()
         {
             throw new NotImplementedException();
         }
 
-        public DataSet getFilter(object obj)
+        public DataSet GetFilter(object obj)
         {
             throw new NotImplementedException();
         }

@@ -50,7 +50,7 @@ namespace PagoElectronico.login
 
         #endregion
 
-        #region Eventos
+        #region Eventos 
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
@@ -58,7 +58,6 @@ namespace PagoElectronico.login
             if (this.FormularioValido())
             {
                 UsuarioBusinessRule oUsuarioBR = new UsuarioBusinessRule();
-
                 try
                 {
                     //Valido Usuario y Contraseña
@@ -66,7 +65,7 @@ namespace PagoElectronico.login
                     {
                         //Ahora tengo que buscar los roles que tiene dicho usuario y mostrar los formularios correspondientes
                         RolesUsuarioBusinessRule oRolesUsuarioBR = new RolesUsuarioBusinessRule();
-                        oRolesUsuarioBR.ObtenerRolesUsuario(169);
+                        oRolesUsuarioBR.ObtenerRolesUsuario(Sesion.SesionActual.Usuario_ID);
                         
                         //Obtengo el cliente unico para este usuario
                         ClienteBusinessRule oClienteBR = new ClienteBusinessRule();
