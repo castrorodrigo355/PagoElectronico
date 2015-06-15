@@ -44,7 +44,8 @@ CREATE TABLE [DBA_GD].AUDITORIA_LOG(
 CREATE TABLE [DBA_GD].TIPO_CUENTA(
 	Tipo_Cuenta_ID numeric(18,0) identity(1,1) primary key,
 	Tipo_Cuenta_Descr varchar(16) NOT NULL,
-	Tipo_Cuenta_Costo int NOT NULL
+	Tipo_Cuenta_Costo int NOT NULL,
+	Tipo_Cuenta_Costo_Transferencia numeric(18,2) NOT NULL
 	);
 
 CREATE TABLE [DBA_GD].BANCO(
@@ -88,6 +89,7 @@ CREATE TABLE [DBA_GD].CUENTA(
 	Cuenta_Cliente_ID numeric(18,0) NOT NULL foreign key references [DBA_GD].CLIENTE,
 	Cuenta_Moneda numeric(18,0) NOT NULL foreign key references [DBA_GD].MONEDA,
 	Cuenta_Estado char(40) NOT NULL,
+	Cuenta_Primer_Ingreso bit DEFAULT 0,
 	CONSTRAINT UC_Cuenta_Numero UNIQUE(Cuenta_Numero) 
 	);
 	
@@ -513,12 +515,12 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_Tipo_Cuenta
 	AS
 	BEGIN
 		INSERT INTO [DBA_GD].TIPO_CUENTA
-		(Tipo_Cuenta_Descr,Tipo_Cuenta_Costo)
+		(Tipo_Cuenta_Descr,Tipo_Cuenta_Costo, Tipo_Cuenta_Costo_Transferencia)
 	VALUES
-		('Oro',100),
-		('Plata',50),
-		('Bronce',25),
-		('Gratuita',0)
+		('Oro', 100, 0.2),
+		('Plata', 50, 0.5),
+		('Bronce', 25, 1),
+		('Gratuita', 0, 5)
 	END
 go
 
@@ -707,6 +709,105 @@ AS
 END;
 GO
 
+-- Clientes que alguna de sus cuentas fueron inhabilitadas por no pagar los costos de transacción
+
+CREATE FUNCTION [DBA_GD].CLIENTES_CUENTAS_INHAB()
+RETURNS @clientes_con_cuentas_inhab TABLE
+   (
+    Cuenta_Cliente_ID numeric(18,0),
+    Cuenta_ID numeric(18,0)
+   )
+AS
+BEGIN
+   INSERT @clientes_con_cuentas_inhab
+	SELECT DISTINCT C.Cuenta_Cliente_ID, C.Cuenta_ID
+	FROM [DBA_GD].LOG_CUENTA_INHABILITADA AS CI,
+				[DBA_GD].CUENTA AS C
+	WHERE CI.Cue_Inha_Cuenta = C.Cuenta_ID
+   RETURN
+END
+GO
+
+-- Cliente con mayor cantidad de comisiones facturadas en todas sus cuentas
+
+CREATE FUNCTION [DBA_GD].CLIENTES_CON_COMISIONES()
+RETURNS @clientes_con_comisiones TABLE
+   (
+    Cliente_ID numeric(18,0),
+    Cant_comisiones numeric(18,0)
+   )
+AS
+BEGIN
+   INSERT @clientes_con_comisiones
+	SELECT DISTINCT C.Cliente_ID AS Cliente_ID, COUNT(I.Item_Factura_ID_Factura) AS Cant_comisiones
+	FROM [DBA_GD].FACTURA AS F, [DBA_GD].ITEM_FACTURA AS I, [DBA_GD].CLIENTE AS C
+	WHERE F.Factura_Nro_Cliente = C.Cliente_ID AND
+			I.Item_Factura_ID_Factura = F.Factura_Nro_Cliente AND
+			I.Item_Factura_Descripcion LIKE '%Comision%'
+	GROUP BY C.Cliente_ID
+	ORDER BY Cant_comisiones ASC	
+   RETURN
+END
+GO
+
+-- Clientes con mayor cantidad de transacciones realizadas entre cuentas propias
+
+CREATE FUNCTION [DBA_GD].CALCULAR_PROPIETARIO_CUENTA (@Cuenta_ID numeric(18,0))
+RETURNS numeric(18,0) 
+AS 
+	BEGIN
+		DECLARE @ret numeric(18,0);
+		SELECT @ret = C.Cuenta_Cliente_ID 
+		FROM [DBA_GD].CUENTA AS C
+		WHERE C.Cuenta_ID = @Cuenta_ID;
+		IF (@ret IS NULL) 
+			SET @ret = 0;
+		RETURN @ret;
+END;
+GO
+
+CREATE FUNCTION [DBA_GD].CLIENTES_CON_TRANSACCIONES_CTAS_PROPIAS()
+RETURNS @clientes_con_transacciones_propias TABLE
+   (
+    Cliente_ID numeric(18,0),
+    Cant_transacciones numeric(18,0)
+   )
+AS
+BEGIN
+   INSERT @clientes_con_transacciones_propias
+	SELECT [DBA_GD].CALCULAR_PROPIETARIO_CUENTA(T.Transferencia_Cuenta_Dst) AS Cliente_ID, COUNT(T.Transferencia_Cuenta_Dst) AS Cant_transacciones
+	FROM [DBA_GD].TRANSFERENCIA AS T
+	WHERE [DBA_GD].CALCULAR_PROPIETARIO_CUENTA(T.Transferencia_Cuenta_Dst) = [DBA_GD].CALCULAR_PROPIETARIO_CUENTA(T.Transferencia_Cuenta_Origen)
+	GROUP BY T.Transferencia_Cuenta_Dst
+	ORDER BY Cant_transacciones ASC
+   RETURN
+END
+GO
+
+-- Países con mayor cantidad de movimientos tanto ingresos como egresos
+
+CREATE FUNCTION [DBA_GD].PAISES_CON_MAS_MOVIMIENTOS()
+RETURNS @paises_movimientos TABLE
+   (
+    Pais_ID numeric(18,0),
+    Cant_movimientos numeric(18,0)
+   )
+AS
+BEGIN
+   INSERT @paises_movimientos
+	SELECT C.Cuenta_Pais_Codigo AS Pais_ID, COUNT(T.Transferencia_ID) AS Cant_movimientos
+	FROM [DBA_GD].TRANSFERENCIA AS T, [DBA_GD].CUENTA AS C
+	WHERE T.Transferencia_Cuenta_Dst = C.Cuenta_ID OR
+			T.Transferencia_Cuenta_Origen = C.Cuenta_ID
+	GROUP BY C.Cuenta_Pais_Codigo
+	ORDER BY Cant_movimientos ASC
+   RETURN
+END
+GO
+
+-- Total facturado para los distintos tipos de cuentas.
+
+
 -------------------------------------------------------
 			-- EJECUCION DE PROCEDURES --
 -------------------------------------------------------
@@ -730,5 +831,3 @@ exec [DBA_GD].Migracion_Datos_CHEQUE
 exec [DBA_GD].Migracion_Datos_RETIRO
 exec [DBA_GD].Migracion_Datos_DEPOSITO
 exec [DBA_GD].Migracion_Datos_TRANSFERENCIA
-
-
