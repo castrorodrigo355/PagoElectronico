@@ -179,7 +179,7 @@ namespace PagoElectronico.DALC
             return oDataSet;
         }
 
-        public System.Data.DataSet GetFilter(object obj)
+        public DataSet GetFilter(object obj)
         {
             throw new NotImplementedException();
         }

@@ -117,4 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnLimpiarCampos.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAAPlJREFUSEu9
+        lQsNwkAQBSsBCTgBCTgAJyABByABB+AAJOAACfAe6UuWzV3vtndhkkmuTbtT0g9DIwd4Hd1yR28W8A7f
+        zhPsRi4iu8RKEdkUq43IDQwTjdAbDDEnIqtpidAqbOQBj+M6YhEf4TZfTj+o5CSpCOkaykVINPSEWXQf
+        fIREQ5yVhVfBg5bfrV8iD0PqQn/QgZ4dtIOmLEaIDrbYCN92rVNWRYhOEDbCNTlD7bNWR4hOIqmI8LFQ
+        hNjBdu3h0BecFSEaXork3rVq/hIhPJlDeA883SKE/4qpX9Q1IuyDsIcr2D0ibEx2j4g1vEB+DfhBbYgM
+        wweokQD6MweVTwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnRealizarDeposito.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAADQSURBVEhL7ZTRDcIwDAUzAqMwAiMwApvACIzABrABjMAGZQQ2AF9SI7dJEG0s8dOTnmLXjl8U
+        RQ0LU9iIOtGrUcxgVsZDVNowR5hklBpblFFqalFGtTARV4Nbv1pcDOyLu4pWIsXF4C66pDCuxxRGXAwY
+        ek5hhosBV3ISPUX7PldcDBQ10uuCnw00Hws4+TaFYSfiL6DYvgHjguZjAUMx4QXxjVyxfQOqhS/Qb+8f
+        qnM4EYV1zObBXmbYK/twEKl7q5hVhELLb5u91eEL/yCEN0mQu6bHSFQYAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

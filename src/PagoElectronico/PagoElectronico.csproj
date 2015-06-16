@@ -48,23 +48,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessEntities\Cheque.cs" />
     <Compile Include="BusinessEntities\Cliente.cs" />
+    <Compile Include="BusinessEntities\Cuenta.cs" />
+    <Compile Include="BusinessEntities\Deposito.cs" />
+    <Compile Include="BusinessEntities\Factura.cs" />
     <Compile Include="BusinessEntities\Funcionalidad.cs" />
+    <Compile Include="BusinessEntities\ItemFactura.cs" />
+    <Compile Include="BusinessEntities\Retiro.cs" />
     <Compile Include="BusinessEntities\Rol.cs" />
     <Compile Include="BusinessEntities\Sesion.cs" />
+    <Compile Include="BusinessEntities\Transferencia.cs" />
     <Compile Include="BusinessEntities\Usuario.cs" />
     <Compile Include="BusinessRules\AdministradorRoles.cs" />
+    <Compile Include="BusinessRules\ChequeBusinessRule.cs" />
     <Compile Include="BusinessRules\ClienteBusinessRule.cs" />
     <Compile Include="BusinessRules\CommonBusinessRule.cs" />
+    <Compile Include="BusinessRules\CuentaBusinessRule.cs" />
+    <Compile Include="BusinessRules\DepositoBusinessRule.cs" />
+    <Compile Include="BusinessRules\FacturaBusinessRule.cs" />
+    <Compile Include="BusinessRules\RetiroBusinessRule.cs" />
     <Compile Include="BusinessRules\RolesUsuarioBusinessRule.cs" />
+    <Compile Include="BusinessRules\TransferenciaBusinessRule.cs" />
     <Compile Include="BusinessRules\UsuarioBusinessRule.cs" />
     <Compile Include="Configuracion\Configuracion.cs" />
     <Compile Include="Configuracion\ConfiguracionTAG.cs" />
     <Compile Include="DALC\BaseDALC.cs" />
+    <Compile Include="DALC\ChequeDALC.cs" />
     <Compile Include="DALC\ClienteDALC.cs" />
     <Compile Include="DALC\CommonDALC.cs" />
     <Compile Include="DALC\ConstantesDALC.cs" />
+    <Compile Include="DALC\CuentaDALC.cs" />
+    <Compile Include="DALC\DepositoDALC.cs" />
+    <Compile Include="DALC\FacturaDALC.cs" />
+    <Compile Include="DALC\RetiroDALC.cs" />
     <Compile Include="DALC\RolDALC.cs" />
+    <Compile Include="DALC\TransferenciaDALC.cs" />
     <Compile Include="DALC\UsuarioDALC.cs" />
     <Compile Include="Exceptions\BaseDatosException.cs" />
     <Compile Include="Exceptions\PasswordIncorrectaException.cs" />
@@ -107,12 +126,6 @@
     </Compile>
     <Compile Include="UI\ABM Cuenta\FrmModificarCuenta.Designer.cs">
       <DependentUpon>FrmModificarCuenta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\ABM de Usuario\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\ABM de Usuario\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ABM Rol\FrmABMRol.cs">
       <SubType>Form</SubType>
