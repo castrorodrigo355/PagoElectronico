@@ -23,7 +23,6 @@ C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoEl
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.pdb
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.Properties.Resources.resources
-C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.ABM_Rol.EditarRol.resources
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Login.frmAdministrador.resources
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Login.frmCliente.resources
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Login.frmSeleccionRol.resources
@@ -65,3 +64,4 @@ C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoEl
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Retiros.FrmRetiros.resources
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Transferencias.FrmTransferencias.resources
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Cliente.FrmModificarCliente.resources
+C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Rol.FrmAltaRol.resources

@@ -184,6 +184,9 @@
     <EmbeddedResource Include="UI\ABM Rol\FrmABMRol.resx">
       <DependentUpon>FrmABMRol.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ABM Rol\FrmAltaRol.resx">
+      <DependentUpon>FrmAltaRol.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Consulta Saldos\FrmConsultaSaldo.resx">
       <DependentUpon>FrmConsultaSaldo.cs</DependentUpon>
     </EmbeddedResource>

@@ -28,6 +28,7 @@ namespace PagoElectronico.UI.Login
         public frmCliente()
         {
             InitializeComponent();
+            this.FormClosed += CerrarFormulario;
         }
         #endregion
 
@@ -68,6 +69,11 @@ namespace PagoElectronico.UI.Login
         {
             FrmTransferencias frm = new FrmTransferencias();
             frm.Show();
+        }
+
+        private void CerrarFormulario(object sender, EventArgs e) 
+        {
+            Application.Exit();
         }
 
         #endregion

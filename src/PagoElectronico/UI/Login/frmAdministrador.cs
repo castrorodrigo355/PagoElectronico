@@ -20,6 +20,8 @@ namespace PagoElectronico.UI.Login
         public frmAdministrador()
         {
             InitializeComponent();
+            this.FormClosed += CerrarFormulario;
+            
         }
 
         private void btnABMCliente_Click(object sender, EventArgs e)
@@ -62,6 +64,11 @@ namespace PagoElectronico.UI.Login
         {
             FrmListadoEstadistico frm = new FrmListadoEstadistico();
             frm.Show();
+        }
+
+        private void CerrarFormulario(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
     }
