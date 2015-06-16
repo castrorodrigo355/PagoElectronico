@@ -96,6 +96,18 @@
     <Compile Include="UI\ABM Cuenta\FrmABMCuenta.Designer.cs">
       <DependentUpon>FrmABMCuenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ABM Cuenta\FrmAltaCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ABM Cuenta\FrmAltaCuenta.Designer.cs">
+      <DependentUpon>FrmAltaCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ABM Cuenta\FrmModificarCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ABM Cuenta\FrmModificarCuenta.Designer.cs">
+      <DependentUpon>FrmModificarCuenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\ABM de Usuario\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +126,12 @@
     <Compile Include="UI\ABM Rol\FrmAltaRol.Designer.cs">
       <DependentUpon>FrmAltaRol.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ABM Rol\FrmModificarRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ABM Rol\FrmModificarRol.Designer.cs">
+      <DependentUpon>FrmModificarRol.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Consulta Saldos\FrmConsultaSaldo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +143,12 @@
     </Compile>
     <Compile Include="UI\Depositos\FrmDepositos.Designer.cs">
       <DependentUpon>FrmDepositos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Facturacion\FrmDetalleFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Facturacion\FrmDetalleFactura.Designer.cs">
+      <DependentUpon>FrmDetalleFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Facturacion\FrmFacturacion.cs">
       <SubType>Form</SubType>
@@ -181,17 +205,29 @@
     <EmbeddedResource Include="UI\ABM Cuenta\FrmABMCuenta.resx">
       <DependentUpon>FrmABMCuenta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ABM Cuenta\FrmAltaCuenta.resx">
+      <DependentUpon>FrmAltaCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ABM Cuenta\FrmModificarCuenta.resx">
+      <DependentUpon>FrmModificarCuenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ABM Rol\FrmABMRol.resx">
       <DependentUpon>FrmABMRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ABM Rol\FrmAltaRol.resx">
       <DependentUpon>FrmAltaRol.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ABM Rol\FrmModificarRol.resx">
+      <DependentUpon>FrmModificarRol.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Consulta Saldos\FrmConsultaSaldo.resx">
       <DependentUpon>FrmConsultaSaldo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Depositos\FrmDepositos.resx">
       <DependentUpon>FrmDepositos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Facturacion\FrmDetalleFactura.resx">
+      <DependentUpon>FrmDetalleFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Facturacion\FrmFacturacion.resx">
       <DependentUpon>FrmFacturacion.cs</DependentUpon>

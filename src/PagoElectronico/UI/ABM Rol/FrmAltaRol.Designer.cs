@@ -68,7 +68,7 @@
             // btnAsignar
             // 
             this.btnAsignar.Image = ((System.Drawing.Image)(resources.GetObject("btnAsignar.Image")));
-            this.btnAsignar.Location = new System.Drawing.Point(214, 42);
+            this.btnAsignar.Location = new System.Drawing.Point(210, 42);
             this.btnAsignar.Name = "btnAsignar";
             this.btnAsignar.Size = new System.Drawing.Size(41, 30);
             this.btnAsignar.TabIndex = 3;
@@ -78,7 +78,7 @@
             // btnDesasignar
             // 
             this.btnDesasignar.Image = ((System.Drawing.Image)(resources.GetObject("btnDesasignar.Image")));
-            this.btnDesasignar.Location = new System.Drawing.Point(214, 88);
+            this.btnDesasignar.Location = new System.Drawing.Point(210, 88);
             this.btnDesasignar.Name = "btnDesasignar";
             this.btnDesasignar.Size = new System.Drawing.Size(41, 30);
             this.btnDesasignar.TabIndex = 2;

@@ -65,3 +65,7 @@ C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoEl
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Transferencias.FrmTransferencias.resources
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Cliente.FrmModificarCliente.resources
 C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Rol.FrmAltaRol.resources
+C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Cuenta.FrmAltaCuenta.resources
+C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Cuenta.FrmModificarCuenta.resources
+C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.ABM_Rol.FrmModificarRol.resources
+C:\Users\Juan Manuel Cugat\Desktop\Repositorio GitHub\PagoElectronico\src\PagoElectronico\obj\Debug\PagoElectronico.UI.Facturacion.FrmDetalleFactura.resources
