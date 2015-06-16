@@ -87,7 +87,7 @@ CREATE TABLE [DBA_GD].CUENTA(
 	Cuenta_tipo numeric(18,0) NOT NULL foreign key references [DBA_GD].TIPO_CUENTA,
 	Cuenta_Cliente_ID numeric(18,0) NOT NULL foreign key references [DBA_GD].CLIENTE,
 	Cuenta_Moneda numeric(18,0) NOT NULL foreign key references [DBA_GD].MONEDA,
-	Cuenta_Estado char(40) NOT NULL,
+	Cuenta_Estado bit NOT NULL,
 	CONSTRAINT UC_Cuenta_Numero UNIQUE(Cuenta_Numero) 
 	);
 	
@@ -329,7 +329,7 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_CUENTA
 						(SELECT Cliente_ID FROM [DBA_GD].CLIENTE WHERE Cliente_Nro_Doc = Cli_Nro_Doc AND 
 																		Cliente_Tipo_Doc_Cod = Cli_Tipo_Doc_Cod),
 						(SELECT Moneda_ID FROM [DBA_GD].MONEDA WHERE Moneda_Tipo = 'USD'),
-						'Habilitada',4						
+						1,4						
 		FROM GD1C2015.gd_esquema.Maestra
 	END
 GO
