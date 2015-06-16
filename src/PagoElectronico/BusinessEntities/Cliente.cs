@@ -43,6 +43,10 @@ namespace PagoElectronico.BusinessEntities
             this.Cliente_Dom_Piso = piso;
         }
 
+        public Cliente() 
+        {
+        }
+
         #endregion
     }
 }

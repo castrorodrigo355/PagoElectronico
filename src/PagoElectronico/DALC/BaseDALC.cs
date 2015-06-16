@@ -12,7 +12,7 @@ namespace PagoElectronico.DALC
     {
         #region Metodos protegidos
 
-        protected virtual SqlConnection conectar()
+        protected virtual SqlConnection Conectar()
         {
             SqlConnection oConnection = new SqlConnection(Configuracion.CONNECTION_STRING);
             oConnection.Open();
@@ -20,7 +20,7 @@ namespace PagoElectronico.DALC
             return oConnection;
         }
         
-        protected virtual void desconectar(ref SqlConnection oConnection)
+        protected virtual void Desconectar(ref SqlConnection oConnection)
         {
             if (oConnection != null)
             {
@@ -29,17 +29,17 @@ namespace PagoElectronico.DALC
             }
         }
         
-        protected void liberarSqlConnection(ref SqlConnection oConnection)
+        protected void LiberarSQLConnection(ref SqlConnection oConnection)
         {
             if (oConnection != null)
             {
-                this.desconectar(ref oConnection);
+                this.Desconectar(ref oConnection);
                 oConnection.Dispose();
             }
             oConnection = null;
         }
         
-        protected void liberarSqlCommand(ref SqlCommand oCommand)
+        protected void LiberarSQLCommand(ref SqlCommand oCommand)
         {
             if (oCommand != null)
                 oCommand.Dispose();
@@ -47,7 +47,7 @@ namespace PagoElectronico.DALC
             oCommand = null;
         }
         
-        protected void liberarDataReader(ref SqlDataReader oDataReader)
+        protected void LiberarDataReader(ref SqlDataReader oDataReader)
         {
             if (oDataReader != null)
                 oDataReader.Dispose();

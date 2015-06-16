@@ -61,7 +61,7 @@ namespace PagoElectronico.DALC
 
             try
             {
-                oConnection = this.conectar();
+                oConnection = this.Conectar();
 
                 //Preparo el comando asociado a la conexion
                 oCommand = oConnection.CreateCommand();
@@ -108,11 +108,11 @@ namespace PagoElectronico.DALC
             finally
             {
                 //Cierro la conexion
-                this.desconectar(ref oConnection);
+                this.Desconectar(ref oConnection);
 
                 //Libero los recursos
-                this.liberarSqlConnection(ref oConnection);
-                this.liberarSqlCommand(ref oCommand);
+                this.LiberarSQLConnection(ref oConnection);
+                this.LiberarSQLCommand(ref oCommand);
             }
 
             return rolesUsuario;

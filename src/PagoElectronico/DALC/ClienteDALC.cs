@@ -32,7 +32,7 @@ namespace PagoElectronico.DALC
             try
             {
                 //Abro conexión
-                oConnection = this.conectar();
+                oConnection = this.Conectar();
 
                 //Creo y configuro el comando asociado a la conexión
                 oCommand = oConnection.CreateCommand();
@@ -55,11 +55,11 @@ namespace PagoElectronico.DALC
             finally
             {
                 //Cierro conexión
-                this.desconectar(ref oConnection);
+                this.Desconectar(ref oConnection);
 
                 //Libero recursos
-                this.liberarSqlConnection(ref oConnection);
-                this.liberarSqlCommand(ref oCommand);
+                this.LiberarSQLConnection(ref oConnection);
+                this.LiberarSQLCommand(ref oCommand);
             }
 
             return result;
@@ -151,7 +151,7 @@ namespace PagoElectronico.DALC
             
             try
             {
-                oConnection = this.conectar();
+                oConnection = this.Conectar();
 
                 //Preparo el comando asociado a la conexion
                 oCommand = oConnection.CreateCommand();
@@ -170,11 +170,11 @@ namespace PagoElectronico.DALC
             finally
             {
                 //Cierro la conexion
-                this.desconectar(ref oConnection);
+                this.Desconectar(ref oConnection);
 
                 //Libero los recursos
-                this.liberarSqlConnection(ref oConnection);
-                this.liberarSqlCommand(ref oCommand);
+                this.LiberarSQLConnection(ref oConnection);
+                this.LiberarSQLCommand(ref oCommand);
             }
             return oDataSet;
         }
@@ -197,7 +197,7 @@ namespace PagoElectronico.DALC
             Cliente oCliente = new Cliente();
             try
             {
-                oConnection = this.conectar();
+                oConnection = this.Conectar();
 
                 //Preparo el comando asociado a la conexion
                 oCommand = oConnection.CreateCommand();
@@ -242,11 +242,11 @@ namespace PagoElectronico.DALC
             finally
             {
                 //Cierro la conexion
-                this.desconectar(ref oConnection);
+                this.Desconectar(ref oConnection);
 
                 //Libero los recursos
-                this.liberarSqlConnection(ref oConnection);
-                this.liberarSqlCommand(ref oCommand);
+                this.LiberarSQLConnection(ref oConnection);
+                this.LiberarSQLCommand(ref oCommand);
             }
             return oCliente;
         }

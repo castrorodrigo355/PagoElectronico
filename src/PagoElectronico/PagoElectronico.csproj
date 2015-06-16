@@ -55,37 +55,40 @@
     <Compile Include="BusinessEntities\Usuario.cs" />
     <Compile Include="BusinessRules\AdministradorRoles.cs" />
     <Compile Include="BusinessRules\ClienteBusinessRule.cs" />
+    <Compile Include="BusinessRules\CommonBusinessRule.cs" />
     <Compile Include="BusinessRules\RolesUsuarioBusinessRule.cs" />
     <Compile Include="BusinessRules\UsuarioBusinessRule.cs" />
     <Compile Include="Configuracion\Configuracion.cs" />
     <Compile Include="Configuracion\ConfiguracionTAG.cs" />
     <Compile Include="DALC\BaseDALC.cs" />
     <Compile Include="DALC\ClienteDALC.cs" />
+    <Compile Include="DALC\CommonDALC.cs" />
     <Compile Include="DALC\ConstantesDALC.cs" />
     <Compile Include="DALC\RolDALC.cs" />
     <Compile Include="DALC\UsuarioDALC.cs" />
+    <Compile Include="Exceptions\BaseDatosException.cs" />
     <Compile Include="Exceptions\PasswordIncorrectaException.cs" />
     <Compile Include="Exceptions\RolDesconocidoException.cs" />
     <Compile Include="Exceptions\UsuarioDeshabilitadoException.cs" />
     <Compile Include="Exceptions\UsuarioInexistenteException.cs" />
     <Compile Include="IDALC\IDALC.cs" />
-    <Compile Include="UI\ABM Cliente\FrmAltaCliente.cs">
+    <Compile Include="UI\ABM Cliente\FrmModificarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ABM Cliente\AltaCliente.Designer.cs">
-      <DependentUpon>FrmAltaCliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\ABM Cliente\EditarCliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\ABM Cliente\EditarCliente.Designer.cs">
-      <DependentUpon>EditarCliente.cs</DependentUpon>
+    <Compile Include="UI\ABM Cliente\FrmModificarCliente.Designer.cs">
+      <DependentUpon>FrmModificarCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ABM Cliente\frmABMCliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\ABM Cliente\frmABMCliente.Designer.cs">
       <DependentUpon>frmABMCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ABM Cliente\FrmAltaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ABM Cliente\FrmAltaCliente.Designer.cs">
+      <DependentUpon>FrmAltaCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ABM Cuenta\FrmABMCuenta.cs">
       <SubType>Form</SubType>
@@ -99,17 +102,17 @@
     <Compile Include="UI\ABM de Usuario\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ABM Rol\EditarRol.cs">
+    <Compile Include="UI\ABM Rol\FrmABMRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ABM Rol\EditarRol.Designer.cs">
-      <DependentUpon>EditarRol.cs</DependentUpon>
+    <Compile Include="UI\ABM Rol\FrmABMRol.Designer.cs">
+      <DependentUpon>FrmABMRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ABM Rol\frmABMRol.cs">
+    <Compile Include="UI\ABM Rol\FrmAltaRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ABM Rol\frmABMRol.Designer.cs">
-      <DependentUpon>frmABMRol.cs</DependentUpon>
+    <Compile Include="UI\ABM Rol\FrmAltaRol.Designer.cs">
+      <DependentUpon>FrmAltaRol.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Consulta Saldos\FrmConsultaSaldo.cs">
       <SubType>Form</SubType>
@@ -166,11 +169,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ABM Cliente\AltaCliente.resx">
-      <DependentUpon>FrmAltaCliente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\ABM Cliente\EditarCliente.resx">
-      <DependentUpon>EditarCliente.cs</DependentUpon>
+    <EmbeddedResource Include="UI\ABM Cliente\FrmModificarCliente.resx">
+      <DependentUpon>FrmModificarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ABM Cliente\frmABMCliente.resx">
       <DependentUpon>frmABMCliente.cs</DependentUpon>
@@ -181,11 +181,8 @@
     <EmbeddedResource Include="UI\ABM Cuenta\FrmABMCuenta.resx">
       <DependentUpon>FrmABMCuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ABM Rol\EditarRol.resx">
-      <DependentUpon>EditarRol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\ABM Rol\frmABMRol.resx">
-      <DependentUpon>frmABMRol.cs</DependentUpon>
+    <EmbeddedResource Include="UI\ABM Rol\FrmABMRol.resx">
+      <DependentUpon>FrmABMRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Consulta Saldos\FrmConsultaSaldo.resx">
       <DependentUpon>FrmConsultaSaldo.cs</DependentUpon>

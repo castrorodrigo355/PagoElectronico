@@ -24,8 +24,8 @@ namespace PagoElectronico.UI.Login
 
         private void btnABMCliente_Click(object sender, EventArgs e)
         {
-            EditarCliente frmEditarCliente = new EditarCliente();
-            frmEditarCliente.Show();
+            FrmABMCliente frm = new FrmABMCliente();
+            frm.Show();
         }
 
         private void btnABMRol_Click(object sender, EventArgs e)

@@ -1,6 +1,6 @@
-﻿namespace PagoElectronico.ABM_Rol
+﻿namespace PagoElectronico.UI.ABM_Rol
 {
-    partial class EditarRol
+    partial class FrmAltaRol
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // EditarRol
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Name = "EditarRol";
-            this.Text = "Editar Rol";
-            this.ResumeLayout(false);
-
+            this.Text = "FrmAltaRol";
         }
 
         #endregion

@@ -11,7 +11,7 @@ using PagoElectronico.Exceptions;
 
 namespace PagoElectronico.UI.ABM_Cliente
 {
-    public partial class FrmAltaCliente : Form
+    public partial class FrmModificarCliente : Form
     {
         #region Metodos privados
 
@@ -115,7 +115,7 @@ namespace PagoElectronico.UI.ABM_Cliente
 
         #region Constructor
 
-        public FrmAltaCliente()
+        public FrmModificarCliente()
         {
             InitializeComponent();
         }
@@ -126,6 +126,7 @@ namespace PagoElectronico.UI.ABM_Cliente
 
         private void FrmAltaCliente_Load(object sender, EventArgs e)
         {
+                   
             this.CargarCombos();
         }
         #endregion
@@ -134,5 +135,6 @@ namespace PagoElectronico.UI.ABM_Cliente
         {
 
         }
+
     }
 }

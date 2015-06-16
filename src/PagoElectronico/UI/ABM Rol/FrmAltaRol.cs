@@ -7,14 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PagoElectronico.UI.ABM_Cliente
+namespace PagoElectronico.UI.ABM_Rol
 {
-    public partial class EditarCliente : Form
+    public partial class FrmAltaRol : Form
     {
-        public EditarCliente()
+        public FrmAltaRol()
         {
             InitializeComponent();
         }
-
     }
 }
