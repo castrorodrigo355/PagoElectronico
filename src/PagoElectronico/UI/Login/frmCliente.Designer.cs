@@ -191,7 +191,6 @@ namespace PagoElectronico.UI.Login
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmCliente";
-            this.TopMost = true;
             this.grpFuncionalidades.ResumeLayout(false);
             this.grpFuncionalidades.PerformLayout();
             this.ResumeLayout(false);

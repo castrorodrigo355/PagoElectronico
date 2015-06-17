@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmABMCuenta));
             this.dgvCuentas = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnLimpiarFiltros = new System.Windows.Forms.Button();
             this.btnFiltrar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnDarBajaCuenta = new System.Windows.Forms.Button();
             this.btnModificarCuenta = new System.Windows.Forms.Button();
             this.btnAltaCuenta = new System.Windows.Forms.Button();
@@ -61,16 +61,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de Busqueda";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dgvCuentas);
-            this.groupBox2.Location = new System.Drawing.Point(12, 157);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(760, 333);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Cuentas";
-            // 
             // btnLimpiarFiltros
             // 
             this.btnLimpiarFiltros.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarFiltros.Image")));
@@ -95,6 +85,16 @@
             this.btnFiltrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFiltrar.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgvCuentas);
+            this.groupBox2.Location = new System.Drawing.Point(12, 157);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(760, 333);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Cuentas";
+            // 
             // btnDarBajaCuenta
             // 
             this.btnDarBajaCuenta.Image = ((System.Drawing.Image)(resources.GetObject("btnDarBajaCuenta.Image")));
@@ -106,6 +106,7 @@
             this.btnDarBajaCuenta.Text = "Inhabilitar cuenta";
             this.btnDarBajaCuenta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDarBajaCuenta.UseVisualStyleBackColor = true;
+            this.btnDarBajaCuenta.Click += new System.EventHandler(this.btnDarBajaCuenta_Click);
             // 
             // btnModificarCuenta
             // 
@@ -118,6 +119,7 @@
             this.btnModificarCuenta.Text = "Modificar cuenta";
             this.btnModificarCuenta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnModificarCuenta.UseVisualStyleBackColor = true;
+            this.btnModificarCuenta.Click += new System.EventHandler(this.btnModificarCuenta_Click);
             // 
             // btnAltaCuenta
             // 
@@ -130,6 +132,7 @@
             this.btnAltaCuenta.Text = "Alta cuenta";
             this.btnAltaCuenta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAltaCuenta.UseVisualStyleBackColor = true;
+            this.btnAltaCuenta.Click += new System.EventHandler(this.btnAltaCuenta_Click);
             // 
             // FrmABMCuenta
             // 
@@ -141,6 +144,8 @@
             this.Controls.Add(this.btnAltaCuenta);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmABMCuenta";
             this.Text = "FrmABMCuenta";
             this.Load += new System.EventHandler(this.FrmABMCuenta_Load);

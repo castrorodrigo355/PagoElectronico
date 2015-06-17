@@ -58,6 +58,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmFacturacion";
             this.Text = "FrmFacturacion";
             this.groupBox1.ResumeLayout(false);

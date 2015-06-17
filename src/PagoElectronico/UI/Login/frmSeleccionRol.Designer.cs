@@ -96,6 +96,8 @@ namespace PagoElectronico.UI.Login
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
             this.Controls.Add(this.grpRoles);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmSeleccionRol";
             this.Text = "Sistema Pago Electronico";
             this.grpRoles.ResumeLayout(false);

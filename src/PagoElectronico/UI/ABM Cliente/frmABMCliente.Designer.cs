@@ -92,7 +92,7 @@
             this.btnModificarCliente.Text = "Modificar cliente";
             this.btnModificarCliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnModificarCliente.UseVisualStyleBackColor = true;
-            this.btnModificarCliente.Click += new System.EventHandler(this.button1_Click);
+            this.btnModificarCliente.Click += new System.EventHandler(this.btnModificarCliente_Click);
             // 
             // btnDarBaja
             // 
@@ -105,6 +105,7 @@
             this.btnDarBaja.Text = "Dar de baja cliente";
             this.btnDarBaja.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDarBaja.UseVisualStyleBackColor = true;
+            this.btnDarBaja.Click += new System.EventHandler(this.btnDarBaja_Click);
             // 
             // grpFiltros
             // 

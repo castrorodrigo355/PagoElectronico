@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="txtPassword.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtPassword.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnIngresar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAASpJREFUWEft
+        ltFRwzAQRF0CJaQESkgJlJBOSAdJB0kH0EHoIOmAdAAdwD4PN+PIinQ2p4EP78z78Ph0Wsm6s7qC1uIk
+        voJ4FzvxIKpi8lySCFhUVRdB8KfYBvEqzAQLLMoCGRgpd97FwGIgDaR2P8Shf5ovt4G3Hzb9021foI5d
+        zSQjt4FUaWM6i5WYqjADwCd5FFNkY0cGSMTW3oMVDyc3MPEkvLJxIwN872HiqdhZqcniww2Ap0IstokB
+        wESpQiyumYGj+DMDTF6Txf6/Q0gZcmHASA67oKRwYQkpw5pyjYjJwxpRTakBdqRpK2bb6YC5nxHvmv+M
+        coFsueekl/QrAxFaDCwG3Hmt83HheA7iRZgByrqoXOeLgj7iEiYIziWZw1XsxaCJdd03wSRzKdqNnOYA
+        AAAASUVORK5CYII=
+</value>
+  </data>
 </root>

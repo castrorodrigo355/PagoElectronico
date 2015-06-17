@@ -189,6 +189,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAdministrador";
+            this.Load += new System.EventHandler(this.frmAdministrador_Load);
             this.grpFuncionalidades.ResumeLayout(false);
             this.grpFuncionalidades.PerformLayout();
             this.ResumeLayout(false);

@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetalleFactura));
             this.grpFactura = new System.Windows.Forms.GroupBox();
+            this.lblImporte = new System.Windows.Forms.Label();
             this.dgvDetalleFactura = new System.Windows.Forms.DataGridView();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.lblImporte = new System.Windows.Forms.Label();
             this.grpFactura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFactura)).BeginInit();
             this.SuspendLayout();
@@ -47,6 +47,15 @@
             this.grpFactura.Size = new System.Drawing.Size(559, 482);
             this.grpFactura.TabIndex = 0;
             this.grpFactura.TabStop = false;
+            // 
+            // lblImporte
+            // 
+            this.lblImporte.AutoSize = true;
+            this.lblImporte.Location = new System.Drawing.Point(447, 453);
+            this.lblImporte.Name = "lblImporte";
+            this.lblImporte.Size = new System.Drawing.Size(94, 13);
+            this.lblImporte.TabIndex = 1;
+            this.lblImporte.Text = "IMPORTE TOTAL";
             // 
             // dgvDetalleFactura
             // 
@@ -74,15 +83,6 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // lblImporte
-            // 
-            this.lblImporte.AutoSize = true;
-            this.lblImporte.Location = new System.Drawing.Point(447, 453);
-            this.lblImporte.Name = "lblImporte";
-            this.lblImporte.Size = new System.Drawing.Size(94, 13);
-            this.lblImporte.TabIndex = 1;
-            this.lblImporte.Text = "IMPORTE TOTAL";
-            // 
             // FrmDetalleFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -91,6 +91,8 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.grpFactura);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmDetalleFactura";
             this.Text = "FrmDetalleFactura";
             this.grpFactura.ResumeLayout(false);

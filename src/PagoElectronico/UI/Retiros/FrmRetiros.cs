@@ -15,5 +15,10 @@ namespace PagoElectronico.UI.Retiros
         {
             InitializeComponent();
         }
+
+        private void FrmRetiros_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

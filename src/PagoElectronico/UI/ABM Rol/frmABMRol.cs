@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PagoElectronico.BusinessRules;
+using PagoElectronico.BusinessEntities;
 
 namespace PagoElectronico.UI.ABM_Rol
 {
@@ -66,6 +67,20 @@ namespace PagoElectronico.UI.ABM_Rol
         private void Actualizar_Grilla(object sender, EventArgs e)
         {
             CargarGrilla();
+        }
+
+        private void btnModificarRol_Click(object sender, EventArgs e)
+        {
+            Rol oRol = new Rol();
+            foreach (DataGridViewRow dr in dgvRoles.SelectedRows) 
+            {
+                oRol.ID = Convert.ToInt32(dr.Cells[0].Value);
+                oRol.Descripcion = Convert.ToString(dr.Cells[1].Value);
+                oRol.Estado = Convert.ToBoolean(dr.Cells[2].Value);
+            }
+
+            FrmModificarRol frmModificarRol = new FrmModificarRol(oRol);
+            frmModificarRol.Show();
         }
     }
 }

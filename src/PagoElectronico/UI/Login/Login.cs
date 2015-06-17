@@ -95,5 +95,11 @@ namespace PagoElectronico.login
 
         #endregion
 
+        private void btnNuevoUsuario_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Esta funcionalidad no se encuentra implementada aún. Por favor contacte a su Administrador si desea dar de alta un usuario.","No disponible", MessageBoxButtons.OK,MessageBoxIcon.Error);
+        }
+               
+
     }
 }

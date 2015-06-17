@@ -164,6 +164,8 @@
             this.Controls.Add(this.btnAltaRol);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmAltaRol";
             this.Text = "FrmAltaRol";
             this.Load += new System.EventHandler(this.FrmAltaRol_Load);

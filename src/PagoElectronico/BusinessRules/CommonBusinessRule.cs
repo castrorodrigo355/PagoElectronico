@@ -66,5 +66,39 @@ namespace PagoElectronico.BusinessRules
 
             return dtRoles;
         }
+
+        internal DataTable BuscarMonedas()
+        {
+            DataTable dtMonedas = null;
+
+            try
+            {
+                CommonDALC oCommonDALC = new CommonDALC();
+                dtMonedas = oCommonDALC.MonedasGetList().Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+
+            return dtMonedas;
+        }
+
+        public DataTable BuscarTiposCuenta()
+        {
+            DataTable dtTipoCuenta = null;
+
+            try
+            {
+                CommonDALC oCommonDALC = new CommonDALC();
+                dtTipoCuenta = oCommonDALC.TipoCuentaGetList().Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+
+            return dtTipoCuenta;
+        }
     }
 }

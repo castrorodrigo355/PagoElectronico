@@ -117,4 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnCancelar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAATtJREFUSEu9
+        lYERwiAMRTuCoziCG+gIbqIjOIob6Ea6geZxlx6lCQTs+e/enY2QDwm0U1An4SI8CogdhZ+0E0j0Ej4N
+        GMNY5nTpLEQMSpjD3JBugpWkB3ZX1RYmylUwxZatCb+wKiNNHOlJC3IuDgjbtAYCq9oL7yymEOO/WjUW
+        JbSSQL710kxNVJ4Zu0riMloD4CDkUrPSBDHWygF4VMvGasqEPFuxWo9T+Z5ZwMIyy9UygbvQNALPLGIC
+        eISMrJ4gYvkB8QgZeSaqiFkqXe0wWCY8W7GaWToMvcebnlg9ax5v5K2mvLB540sz78KSe1atfCQoTRQ1
+        80wglU3Fi6/V0BHIufrq1lY1Sl76hf7y4VNtYdY0UbHlkZ4xxy2XJ5rIyiKGjGHsqvG94sKRiFcJryzg
+        N7H5Mvqapi+r/6tTSPv7zgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnAltaCuenta.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAEJSURBVEhL3ZZhDcJADIUnAQlIQAIScAASkIAEHIADkIADcAIO4H0LTZrlxnpL7w8veVnW7Prd
+        9W7dukQt5ZN8kdcEWmglP+W3805O1eLrh+xBqTASsRJW1AxG4pdMsinY7D3byCQleQR2latFKRh87+9i
+        sLNcJYNgX/tfMOIc/bBKEK6sbKyM5rDGIBa7EZCGMCYQ1hSExH7WBrNnQ6qBELcyNluJj3P0w5oLsWdD
+        +h8ItR0OTIcg3gUG7vu7RhCOoyVETSDIyua7LK09FYLorqUEqRDEzElS6rLsWQqEWftEwLYyfzM0xhQI
+        OsqWrGROY1VbGdPws0sZ2TP7XKeJFQE7yLb5yeq6DwWDuAepI1NdAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

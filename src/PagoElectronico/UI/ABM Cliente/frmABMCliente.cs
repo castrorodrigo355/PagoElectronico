@@ -89,7 +89,7 @@ namespace PagoElectronico.UI.ABM_Cliente
 
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnModificarCliente_Click(object sender, EventArgs e)
         {
             FrmModificarCliente frmModificacion = new FrmModificarCliente();
             frmModificacion.Show();
@@ -131,6 +131,12 @@ namespace PagoElectronico.UI.ABM_Cliente
 
             filtroClientes.RowFilter = sb.ToString();
             dgvClientes.DataSource = filtroClientes.ToTable();
+        }
+
+        private void btnDarBaja_Click(object sender, EventArgs e)
+        {
+            FrmModificarCliente frmInhabilitarCliente = new FrmModificarCliente();
+            frmInhabilitarCliente.Show();
         }
 
 

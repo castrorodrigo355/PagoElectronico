@@ -42,6 +42,13 @@ namespace PagoElectronico.BusinessRules
             return oRolDALC.GetListFuncionalidades().Tables[0];
         }
 
+        public DataTable ObtenerFuncionalidades(int rolID)
+        {
+            RolDALC oRolDALC = new RolDALC();
+            return oRolDALC.GetListFuncionalidadesRol(rolID).Tables[0];
+        }
+
+
         public int RegistrarRol(String nombre, Boolean habilitado, List<Funcionalidad> funcionalidades)
         {
             RolDALC oRolDALC = new RolDALC();
@@ -56,7 +63,7 @@ namespace PagoElectronico.BusinessRules
                 oRol.Funcionalidades = funcionalidades;
 
                 result = oRolDALC.Insertar(oRol);
-                
+
                 foreach (Funcionalidad oFuncionalidad in funcionalidades)
                     oRolDALC.InsertarFuncionalidad(result, oFuncionalidad);
             }
@@ -65,6 +72,22 @@ namespace PagoElectronico.BusinessRules
                 MessageBox.Show("Hubo un error al registrar al Rol");
             }
             return result;
+        }
+
+        public void ActualizarRol(Rol oRol)
+        {
+            RolDALC oRolDALC = new RolDALC();
+
+            try
+            {
+                int result = oRolDALC.Actualizar(oRol);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al registrar al Rol");
+            }
+
         }
     }
 }

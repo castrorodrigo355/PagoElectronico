@@ -32,14 +32,14 @@
             this.grpCuentas = new System.Windows.Forms.GroupBox();
             this.dgvCuentas = new System.Windows.Forms.DataGridView();
             this.grpDeposito = new System.Windows.Forms.GroupBox();
-            this.cmbTarjetaCredito = new System.Windows.Forms.ComboBox();
-            this.lblImporte = new System.Windows.Forms.Label();
+            this.btnLimpiarCampos = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnRealizarDeposito = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtImporte = new System.Windows.Forms.TextBox();
             this.cmbMoneda = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnLimpiarCampos = new System.Windows.Forms.Button();
-            this.btnRealizarDeposito = new System.Windows.Forms.Button();
+            this.lblImporte = new System.Windows.Forms.Label();
+            this.cmbTarjetaCredito = new System.Windows.Forms.ComboBox();
             this.grpCuentas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCuentas)).BeginInit();
             this.grpDeposito.SuspendLayout();
@@ -50,7 +50,7 @@
             this.grpCuentas.Controls.Add(this.dgvCuentas);
             this.grpCuentas.Location = new System.Drawing.Point(12, 12);
             this.grpCuentas.Name = "grpCuentas";
-            this.grpCuentas.Size = new System.Drawing.Size(736, 216);
+            this.grpCuentas.Size = new System.Drawing.Size(563, 216);
             this.grpCuentas.TabIndex = 0;
             this.grpCuentas.TabStop = false;
             this.grpCuentas.Text = "Cuentas";
@@ -60,7 +60,7 @@
             this.dgvCuentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCuentas.Location = new System.Drawing.Point(17, 19);
             this.dgvCuentas.Name = "dgvCuentas";
-            this.dgvCuentas.Size = new System.Drawing.Size(702, 179);
+            this.dgvCuentas.Size = new System.Drawing.Size(528, 179);
             this.dgvCuentas.TabIndex = 0;
             // 
             // grpDeposito
@@ -75,51 +75,22 @@
             this.grpDeposito.Controls.Add(this.cmbTarjetaCredito);
             this.grpDeposito.Location = new System.Drawing.Point(12, 234);
             this.grpDeposito.Name = "grpDeposito";
-            this.grpDeposito.Size = new System.Drawing.Size(736, 118);
+            this.grpDeposito.Size = new System.Drawing.Size(563, 118);
             this.grpDeposito.TabIndex = 1;
             this.grpDeposito.TabStop = false;
             this.grpDeposito.Text = "Deposito";
             // 
-            // cmbTarjetaCredito
+            // btnLimpiarCampos
             // 
-            this.cmbTarjetaCredito.FormattingEnabled = true;
-            this.cmbTarjetaCredito.Location = new System.Drawing.Point(124, 71);
-            this.cmbTarjetaCredito.Name = "cmbTarjetaCredito";
-            this.cmbTarjetaCredito.Size = new System.Drawing.Size(421, 21);
-            this.cmbTarjetaCredito.TabIndex = 0;
-            // 
-            // lblImporte
-            // 
-            this.lblImporte.AutoSize = true;
-            this.lblImporte.Location = new System.Drawing.Point(294, 29);
-            this.lblImporte.Name = "lblImporte";
-            this.lblImporte.Size = new System.Drawing.Size(100, 13);
-            this.lblImporte.TabIndex = 1;
-            this.lblImporte.Text = "Importe a depositar:";
-            // 
-            // txtImporte
-            // 
-            this.txtImporte.Location = new System.Drawing.Point(400, 26);
-            this.txtImporte.Name = "txtImporte";
-            this.txtImporte.Size = new System.Drawing.Size(145, 20);
-            this.txtImporte.TabIndex = 2;
-            // 
-            // cmbMoneda
-            // 
-            this.cmbMoneda.FormattingEnabled = true;
-            this.cmbMoneda.Location = new System.Drawing.Point(124, 26);
-            this.cmbMoneda.Name = "cmbMoneda";
-            this.cmbMoneda.Size = new System.Drawing.Size(121, 21);
-            this.cmbMoneda.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Seleccione moneda:";
+            this.btnLimpiarCampos.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarCampos.Image")));
+            this.btnLimpiarCampos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiarCampos.Location = new System.Drawing.Point(411, 62);
+            this.btnLimpiarCampos.Name = "btnLimpiarCampos";
+            this.btnLimpiarCampos.Size = new System.Drawing.Size(134, 36);
+            this.btnLimpiarCampos.TabIndex = 8;
+            this.btnLimpiarCampos.Text = "Limpiar campos";
+            this.btnLimpiarCampos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLimpiarCampos.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -130,23 +101,11 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Tarjeta de credito:";
             // 
-            // btnLimpiarCampos
-            // 
-            this.btnLimpiarCampos.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarCampos.Image")));
-            this.btnLimpiarCampos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiarCampos.Location = new System.Drawing.Point(585, 71);
-            this.btnLimpiarCampos.Name = "btnLimpiarCampos";
-            this.btnLimpiarCampos.Size = new System.Drawing.Size(134, 36);
-            this.btnLimpiarCampos.TabIndex = 8;
-            this.btnLimpiarCampos.Text = "Limpiar campos";
-            this.btnLimpiarCampos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLimpiarCampos.UseVisualStyleBackColor = true;
-            // 
             // btnRealizarDeposito
             // 
             this.btnRealizarDeposito.Image = ((System.Drawing.Image)(resources.GetObject("btnRealizarDeposito.Image")));
             this.btnRealizarDeposito.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRealizarDeposito.Location = new System.Drawing.Point(585, 19);
+            this.btnRealizarDeposito.Location = new System.Drawing.Point(411, 17);
             this.btnRealizarDeposito.Name = "btnRealizarDeposito";
             this.btnRealizarDeposito.Size = new System.Drawing.Size(134, 36);
             this.btnRealizarDeposito.TabIndex = 7;
@@ -154,13 +113,56 @@
             this.btnRealizarDeposito.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRealizarDeposito.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(104, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Seleccione moneda:";
+            // 
+            // txtImporte
+            // 
+            this.txtImporte.Location = new System.Drawing.Point(293, 26);
+            this.txtImporte.Name = "txtImporte";
+            this.txtImporte.Size = new System.Drawing.Size(95, 20);
+            this.txtImporte.TabIndex = 2;
+            // 
+            // cmbMoneda
+            // 
+            this.cmbMoneda.FormattingEnabled = true;
+            this.cmbMoneda.Location = new System.Drawing.Point(124, 26);
+            this.cmbMoneda.Name = "cmbMoneda";
+            this.cmbMoneda.Size = new System.Drawing.Size(95, 21);
+            this.cmbMoneda.TabIndex = 3;
+            // 
+            // lblImporte
+            // 
+            this.lblImporte.AutoSize = true;
+            this.lblImporte.Location = new System.Drawing.Point(242, 29);
+            this.lblImporte.Name = "lblImporte";
+            this.lblImporte.Size = new System.Drawing.Size(45, 13);
+            this.lblImporte.TabIndex = 1;
+            this.lblImporte.Text = "Importe:";
+            // 
+            // cmbTarjetaCredito
+            // 
+            this.cmbTarjetaCredito.FormattingEnabled = true;
+            this.cmbTarjetaCredito.Location = new System.Drawing.Point(124, 71);
+            this.cmbTarjetaCredito.Name = "cmbTarjetaCredito";
+            this.cmbTarjetaCredito.Size = new System.Drawing.Size(264, 21);
+            this.cmbTarjetaCredito.TabIndex = 0;
+            // 
             // FrmDepositos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 367);
+            this.ClientSize = new System.Drawing.Size(591, 367);
             this.Controls.Add(this.grpDeposito);
             this.Controls.Add(this.grpCuentas);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmDepositos";
             this.Text = "FrmDepositos";
             this.Load += new System.EventHandler(this.FrmDepositos_Load);

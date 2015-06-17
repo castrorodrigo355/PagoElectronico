@@ -56,6 +56,24 @@ namespace PagoElectronico.UI.ABM_Cuenta
             }
         }
 
+        private void btnAltaCuenta_Click(object sender, EventArgs e)
+        {
+            FrmAltaCuenta frmAltaCuenta = new FrmAltaCuenta();
+            frmAltaCuenta.Show();
+        }
+
+        private void btnModificarCuenta_Click(object sender, EventArgs e)
+        {
+            FrmModificarCuenta frmModificarCuenta = new FrmModificarCuenta();
+            frmModificarCuenta.Show();
+        }
+
+        private void btnDarBajaCuenta_Click(object sender, EventArgs e)
+        {
+            FrmModificarCuenta frmInhabilitarCuenta = new FrmModificarCuenta();
+            frmInhabilitarCuenta.Show();
+        }
+
 
     }
 }

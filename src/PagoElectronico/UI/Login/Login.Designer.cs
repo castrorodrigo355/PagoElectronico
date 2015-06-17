@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.lblBienvenido = new System.Windows.Forms.Label();
             this.grpDatosUsuario = new System.Windows.Forms.GroupBox();
             this.btnIngresar = new System.Windows.Forms.Button();
@@ -57,18 +58,18 @@
             this.grpDatosUsuario.Controls.Add(this.txtNombreUsuario);
             this.grpDatosUsuario.Location = new System.Drawing.Point(15, 41);
             this.grpDatosUsuario.Name = "grpDatosUsuario";
-            this.grpDatosUsuario.Size = new System.Drawing.Size(243, 137);
+            this.grpDatosUsuario.Size = new System.Drawing.Size(291, 110);
             this.grpDatosUsuario.TabIndex = 1;
             this.grpDatosUsuario.TabStop = false;
             this.grpDatosUsuario.Text = "Si ya estas registrado, ingresa tus datos";
             // 
             // btnIngresar
             // 
-            this.btnIngresar.Location = new System.Drawing.Point(40, 101);
+            this.btnIngresar.Image = ((System.Drawing.Image)(resources.GetObject("btnIngresar.Image")));
+            this.btnIngresar.Location = new System.Drawing.Point(198, 28);
             this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(167, 23);
+            this.btnIngresar.Size = new System.Drawing.Size(74, 56);
             this.btnIngresar.TabIndex = 4;
-            this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
@@ -77,7 +78,7 @@
             this.txtPassword.AccessibleDescription = "";
             this.txtPassword.AccessibleName = "";
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(40, 64);
+            this.txtPassword.Location = new System.Drawing.Point(16, 64);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(167, 20);
@@ -87,7 +88,7 @@
             // txtNombreUsuario
             // 
             this.txtNombreUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreUsuario.Location = new System.Drawing.Point(40, 28);
+            this.txtNombreUsuario.Location = new System.Drawing.Point(16, 28);
             this.txtNombreUsuario.Name = "txtNombreUsuario";
             this.txtNombreUsuario.Size = new System.Drawing.Size(167, 20);
             this.txtNombreUsuario.TabIndex = 2;
@@ -96,30 +97,33 @@
             // grpNuevoUsuario
             // 
             this.grpNuevoUsuario.Controls.Add(this.btnNuevoUsuario);
-            this.grpNuevoUsuario.Location = new System.Drawing.Point(15, 185);
+            this.grpNuevoUsuario.Location = new System.Drawing.Point(15, 157);
             this.grpNuevoUsuario.Name = "grpNuevoUsuario";
-            this.grpNuevoUsuario.Size = new System.Drawing.Size(243, 64);
+            this.grpNuevoUsuario.Size = new System.Drawing.Size(291, 64);
             this.grpNuevoUsuario.TabIndex = 2;
             this.grpNuevoUsuario.TabStop = false;
             this.grpNuevoUsuario.Text = "¿No estas registrado?";
             // 
             // btnNuevoUsuario
             // 
-            this.btnNuevoUsuario.Location = new System.Drawing.Point(40, 24);
+            this.btnNuevoUsuario.Location = new System.Drawing.Point(16, 24);
             this.btnNuevoUsuario.Name = "btnNuevoUsuario";
-            this.btnNuevoUsuario.Size = new System.Drawing.Size(167, 23);
+            this.btnNuevoUsuario.Size = new System.Drawing.Size(256, 23);
             this.btnNuevoUsuario.TabIndex = 0;
             this.btnNuevoUsuario.Text = "Nuevo Usuario";
             this.btnNuevoUsuario.UseVisualStyleBackColor = true;
+            this.btnNuevoUsuario.Click += new System.EventHandler(this.btnNuevoUsuario_Click);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(270, 261);
+            this.ClientSize = new System.Drawing.Size(322, 239);
             this.Controls.Add(this.grpNuevoUsuario);
             this.Controls.Add(this.grpDatosUsuario);
             this.Controls.Add(this.lblBienvenido);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Login";
             this.Text = "Sistema de Pago Electrónico";
             this.grpDatosUsuario.ResumeLayout(false);

@@ -79,6 +79,7 @@
             this.btnModificarRol.Text = "Modificar Rol";
             this.btnModificarRol.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnModificarRol.UseVisualStyleBackColor = true;
+            this.btnModificarRol.Click += new System.EventHandler(this.btnModificarRol_Click);
             // 
             // btnAltaRol
             // 
@@ -102,6 +103,8 @@
             this.Controls.Add(this.btnModificarRol);
             this.Controls.Add(this.btnAltaRol);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmABMRol";
             this.Text = "FrmABMRol";
             this.Load += new System.EventHandler(this.FrmABMRol_Load);
