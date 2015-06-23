@@ -24,7 +24,7 @@ drop table [DBA_GD].CLIENTE
 drop table [DBA_GD].USUARIO
 drop table [DBA_GD].PAIS
 drop table [DBA_GD].TIPO_DOCUMENTO
-
+drop table [DBA_GD].EMISOR
 -------------------------------------------------------
 				-- Borrado de PROCEDURES --
 -------------------------------------------------------
@@ -47,6 +47,7 @@ drop PROCEDURE [DBA_GD].Migracion_Datos_DEPOSITO
 drop PROCEDURE [DBA_GD].Migracion_Datos_CHEQUE
 drop PROCEDURE [DBA_GD].Migracion_Datos_ITEM_FACTURA
 drop PROCEDURE [DBA_GD].Migracion_Datos_TRANSFERENCIA
+drop PROCEDURE [DBA_GD].Migracion_Datos_Emisor
 DROP FUNCTION [DBA_GD].CALCULAR_TRANSFERENCIAS_ENTRANTES
 DROP FUNCTION [DBA_GD].CALCULAR_TRANSFERENCIAS_SALIENTES
 DROP FUNCTION [DBA_GD].CALCULAR_DEPOSITOS

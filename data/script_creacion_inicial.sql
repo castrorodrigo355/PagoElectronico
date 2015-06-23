@@ -11,7 +11,12 @@ GO
 CREATE TABLE [DBA_GD].TIPO_DOCUMENTO(
 	Tipo_Documento_ID numeric(18,0) NOT NULL primary key,
 	Tipo_Documento_Desc varchar(16) NOT NULL
-	);	
+	);
+	
+CREATE TABLE [DBA_GD].EMISOR(
+	Emisor_ID numeric(18,0) identity(1,1) primary key,
+	Emisor_Nombre varchar(64) NOT NULL
+	);		
 	
 CREATE TABLE [DBA_GD].PAIS(
 	Pais_ID numeric(18,0) identity(1,1) primary key,
@@ -116,6 +121,7 @@ CREATE TABLE [DBA_GD].TARJETA(
 	Tarjeta_Codigo_Seg varchar(64) NOT NULL,
 	Tarjeta_Emisor_Descripcion varchar(128) NOT NULL,
 	Tarjeta_Cliente_ID numeric(18,0) NOT NULL foreign key references [DBA_GD].CLIENTE,
+	Tarjeta_Emisor_ID numeric(18,0) NOT NULL foreign key references [DBA_GD].BANCO
 	);
 	
 CREATE TABLE [DBA_GD].DEPOSITO(
@@ -211,10 +217,8 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_BANCO
 		(Banco_Codigo,Banco_Nombre,Banco_direccion)
 		SELECT DISTINCT Banco_Cogido as CODIGO_BANCO, Banco_Nombre as NOMBRE, 
 						Banco_Direccion as DIRECCION
-
 		FROM GD1C2015.gd_esquema.Maestra
-
-		WHERE Banco_Cogido is not null 	
+		WHERE Banco_Cogido is not null	
 	END
 GO
 --MIGRACION DATOS USUARIO--
@@ -241,6 +245,10 @@ CREATE PROCEDURE [DBA_GD].Migracion_USUARIO
 		
 		VALUES
 		--pass es w23e--
+		('admin','E6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7',getdate(),getdate(),
+		'Una combinación de letras que te dijeron en el tp',
+		'2EB8D2D6A83DD4DB081F290BE198590EE01A2C685FF62F6BFC2D0E34CB2E74E8',1,0),
+
 		('Admin1','E6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7',getdate(),getdate(),
 		'Una combinación de letras que te dijeron en el tp',
 		'2EB8D2D6A83DD4DB081F290BE198590EE01A2C685FF62F6BFC2D0E34CB2E74E8',1,0),
@@ -484,14 +492,34 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_ROL_FUNCIONALIDAD
 	END
 GO
 
+--MIGRACION DE DATOS A TABLA EMISOR--
+
+CREATE PROCEDURE [DBA_GD].Migracion_Datos_Emisor
+	AS
+	BEGIN
+		INSERT INTO [DBA_GD].EMISOR
+		(Emisor_Nombre)		
+		
+		SELECT DISTINCT Tarjeta_Emisor_Descripcion
+		FROM GD1C2015.gd_esquema.Maestra AS M
+		WHERE M.Tarjeta_Emisor_Descripcion IS NOT NULL
+	END
+GO
+
 --MIGRACION DE DATOS A TABLA TARJETA--
 
 CREATE PROCEDURE [DBA_GD].Migracion_Datos_Tarjetas
 	AS
 	BEGIN
 		INSERT INTO [DBA_GD].TARJETA
-		(Tarjeta_Numero,Tarjeta_Numero_Encriptada,Tarjeta_fecha_Emision,
-		Tarjeta_Fecha_Vencimiento,Tarjeta_Codigo_Seg,Tarjeta_Emisor_Descripcion,Tarjeta_Cliente_ID)
+		(Tarjeta_Numero,
+		Tarjeta_Numero_Encriptada,
+		Tarjeta_fecha_Emision,
+		Tarjeta_Fecha_Vencimiento,
+		Tarjeta_Codigo_Seg,
+		Tarjeta_Emisor_Descripcion, 
+		Tarjeta_Cliente_ID, 
+		Tarjeta_Emisor_ID)
 		
 		SELECT distinct Tarjeta_Numero as NUMERO_TARJETA,
 		(convert(varchar(16),HASHBYTES('MD5',SUBSTRING(Tarjeta_Numero,0,12)),2)
@@ -499,11 +527,14 @@ CREATE PROCEDURE [DBA_GD].Migracion_Datos_Tarjetas
 		Tarjeta_Fecha_Vencimiento AS FECHA_VENCIMIENTO,
 		hashbytes('SHA1',CAST(Tarjeta_Codigo_Seg AS varchar(40))),
 		Tarjeta_Emisor_Descripcion AS EMISOR,
-		(SELECT C.Cliente_ID FROM [DBA_GD].CLIENTE AS C 
-		WHERE C.Cliente_Nro_Doc = M.Cli_Nro_Doc AND C.Cliente_Tipo_Doc_Cod = M.Cli_Tipo_Doc_Cod)
-
+		(SELECT C.Cliente_ID 
+			FROM [DBA_GD].CLIENTE AS C 
+			WHERE C.Cliente_Nro_Doc = M.Cli_Nro_Doc AND 
+				C.Cliente_Tipo_Doc_Cod = M.Cli_Tipo_Doc_Cod),
+		(SELECT E.Emisor_ID
+			FROM [DBA_GD].Emisor AS E
+			WHERE M.Tarjeta_Emisor_Descripcion = E.Emisor_Nombre)
 		FROM GD1C2015.gd_esquema.Maestra as M
-
 		WHERE Tarjeta_Numero is not null 	
 	END
 GO
@@ -718,6 +749,7 @@ exec [DBA_GD].Migracion_Datos_Moneda
 exec [DBA_GD].Migracion_Datos_Tipo_Cuenta
 exec [DBA_GD].Migracion_USUARIO
 exec [DBA_GD].Migracion_Datos_CLIENTE
+exec [DBA_GD].Migracion_Datos_Emisor
 exec [DBA_GD].Migracion_Datos_Tarjetas
 exec [DBA_GD].Migracion_Datos_Rol
 exec [DBA_GD].Migracion_Datos_USUARIO_ROL
